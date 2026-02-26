@@ -7,7 +7,7 @@
     <title>Glued</title>
     <link rel="stylesheet" href="home_style.css">
     <link rel="stylesheet" href="home_responsive.css">
-    <link rel="icon" href="assets/tabicon.png">
+    <link rel="icon" type="image/png" href="assets/tabicon.png">
     <script>
         // Runs instantly before the page even renders the body
         if (localStorage.getItem('site-theme') === 'dark') {
@@ -35,7 +35,7 @@
 
     <section class="intro_section">
         <div class="intro-video-container">
-            <video autoplay muted class="intro-video">
+            <video autoplay muted playsinline class="intro-video">
                 <source src="assets/intromotion.mp4" type="video/mp4">
             </video>
         </div>
