@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Glued</title>
+    <link rel="stylesheet" href="home_style.css">
+    <link rel="stylesheet" href="home_responsive.css">
+    <link rel="icon" href="assets/tabicon.png">
+    <script>
+        // Runs instantly before the page even renders the body
+        if (localStorage.getItem('site-theme') === 'dark') {
+        document.documentElement.classList.add('dark-theme');
+        }
+    </script>
+  </head>
+
+
+
+  <body>
+
+    <header>
+        <nav class="nav">
+            <div class="nav-container">
+                <div onclick="toggleTheme()" class="logo-container">
+                    <img class="navicon" src="assets/navicon_light.png">
+                </div>
+                <ul class="nav-list">
+                    <a class="nav-list" onclick="topFunction()">Glued</a>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <section class="intro_section">
+        <div class="intro-video-container">
+            <video autoplay muted class="intro-video">
+                <source src="assets/intromotion.mp4" type="video/mp4">
+            </video>
+        </div>
+    </section>
+
+    <section id="hero" class="hero">
+        <div onclick="toggleTheme()" class="logo-container-2">
+                <img class="navicon" src="assets/navicon_light.png">
+        </div>
+        <div class="Sliding-ego-container">
+                <img class="slide" data-src="assets/SLIDING EGO.webp">
+        </div>
+        <div class="hero-glued-container">
+            <div class="hero-texts-cont">
+                <img class="glued" data-src="assets/gluedtype_desktop_light.webp">
+                <img class="sub-text" data-src="assets/subheading_light.webp">
+            </div>
+        </div>
+    </section>
+
+    <section class="featured-work-container">
+
+        <div class="gallery">
+                    <div class="boxes-main-container">
+                        <div class="scroll-in">
+                            <div class="box-container">
+                                <video class="unmutable" src="assets/TrueDragonSword.mp4" alt="Gallery image 1" autoplay muted playsinline loop> </video>
+                            </div>
+                        </div>
+                        <div class="scroll-in">
+                            <div class="box-container">
+                                <video class="unmutable" src="assets/3V-logo-motion.mp4" alt="Gallery image 1" autoplay muted playsinline loop> </video>
+                            </div>
+                        </div>
+                        <div class="scroll-in">
+                            <div class="box-container">
+                                <video  src="assets/kelloggs-thumb.mp4" alt="Gallery image 1" autoplay muted playsinline loop> </video>
+                            </div>
+                        </div>
+                        <div class="scroll-in">
+                            <div class="box-container">
+                                <video src="assets/LASER_SLAB_01_1X1_5mbps.mp4" alt="Gallery image 1" autoplay muted playsinline loop> </video>
+                            </div>
+                        </div>
+                        <div class="scroll-in">
+                            <div class="box-container">
+                                <video src="assets/finalvid.mp4" alt="Gallery image 1" autoplay muted playsinline loop> </video>
+                            </div>
+                        </div>
+                        <div class="scroll-in">
+                            <div class="box-container">
+                                <video src="assets/Kino_Colours.mp4" alt="Gallery image 1" autoplay muted playsinline loop> </video>
+                            </div>
+                        </div>
+                        <div class="scroll-in">
+                            <div class="box-container">
+                                <video src="assets/weirdwood-thumb.mp4" alt="Gallery image 1" autoplay muted playsinline loop> </video>
+                            </div>
+                        </div>
+                        <div class="scroll-in">
+                            <div class="box-container">
+                                <video src="assets/Tissot_AddsUp.mp4" alt="Gallery image 1" autoplay muted playsinline loop> </video>
+                            </div>
+                        </div>
+                        <div class="scroll-in">
+                            <div class="box-container">
+                                <video src="assets/speaker_list-gallery.mp4" alt="Gallery image 1" autoplay muted playsinline loop> </video>
+                            </div>
+                        </div>
+                        <div class="scroll-in">
+                            <div class="box-container">
+                                <video src="assets/HERO-BG-3.mp4" alt="Gallery image 1" autoplay muted playsinline loop> </video>
+                            </div>
+                        </div>
+                    </div>
+        </div>
+
+
+
+        <div class="work-container">
+            <div class="work scroll-in" onclick="window.open('https://www.shearer.design/')">
+                <div class="work-image">
+                    <div class="work-image">
+                        <video class="image" src="./assets/shearer-thumb.mp4" autoplay muted playsinline loop></video>
+                    </div>
+                </div>
+                <div class="work-title">
+                    <div class="title-container">
+                        <p class="text-box-text-1">SHEARER.</p>
+                    </div>
+                    <div class="title-container">
+                        <p class="text-box-text-2">BRAND | WEB</p>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="work scroll-in" onclick="location.href='./pepsi/'">
+                <div class="work-image">
+                    <div class="work-image">
+                        <video class="image" src="./assets/pepsi-thumb.mp4" autoplay muted playsinline loop></video>
+                    </div>
+                </div>
+                <div class="work-title">
+                    <div class="title-container">
+                        <p class="text-box-text-1">PREBIOTIC COLA</p>
+                    </div>
+                    <div class="title-container">
+                        <p class="text-box-text-2">SEVENTEEN AGENCY</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="featured-work-about-container">
+                <div class="featured-work-keywords-container">
+                    <p class="featured-work-keywords scroll-in">BRANDING <br> ADVERTISING <br> STRATEGY <br> ANIMATION </p>
+                    <div class="text-box-container">
+                        <p class="text-box-text-1 larger">AWARD WINNING.</p>
+                    </div>
+                </div>
+                <div class="reel-container scroll-in">
+                    <video class="image" src="assets/showreelop1080 v2.mp4" poster="assets/showreel-thumb.png" controls playsinline></video>
+                </div>
+        </div>
+
+
+
+        <div class="work-container">
+                <div class="work scroll-in" onclick="location.href='./d&ad-xbox/'">
+                        <div class="work-image">
+                            <video class="image" src="./assets/d&ad-thumb.mp4" autoplay muted playsinline loop></video>
+                        </div>
+                    <div class="work-title">
+                        <div class="title-container">
+                            <p class="text-box-text-1">D&AD XBOX</p>
+                        </div>
+                        <div class="title-container">
+                            <p class="text-box-text-2">A MESSAGE FROM UR X</p>
+                        </div>
+                    </div>
+                </div>
+               
+                <div class="work scroll-in" onClick="window.open('https://www.dandad.org/awards/new-blood/2025/giffgaff/4634/once-upon-a-giffgaff/')">
+                        <div class="work-image">
+                            <video class="image" src="./assets/d&ad-thumb.mp4" autoplay muted playsinline loop></video>
+                        </div>
+                    <div class="work-title">
+                        <div class="title-container">
+                            <p class="text-box-text-1">D&AD GIFFGAFF</p>
+                        </div>
+                        <div class="title-container">
+                            <p class="text-box-text-2">ONCE UPON A GIFFGAFF</p>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+        <div class="work-container">
+            <div class="work scroll-in" >
+                    <div class="work-image">
+                        <video class="image" src="./assets/burgerwars-hidden-thumb.mp4" autoplay muted playsinline loop></video>
+                    </div>
+                <div class="work-title">
+                    <div class="title-container">
+                        <p class="text-box-text-1">THE JUNKYARD</p>
+                    </div>
+                    <div class="title-container">
+                        <p class="text-box-text-2">CONFIDENTIAL</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="work scroll-in" onclick="location.href='Projects/Fedrigoni/'">
+                    <div class="work-image">
+                        <video class="image" src="./assets/fed365-thumb.mp4" autoplay muted playsinline loop></video>
+                    </div>
+                <div class="work-title">
+                    <div class="title-container">
+                        <p class="text-box-text-1">FEDRIGONI 365</p>
+                    </div>
+                    <div class="title-container">
+                        <p class="text-box-text-2">THE 2025 EDITION</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="work-container">
+            <div class="work scroll-in">
+                    <div class="work-image">
+                        <video class="image" src="./assets/weirdwood-thumb.mp4" autoplay muted playsinline loop></video>
+                    </div>
+                <div class="work-title">
+                    <div class="title-container">
+                        <p class="text-box-text-1">WEIRD WOOD</p>
+                    </div>
+                    <div class="title-container">
+                        <p class="text-box-text-2">LOCKED</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="work scroll-in" onclick="location.href='Projects/public-london/'">
+                    <div class="work-image">
+                        <video class="image" src="./assets/absorb-thumb.mp4" autoplay muted playsinline loop></video>
+                    </div>
+                <div class="work-title">
+                    <div class="title-container">
+                        <p class="text-box-text-1">PUBLIC LONDON</p>
+                    </div>
+                    <div class="title-container">
+                        <p class="text-box-text-2">INTERN-TIVITIES</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="work-container">
+            <div class="work scroll-in"  onclick="location.href='Projects/Plucked/'">
+                <div class="work-image">
+                    <video class="image" src="./assets/plucked-thumb.mp4" autoplay muted playsinline loop></video>
+                </div>
+                <div class="work-title">
+                    <div class="title-container">
+                        <p class="text-box-text-1">PLUCKED</p>
+                    </div>
+                    <div class="title-container">
+                        <p class="text-box-text-2">BRANDING RENT A CHICKEN</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="work scroll-in" onclick="location.href='Projects/V60s/'">
+                <div class="work-image">
+                    <video class="image" src="./assets/v60s-thumb.mp4" autoplay muted playsinline loop></video>
+                </div>
+                <div class="work-title">
+                    <div class="title-container">
+                        <p class="text-box-text-1">V60S</p>
+                    </div>
+                    <div class="title-container">
+                        <p class="text-box-text-2">V60s TITLE SEQUENCE</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="work-container">
+            <div class="work scroll-in" onclick="location.href='Projects/Kelloggs/'">
+                    <div class="work-image">
+                        <video class="image" src="assets/kelloggs-thumb.mp4" autoplay muted playsinline loop></video>
+                    </div>
+                <div class="work-title">
+                    <div class="title-container">
+                        <p class="text-box-text-1">KELLOGG'S</p>
+                    </div>
+                    <div class="title-container">
+                        <p class="text-box-text-2">KICKSTART CAMPAIGN</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="work scroll-in">
+                    <div class="work-image">
+                        <img class="image" src="./assets/homegrown-thumb.png">
+                    </div>
+                <div class="work-title">
+                    <div class="title-container">
+                        <p class="text-box-text-1">NOTCUTTS</p>
+                    </div>
+                    <div class="title-container">
+                        <p class="text-box-text-2">LOCKED</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <footer class="footer" aria-labelledby="footer-title">
+      <div class="footer-container">
+        <div class="footer-main-container scroll-in">
+          <div class="footer-title-container">
+            <h2 id="footer-title" class="footer-title">Glued</h2>
+          </div>
+          <div class="footer-details-container">
+            <nav class="footer-text-container" aria-label="Footer navigation">
+              <a href="./About/" class="footer-details-line-1">About</a>
+              <a href="mailto:reiss@glued.studio?subject=Got%20an%20idea%20–%20let’s%20chat&body=Hey%20Reiss," class="footer-details-line-1">Contact</a>
+              <a href="https://www.instagram.com/gluedstudio/" class="footer-details-line-1">Instagram</a>
+              <a href="https://www.linkedin.com/in/reiss-badhasha/" class="footer-details-line-1">LinkedIn</a>
+            </nav>
+          </div>
+        </div>
+        <div class="footer-second-container">
+          <div class="footer-second-text-container-1">
+            <div class="footer-second-text-container-2">
+              <p class="footer-tags-line-2">Designed and Developed by Glued</p>
+            </div>
+            <div class="footer-second-text-container-2">
+              <p class="footer-tags-line-2">:D</p>
+              <p class="footer-tags-line-2">© 2026 Glued.Studio</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+    <script src="home_script.js"></script>
+
+</body>
+
+
+
+</html>
