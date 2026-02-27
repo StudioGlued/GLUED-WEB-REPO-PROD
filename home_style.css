@@ -112,7 +112,6 @@ header {
     z-index: 102;
     height: 2rem;
     width: auto;
-    transition: 0s ease;
 }
 
 .navicon:hover {
