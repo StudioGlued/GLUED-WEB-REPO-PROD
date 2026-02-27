@@ -116,7 +116,7 @@ function topFunction() {
 //unmute videos
 
 // Select all videos on the page (or change 'video' to a specific class like '.slide')
-const toggleMuteVideos = document.querySelectorAll('video');
+const toggleMuteVideos = document.querySelectorAll('.unmutable');
 
 toggleMuteVideos.forEach(video => {
   video.addEventListener('click', () => {
