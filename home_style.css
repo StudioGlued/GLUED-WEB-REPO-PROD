@@ -77,7 +77,6 @@ header {
     height: auto;
     width: 100%;
     z-index: 100;
-    transition: 0.3s ease;
 }
 
 .nav {
@@ -113,6 +112,7 @@ header {
     z-index: 102;
     height: 2rem;
     width: auto;
+    transition: 0s ease;
 }
 
 .navicon:hover {
@@ -135,6 +135,7 @@ header {
     position: absolute;
     top: 0;
     background-color: var(--background);
+    transition: 0.3s ease;
     opacity: 0.8;
     width: 100%;
     height: 100%;
@@ -510,6 +511,7 @@ header {
     font-weight: 300;
     color: var(--sikh);
     text-align: right;
+    transition: 0.3s ease;
 }
 
 .footer-details-line-1:hover {

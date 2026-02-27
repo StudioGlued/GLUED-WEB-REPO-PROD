@@ -13,7 +13,7 @@ const lenis = new Lenis({
   lerp: 0.05, // A value between 0 and 1. (0.1 is standard smooth, 0.05 is icy/heavy)
   
   // Make the wheel feel more powerful/responsive
-  wheelMultiplier: 3, 
+  wheelMultiplier: 2, 
   
   smoothWheel: true,
 });
