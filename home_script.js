@@ -40,37 +40,29 @@ requestAnimationFrame(raf);
 document.addEventListener('DOMContentLoaded', () => {
   const introSection = document.querySelector('.intro_section');
   const introVideo = document.querySelector('.intro-video');
-  const heroImages = document.querySelectorAll('.hero img[data-src]');
   
-  // A quick helper function to load our images so we don't write it twice
-  function loadHeroImages() {
-    heroImages.forEach(img => {
-      img.src = img.getAttribute('data-src');
-    });
-  }
+  // Select the specific hero video we just set up
+  const slidingEgoVideo = document.querySelector('.hero-icon-video');
 
-  // Check if they have seen the intro before
   if (localStorage.getItem('has-seen-intro') === 'true') {
-    
     // SCENARIO A: Returning User
-    // Hide the intro immediately and load the images instantly
     if (introSection) introSection.style.display = 'none';
-    loadHeroImages();
+    
+    // Play the hero video immediately
+    if (slidingEgoVideo) slidingEgoVideo.play();
     
   } else {
-    
     // SCENARIO B: First-Time Visitor
-    // Let the video play, wait for it to end, then show images and save state
     if (introVideo) {
       introVideo.addEventListener('ended', () => {
         if (introSection) introSection.style.display = 'none';
-        loadHeroImages();
         
-        // Save to local storage so it skips next time!
+        // Play the hero video the exact millisecond the intro vanishes
+        if (slidingEgoVideo) slidingEgoVideo.play();
+        
         localStorage.setItem('has-seen-intro', 'true');
       });
     }
-    
   }
 });
 
@@ -143,13 +135,30 @@ toggleMuteVideos.forEach(video => {
 
 // 1. Run this immediately to check if they have a saved preference
 function applySavedTheme() {
+  // 1. Check what is saved in the browser
   const savedTheme = localStorage.getItem('site-theme');
-  if (savedTheme === 'dark') {
-    // UPDATED: Now targets the HTML tag
+  
+  // 2. Convert that to a simple true/false
+  const isDark = (savedTheme === 'dark');
+  
+  // 3. Force the HTML tag to match the saved theme
+  if (isDark) {
     document.documentElement.classList.add('dark-theme');
-    updateThemeImages(true); 
+  } else {
+    document.documentElement.classList.remove('dark-theme');
   }
+  
+  // 4. Force the images to update based on the saved theme
+  // (This also ensures your new mobile/desktop logic runs immediately!)
+  updateThemeImages(isDark);
 }
+
+// Ensure this runs as soon as the HTML is ready
+document.addEventListener('DOMContentLoaded', applySavedTheme);
+
+
+
+
 
 
 // 2. Your updated toggle function triggered by the button click
@@ -163,45 +172,49 @@ function toggleTheme() {
 }
 
 
+
+
 // 3. A helper function to swap all the images 
 function updateThemeImages(isDark) {
   const gluedTypeImg = document.querySelector('.glued');
   const subHeadingImg = document.querySelector('.sub-text');
+  const navicons = document.querySelectorAll('.navicon');
   
-  // NEW: Select ALL navicons on the page
-  const navicons = document.querySelectorAll('.navicon'); 
+  // NEW: Check if the screen is mobile-sized (under 768 pixels)
+  const isMobile = window.innerWidth <= 768; 
   
   if (isDark) {
-    // Update main hero images
+    
+    // Determine which dark image to use based on screen size
     if (gluedTypeImg) {
-      gluedTypeImg.src = 'assets/gluedtype_desktop_dark.webp';
-      gluedTypeImg.setAttribute('data-src', 'assets/gluedtype_desktop_dark.webp');
+      const gluedSrc = isMobile ? 'assets/gluedtype_mobile_dark.webp' : 'assets/gluedtype_desktop_dark.webp';
+      gluedTypeImg.src = gluedSrc;
+      gluedTypeImg.setAttribute('data-src', gluedSrc);
     }
+    
+    // (Assuming subheading is the same for both, but you can apply the same logic here if needed)
     if (subHeadingImg) {
       subHeadingImg.src = 'assets/subheading_dark.webp';
       subHeadingImg.setAttribute('data-src', 'assets/subheading_dark.webp');
     }
     
-    // NEW: Loop through and update all navicons to the dark version
-    navicons.forEach(icon => {
-      icon.src = 'assets/navicon_dark.png';
-    });
+    navicons.forEach(icon => { icon.src = 'assets/navicon_dark.png'; });
 
   } else {
-    // Update main hero images
+    
+    // Determine which light image to use based on screen size
     if (gluedTypeImg) {
-      gluedTypeImg.src = 'assets/gluedtype_desktop_light.webp';
-      gluedTypeImg.setAttribute('data-src', 'assets/gluedtype_desktop_light.webp');
+      const gluedSrc = isMobile ? 'assets/gluedtype_mobile_light.webp' : 'assets/gluedtype_desktop_light.webp';
+      gluedTypeImg.src = gluedSrc;
+      gluedTypeImg.setAttribute('data-src', gluedSrc);
     }
+    
     if (subHeadingImg) {
       subHeadingImg.src = 'assets/subheading_light.webp';
       subHeadingImg.setAttribute('data-src', 'assets/subheading_light.webp');
     }
     
-    // NEW: Loop through and update all navicons to the light version
-    navicons.forEach(icon => {
-      icon.src = 'assets/navicon_light.png';
-    });
+    navicons.forEach(icon => { icon.src = 'assets/navicon_light.png'; });
   }
 }
 

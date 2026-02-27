@@ -5,11 +5,85 @@
 
 
 
-
+.logo-container-2 {
+    position: fixed;
+    top: 0;
+    margin: 1rem;
+    height: 2rem;
+    width: fit-content;
+    z-index: 1001;
+}
 
 .nav-list{
     margin-inline: 0.5rem;
 }
+
+/* Hero */
+
+.hero {
+    z-index: 101;
+    height: 100svh;
+    width: 100%;
+    background-color: var(--background);
+    transition: 0.2s ease;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.Sliding-ego-container {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  
+  /* 1. 100vw means "100% of the screen width". 
+        Since width is 100%, making the height 100vw creates an unbreakable, perfect square. */
+  height: 100vw; 
+  
+  display: flex;
+  justify-items: flex-end;
+  align-items: flex-end;
+}
+
+.slide {
+  height: 100%; 
+}
+
+.hero-glued-container {
+    position: relative;
+    height: auto;
+    width: 100%;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    display: flex;
+    overflow: hidden;
+}
+
+.hero-texts-cont {
+    display: flex;
+    width: fit-content;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.glued {
+    width: 150vw;
+    height: auto;
+    align-self: center;
+}
+
+.sub-text {
+  position: relative;
+  bottom: 5vw;
+  left: unset;
+  width: 90vw;
+  height: auto;
+  align-self: center; /* 👈 Add this line! */
+}
+
+
+
+/* Hero END */
 
    /*WORK*/
 
