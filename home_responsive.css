@@ -2,16 +2,15 @@
 
 
 
-
-
-
-.logo-container-2 {
-    position: fixed;
-    top: 0;
+.logo-container {
     margin: 1rem;
     height: 2rem;
-    width: fit-content;
-    z-index: 1001;
+    width: auto;
+    opacity: 100;
+}
+
+.logo-container-2 {
+    opacity: 0;
 }
 
 .nav-list{
@@ -21,7 +20,7 @@
 /* Hero */
 
 .hero {
-    z-index: 101;
+    z-index: 1;
     height: calc(var(--vh, 1vh) * 100);
     width: 100%;
     background-color: var(--background);
@@ -32,12 +31,15 @@
 
 .Sliding-ego-container {
   position: relative;
-  bottom: 0;
-  width: 100%;
+  /* 1. Push it away from the bottom and left edges by 1rem */
+  bottom: 1rem;
+  left: 1rem;
   
-  /* 1. 100vw means "100% of the screen width". 
-        Since width is 100%, making the height 100vw creates an unbreakable, perfect square. */
-  height: 100vw; 
+  /* 2. Subtract 2rem total (1rem for the left, 1rem for the right) to keep it centered */
+  width: calc(100% - 2rem);
+  
+  /* 3. Do the exact same math for the height so it remains a perfect 1:1 square */
+  height: calc(100vw - 2rem);
   
   display: flex;
   justify-items: flex-end;
@@ -67,7 +69,7 @@
 }
 
 .glued {
-    width: 150vw;
+    width: 151vw;
     height: auto;
     align-self: center;
 }
@@ -76,7 +78,7 @@
   position: relative;
   bottom: 5vw;
   left: unset;
-  width: 90vw;
+  width: 89vw;
   height: auto;
   align-self: center; /* 👈 Add this line! */
 }
