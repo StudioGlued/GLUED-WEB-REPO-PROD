@@ -1,11 +1,10 @@
 @media screen and (max-width: 1000px) {
 
-
+.scroll-in:nth-of-type(even) {
+    transition-delay: 0s;
+}
 
 .logo-container {
-    margin: 1rem;
-    height: 2rem;
-    width: auto;
     opacity: 100;
 }
 
@@ -24,7 +23,6 @@
     height: calc(var(--vh, 1vh) * 100);
     width: 100%;
     background-color: var(--background);
-    transition: 0.2s ease;
     display: flex;
     flex-direction: column-reverse;
 }
@@ -201,9 +199,21 @@
       padding-left: 0;
    }
 
+   .footer-text-container {
+    margin-bottom: 1.7rem;
+}
+
    .footer-details-container {
       margin: 0;
   }
+
+  .footer-details-line-1 {
+    font-size: 1rem;
+}
+
+  .footer-tags-line-2 {
+    font-size: 0.5rem;
+}
 
 
 
