@@ -141,7 +141,7 @@ header {
     top: 0;
     left: 0;
     z-index: 10000;
-    height: 100svh;
+    height: calc(var(--vh, 1vh) * 100);
     width: 100%;
     display: flex;
     align-items: center;
@@ -160,7 +160,7 @@ header {
 }
 
 .intro-video {
-    height: 100svh;
+    height: calc(var(--vh, 1vh) * 100);
     width: 100%;
     object-fit: cover;
 }
@@ -169,7 +169,7 @@ header {
 /* Hero */
 .hero {
     z-index: 101;
-    height: 100svh;
+    height: calc(var(--vh, 1vh) * 100);
     width: 100%;
     background-color: var(--background);
     transition: 0.2s ease;
@@ -184,7 +184,7 @@ header {
 }
 
 .slide {
-    height: 100svh;
+    height: calc(var(--vh, 1vh) * 100);
 }
 
 .hero-glued-container {
@@ -224,7 +224,7 @@ header {
 
 .gallery {
     width: 100%;
-    height: 60svh;
+    height: 60vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -246,8 +246,8 @@ header {
     height: 20vw;
     width: 5.5vw;
     border-radius: 10rem;
-    outline: 4px solid var(--background); 
-    outline-offset: -3px;
+    outline: 6px solid var(--background); 
+    outline-offset: -5px;
     background-color: white;
     transition: 0.2s ease;
     overflow: hidden;

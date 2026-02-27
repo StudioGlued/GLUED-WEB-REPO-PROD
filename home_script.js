@@ -131,6 +131,7 @@ toggleMuteVideos.forEach(video => {
 
 
 
+
 //dark mode toggle
 
 // 1. Run this immediately to check if they have a saved preference
@@ -158,9 +159,6 @@ document.addEventListener('DOMContentLoaded', applySavedTheme);
 
 
 
-
-
-
 // 2. Your updated toggle function triggered by the button click
 function toggleTheme() {
   // UPDATED: Now toggles the HTML tag
@@ -170,7 +168,6 @@ function toggleTheme() {
   localStorage.setItem('site-theme', isDark ? 'dark' : 'light');
   updateThemeImages(isDark);
 }
-
 
 
 
@@ -221,3 +218,39 @@ function updateThemeImages(isDark) {
 
 // 4. Trigger the check as soon as the HTML is ready
 document.addEventListener('DOMContentLoaded', applySavedTheme);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//make sure VH DOESNT CHANGE ON FUCKING SHIT ASS MOBILE FUCKING BROWSERS
+
+// 1. Function to calculate and set the exact pixel height
+function setStaticViewportHeight() {
+  const vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+
+// 2. Run it immediately when the script loads
+setStaticViewportHeight();
+
+// 3. Listen for resizes, but ONLY update if the width changes (ignoring URL bar scrolls)
+let currentWidth = window.innerWidth;
+window.addEventListener('resize', () => {
+  if (window.innerWidth !== currentWidth) {
+    currentWidth = window.innerWidth;
+    setStaticViewportHeight();
+  }
+});
