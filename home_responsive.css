@@ -164,6 +164,10 @@
         outline-offset: -3px;
     }
 
+    .box-container video {
+    opacity: 0.8;
+}
+
     .box-container:hover {
         height: 73vw;
         width: 100vw;
