@@ -99,7 +99,7 @@ header {
 .logo-container {
     margin: 1rem;
     height: 2rem;
-    width: fit-content;
+    width: auto;
     opacity: 0;
 }
 

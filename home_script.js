@@ -195,7 +195,7 @@ function updateThemeImages(isDark) {
       subHeadingImg.setAttribute('data-src', 'assets/subheading_dark.webp');
     }
     
-    navicons.forEach(icon => { icon.src = 'assets/navicon_dark.png'; });
+    navicons.forEach(icon => { icon.src = 'assets/navicon_dark_anim.webp'; });
 
   } else {
     
@@ -211,7 +211,7 @@ function updateThemeImages(isDark) {
       subHeadingImg.setAttribute('data-src', 'assets/subheading_light.webp');
     }
     
-    navicons.forEach(icon => { icon.src = 'assets/navicon_light.png'; });
+    navicons.forEach(icon => { icon.src = 'assets/navicon_light_anim.webp'; });
   }
 }
 
