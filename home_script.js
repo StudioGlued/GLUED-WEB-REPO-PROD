@@ -45,11 +45,15 @@ document.addEventListener('DOMContentLoaded', () => {
   if (localStorage.getItem('has-seen-intro') === 'false') { 
     // SCENARIO A: Returning User
     if (introSection) introSection.style.display = 'none';
-    
-    // Play the hero video immediately
-    if (slidingEgoVideo) slidingEgoVideo.play();
-
-    playHeroAnimations();
+        
+        // 1. HIGHEST PRIORITY: Hit play on the heavy video instantly so the slide begins
+        if (slidingEgoVideo) slidingEgoVideo.play();
+        
+        // 2. LOWER PRIORITY: Give the CPU a 150ms breather to get the video sliding smoothly, 
+        // THEN trigger the lighter text animations so they don't steal processing power!
+        setTimeout(() => {
+          playHeroAnimations();
+        }, 150);
     
   } else {
     // SCENARIO B: First-Time Visitor
@@ -57,10 +61,14 @@ document.addEventListener('DOMContentLoaded', () => {
       introVideo.addEventListener('ended', () => {
         if (introSection) introSection.style.display = 'none';
         
-        // Play the hero video the exact millisecond the intro vanishes
+        // 1. HIGHEST PRIORITY: Hit play on the heavy video instantly so the slide begins
         if (slidingEgoVideo) slidingEgoVideo.play();
-
-        playHeroAnimations();
+        
+        // 2. LOWER PRIORITY: Give the CPU a 150ms breather to get the video sliding smoothly, 
+        // THEN trigger the lighter text animations so they don't steal processing power!
+        setTimeout(() => {
+          playHeroAnimations();
+        }, 150);
         
         localStorage.setItem('has-seen-intro', 'true');
       });
