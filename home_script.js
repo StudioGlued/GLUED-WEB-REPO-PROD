@@ -294,11 +294,6 @@ const workVideoObserver = new IntersectionObserver((entries, observer) => {
         
         // 3. Tell the browser to process the new file
         video.load();
-        
-        // 4. The iOS Hack: Give Safari 50 milliseconds to catch its breath before playing
-        setTimeout(() => {
-          video.play().catch(e => console.log("iOS Playback Issue:", e));
-        }, 50);
       }
 
       // Stop watching this specific container so it doesn't run again
