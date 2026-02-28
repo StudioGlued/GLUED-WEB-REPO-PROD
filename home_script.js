@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Select the specific hero video we just set up
   const slidingEgoVideo = document.querySelector('.slide');
 
-  if (localStorage.getItem('has-seen-intro') === 'true') {
+  if (localStorage.getItem('has-seen-intro') === 'false') {
     // SCENARIO A: Returning User
     if (introSection) introSection.style.display = 'none';
     
