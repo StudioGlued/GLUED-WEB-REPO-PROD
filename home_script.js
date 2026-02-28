@@ -42,6 +42,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const introVideo = document.querySelector('.intro-video');
   const slidingEgoVideo = document.querySelector('.slide');
 
+// Add this right after: const slidingEgoVideo = document.querySelector('.slide');
+
+// 1. Prime the video decoder immediately on page load
+if (slidingEgoVideo) {
+    slidingEgoVideo.load(); 
+}
+
+
   if (localStorage.getItem('has-seen-intro') === 'false') { 
     // SCENARIO A: Returning User
     if (introSection) introSection.style.display = 'none';
