@@ -42,19 +42,24 @@ document.addEventListener('DOMContentLoaded', () => {
   const introVideo = document.querySelector('.intro-video');
   const slidingEgoVideo = document.querySelector('.slide');
 
-  // --- 1. HERO VIDEO WARMUP (The "Warmup and Idle" Trick) ---
+  // --- 1. HERO VIDEO WARMUP (Optimized for Mobile) ---
   if (slidingEgoVideo) {
-    slidingEgoVideo.muted = true; // Ensure hardware allows background play
-    slidingEgoVideo.play().then(() => {
-      slidingEgoVideo.pause();
-      slidingEgoVideo.currentTime = 0;
-    }).catch(e => {
-      slidingEgoVideo.load();
-    });
+    slidingEgoVideo.muted = true;
+    // We attempt a play-pause to wake up the decoder
+    const warmup = slidingEgoVideo.play();
+    
+    if (warmup !== undefined) {
+      warmup.then(() => {
+        slidingEgoVideo.pause();
+        slidingEgoVideo.currentTime = 0;
+      }).catch(() => {
+        // If warmup is blocked, just load it so it's ready for manual play
+        slidingEgoVideo.load();
+      });
+    }
   }
 
-  // Check if user has seen intro. 
-  // For testing: change 'true' to 'force-intro' to always play
+  // Check storage. NOTE: Flip this to 'true' when you're done testing!
   const hasSeen = localStorage.getItem('has-seen-intro') === 'true';
 
   if (hasSeen) {
@@ -62,23 +67,25 @@ document.addEventListener('DOMContentLoaded', () => {
     if (introSection) introSection.style.display = 'none';
     if (slidingEgoVideo) slidingEgoVideo.play();
     
-    // Use requestAnimationFrame to let the video start before the images
-    requestAnimationFrame(() => {
-        setTimeout(playHeroAnimations, 150);
-    });
+    // Smoothly stagger the hero animations
+    setTimeout(playHeroAnimations, 150);
 
   } else {
     // SCENARIO B: First-Time Visitor
     if (introVideo) {
       introVideo.addEventListener('ended', () => {
-        // 1. Hide Intro (Layout Shift)
+        // 1. Hide the intro first
         if (introSection) introSection.style.display = 'none';
         
-        // 2. Immediate Video Play (Hardware Priority)
-        if (slidingEgoVideo) slidingEgoVideo.play();
+        // 2. Force the Hero Video to play (using a tiny delay for mobile CPU)
+        setTimeout(() => {
+          if (slidingEgoVideo) {
+            slidingEgoVideo.play().catch(e => console.log("Hero Play Blocked:", e));
+          }
+        }, 50);
         
-        // 3. Delayed Image Trigger (CPU Relief)
-        setTimeout(playHeroAnimations, 200);
+        // 3. Trigger text animations last
+        setTimeout(playHeroAnimations, 250);
         
         localStorage.setItem('has-seen-intro', 'true');
       });
@@ -90,6 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 });
+
 
 
 
