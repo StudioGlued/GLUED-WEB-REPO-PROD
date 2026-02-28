@@ -42,62 +42,56 @@ document.addEventListener('DOMContentLoaded', () => {
   const introVideo = document.querySelector('.intro-video');
   const slidingEgoVideo = document.querySelector('.slide');
 
-  // --- 1. HERO VIDEO WARMUP (Optimized for Mobile) ---
+  // --- 1. HERO VIDEO WARMUP (The "Warmup and Idle" Trick) ---
   if (slidingEgoVideo) {
-    slidingEgoVideo.muted = true;
-    // We attempt a play-pause to wake up the decoder
-    const warmup = slidingEgoVideo.play();
-    
-    if (warmup !== undefined) {
-      warmup.then(() => {
-        slidingEgoVideo.pause();
-        slidingEgoVideo.currentTime = 0;
-      }).catch(() => {
-        // If warmup is blocked, just load it so it's ready for manual play
-        slidingEgoVideo.load();
-      });
-    }
+    // We play it to wake up the decoder, then pause and reset to frame 1
+    slidingEgoVideo.play().then(() => {
+      slidingEgoVideo.pause();
+      slidingEgoVideo.currentTime = 0;
+    }).catch(e => {
+      // If autoplay is blocked by the phone, we just fall back to standard loading
+      slidingEgoVideo.load();
+    });
   }
 
-  // Check storage. NOTE: Flip this to 'true' when you're done testing!
-  const hasSeen = localStorage.getItem('has-seen-intro') === 'true';
-
-  if (hasSeen) {
+  // NOTE: Keep this as 'false' for testing, flip to 'true' for launch
+  if (localStorage.getItem('has-seen-intro') === 'false') { 
     // SCENARIO A: Returning User
     if (introSection) introSection.style.display = 'none';
+        
+    // 1. HIGHEST PRIORITY: The video is already warm, so this should be instant
     if (slidingEgoVideo) slidingEgoVideo.play();
     
-    // Smoothly stagger the hero animations
-    setTimeout(playHeroAnimations, 150);
-
+    // 2. LOWER PRIORITY: Wait for the slide to gain momentum
+    setTimeout(() => {
+      playHeroAnimations();
+    }, 150);
+    
   } else {
     // SCENARIO B: First-Time Visitor
     if (introVideo) {
       introVideo.addEventListener('ended', () => {
-        // 1. Hide the intro first
         if (introSection) introSection.style.display = 'none';
         
-        // 2. Force the Hero Video to play (using a tiny delay for mobile CPU)
+        // 1. HIGHEST PRIORITY: Fire the warmed video immediately
+        if (slidingEgoVideo) slidingEgoVideo.play();
+        
+        // 2. LOWER PRIORITY: Trigger text animations after a slight breather
         setTimeout(() => {
-          if (slidingEgoVideo) {
-            slidingEgoVideo.play().catch(e => console.log("Hero Play Blocked:", e));
-          }
-        }, 50);
+          playHeroAnimations();
+        }, 150);
         
-        // 3. Trigger text animations last
-        setTimeout(playHeroAnimations, 250);
-        
+        // Flip to 'true' once you're ready for the site to remember users
         localStorage.setItem('has-seen-intro', 'true');
       });
 
-      // Tap to skip
+      // Tap to skip feature
       introVideo.addEventListener('click', () => {
         introVideo.currentTime = introVideo.duration; 
       });
     }
   }
 });
-
 
 
 
@@ -216,46 +210,63 @@ function playHeroAnimations() {
 
 
 
+// 3. A helper function to swap all the images
 function updateThemeImages(isDark) {
   const gluedTypeImg = document.querySelector('.glued');
   const subHeadingImg = document.querySelector('.sub-text');
   const navicons = document.querySelectorAll('.navicon');
   const introSection = document.querySelector('.intro_section');
   
-  // 1. Check if the intro is actually hidden yet
+  // If the intro section doesn't exist, or is set to 'none', we know it's finished!
   const isIntroFinished = !introSection || introSection.style.display === 'none';
+  
+  // NEW: Check if the screen is mobile-sized (under 768 pixels)
   const isMobile = window.innerWidth <= 768;
 
-  // 2. Set up the paths for both modes
-  const themes = {
-    dark: {
-      glued: isMobile ? 'assets/gluedtype_mobile_dark.webp' : 'assets/gluedtype_desktop_dark.webp',
-      sub: 'assets/subheading_dark.webp',
-      nav: 'assets/navicon_dark_anim.webp'
-    },
-    light: {
-      glued: isMobile ? 'assets/gluedtype_mobile_light.webp' : 'assets/gluedtype_desktop_light.webp',
-      sub: 'assets/subheading_light.webp',
-      nav: 'assets/navicon_light_anim.webp'
+  if (isDark) {
+    
+    if (gluedTypeImg) {
+      const gluedSrc = isMobile ? 'assets/gluedtype_mobile_dark.webp' : 'assets/gluedtype_desktop_dark.webp';
+      gluedTypeImg.setAttribute('data-src', gluedSrc); 
+      // ONLY trigger the real src if the intro is gone
+      if (isIntroFinished) gluedTypeImg.src = gluedSrc; 
     }
-  };
 
-  const current = isDark ? themes.dark : themes.light;
+    if (subHeadingImg) {
+      subHeadingImg.setAttribute('data-src', 'assets/subheading_dark.webp');
+      // ONLY trigger the real src if the intro is gone
+      if (isIntroFinished) subHeadingImg.src = 'assets/subheading_dark.webp';
+    }
 
-  // 3. Apply paths: Always update 'data-src', but only update 'src' if intro is done
-  if (gluedTypeImg) {
-    gluedTypeImg.setAttribute('data-src', current.glued);
-    if (isIntroFinished) gluedTypeImg.src = current.glued;
+    navicons.forEach(icon => { 
+      icon.setAttribute('data-src', 'assets/navicon_dark_anim.webp');
+      // ONLY trigger the real src if the intro is gone
+      if (isIntroFinished) icon.src = 'assets/navicon_dark_anim.webp'; 
+    });
+
+  } else {
+    
+    if (gluedTypeImg) {
+      const gluedSrc = isMobile ? 'assets/gluedtype_mobile_light.webp' : 'assets/gluedtype_desktop_light.webp';
+      gluedTypeImg.setAttribute('data-src', gluedSrc);
+      // ONLY trigger the real src if the intro is gone
+      if (isIntroFinished) gluedTypeImg.src = gluedSrc;
+    }
+
+    if (subHeadingImg) {
+      subHeadingImg.setAttribute('data-src', 'assets/subheading_light.webp');
+      // ONLY trigger the real src if the intro is gone
+      if (isIntroFinished) subHeadingImg.src = 'assets/subheading_light.webp';
+    }
+
+    navicons.forEach(icon => { 
+      icon.setAttribute('data-src', 'assets/navicon_light_anim.webp');
+      // ONLY trigger the real src if the intro is gone
+      if (isIntroFinished) icon.src = 'assets/navicon_light_anim.webp'; 
+    });
   }
-  if (subHeadingImg) {
-    subHeadingImg.setAttribute('data-src', current.sub);
-    if (isIntroFinished) subHeadingImg.src = current.sub;
-  }
-  navicons.forEach(icon => {
-    icon.setAttribute('data-src', current.nav);
-    if (isIntroFinished) icon.src = current.nav;
-  });
 }
+
 
 // 4. Trigger the check as soon as the HTML is ready
 document.addEventListener('DOMContentLoaded', applySavedTheme);
