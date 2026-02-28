@@ -285,13 +285,20 @@ const workVideoObserver = new IntersectionObserver((entries, observer) => {
       
       // If the video exists and has our hidden data-src
       if (video && video.hasAttribute('data-src')) {
-        // Swap data-src to real src
+        // 1. Swap the source
         video.src = video.getAttribute('data-src');
-        video.removeAttribute('data-src'); // Clean it up
+        video.removeAttribute('data-src'); 
         
-        // Tell the browser to download and play it
+        // 2. Force the mute BEFORE loading
+        video.muted = true; 
+        
+        // 3. Tell the browser to process the new file
         video.load();
-        video.play().catch(e => console.log("Autoplay prevented by browser:", e));
+        
+        // 4. The iOS Hack: Give Safari 50 milliseconds to catch its breath before playing
+        setTimeout(() => {
+          video.play().catch(e => console.log("iOS Playback Issue:", e));
+        }, 50);
       }
 
       // Stop watching this specific container so it doesn't run again
