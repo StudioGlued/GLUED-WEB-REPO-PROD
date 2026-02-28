@@ -42,26 +42,30 @@ document.addEventListener('DOMContentLoaded', () => {
   const introVideo = document.querySelector('.intro-video');
   const slidingEgoVideo = document.querySelector('.slide');
 
-// Add this right after: const slidingEgoVideo = document.querySelector('.slide');
+  // --- 1. HERO VIDEO WARMUP (The "Warmup and Idle" Trick) ---
+  if (slidingEgoVideo) {
+    // We play it to wake up the decoder, then pause and reset to frame 1
+    slidingEgoVideo.play().then(() => {
+      slidingEgoVideo.pause();
+      slidingEgoVideo.currentTime = 0;
+    }).catch(e => {
+      // If autoplay is blocked by the phone, we just fall back to standard loading
+      slidingEgoVideo.load();
+    });
+  }
 
-// 1. Prime the video decoder immediately on page load
-if (slidingEgoVideo) {
-    slidingEgoVideo.load(); 
-}
-
-
+  // NOTE: Keep this as 'false' for testing, flip to 'true' for launch
   if (localStorage.getItem('has-seen-intro') === 'false') { 
     // SCENARIO A: Returning User
     if (introSection) introSection.style.display = 'none';
         
-        // 1. HIGHEST PRIORITY: Hit play on the heavy video instantly so the slide begins
-        if (slidingEgoVideo) slidingEgoVideo.play();
-        
-        // 2. LOWER PRIORITY: Give the CPU a 150ms breather to get the video sliding smoothly, 
-        // THEN trigger the lighter text animations so they don't steal processing power!
-        setTimeout(() => {
-          playHeroAnimations();
-        }, 150);
+    // 1. HIGHEST PRIORITY: The video is already warm, so this should be instant
+    if (slidingEgoVideo) slidingEgoVideo.play();
+    
+    // 2. LOWER PRIORITY: Wait for the slide to gain momentum
+    setTimeout(() => {
+      playHeroAnimations();
+    }, 150);
     
   } else {
     // SCENARIO B: First-Time Visitor
@@ -69,20 +73,21 @@ if (slidingEgoVideo) {
       introVideo.addEventListener('ended', () => {
         if (introSection) introSection.style.display = 'none';
         
-        // 1. HIGHEST PRIORITY: Hit play on the heavy video instantly so the slide begins
+        // 1. HIGHEST PRIORITY: Fire the warmed video immediately
         if (slidingEgoVideo) slidingEgoVideo.play();
         
-        // 2. LOWER PRIORITY: Give the CPU a 150ms breather to get the video sliding smoothly, 
-        // THEN trigger the lighter text animations so they don't steal processing power!
+        // 2. LOWER PRIORITY: Trigger text animations after a slight breather
         setTimeout(() => {
           playHeroAnimations();
         }, 150);
         
+        // Flip to 'true' once you're ready for the site to remember users
         localStorage.setItem('has-seen-intro', 'true');
       });
 
+      // Tap to skip feature
       introVideo.addEventListener('click', () => {
-        introVideo.currentTime = introVideo.duration; // Skip to the end on click
+        introVideo.currentTime = introVideo.duration; 
       });
     }
   }
