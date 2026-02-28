@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const introVideo = document.querySelector('.intro-video');
   
   // Select the specific hero video we just set up
-  const slidingEgoVideo = document.querySelector('.hero-icon-video');
+  const slidingEgoVideo = document.querySelector('.slide');
 
   if (localStorage.getItem('has-seen-intro') === 'true') {
     // SCENARIO A: Returning User
@@ -60,14 +60,15 @@ document.addEventListener('DOMContentLoaded', () => {
         // Play the hero video the exact millisecond the intro vanishes
         if (slidingEgoVideo) slidingEgoVideo.play();
         
-        localStorage.setItem('has-seen-intro', 'true');
+        localStorage.setItem('has-seen-intro', 'false');
+      });
+
+      introVideo.addEventListener('click', () => {
+        introVideo.currentTime = introVideo.duration; // Skip to the end on click
       });
     }
   }
 });
-
-
-
 
 
 
@@ -253,4 +254,57 @@ window.addEventListener('resize', () => {
     currentWidth = window.innerWidth;
     setStaticViewportHeight();
   }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Video Lazy Loader!!!
+
+// 1. Create the Intersection Observer
+const workVideoObserver = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    
+    // When the container scrolls into view
+    if (entry.isIntersecting) {
+      
+      // Add your CSS class to trigger the visual fade-in
+      entry.target.classList.add('show');
+
+      // Find the specific video inside this container
+      const video = entry.target.querySelector('video.image');
+      
+      // If the video exists and has our hidden data-src
+      if (video && video.hasAttribute('data-src')) {
+        // Swap data-src to real src
+        video.src = video.getAttribute('data-src');
+        video.removeAttribute('data-src'); // Clean it up
+        
+        // Tell the browser to download and play it
+        video.load();
+        video.play().catch(e => console.log("Autoplay prevented by browser:", e));
+      }
+
+      // Stop watching this specific container so it doesn't run again
+      observer.unobserve(entry.target);
+    }
+  });
+}, {
+  // PRO-TIP: This makes the video start loading 200px BEFORE it enters the screen,
+  // making the playback feel completely instantaneous to the user!
+  rootMargin: "0px 0px 200px 0px" 
+});
+
+// 2. Attach the observer ONLY to your featured work scroll containers
+document.querySelectorAll('.work.scroll-in').forEach(container => {
+  workVideoObserver.observe(container);
 });
