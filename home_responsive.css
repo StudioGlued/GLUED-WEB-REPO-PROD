@@ -1,7 +1,7 @@
 @media screen and (max-width: 1000px) {
 
 .scroll-in:nth-of-type(even) {
-    transition-delay: 0s;
+    transition-delay: 0.5s;
 }
 
 .logo-container {
