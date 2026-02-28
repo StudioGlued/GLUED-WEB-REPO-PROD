@@ -40,16 +40,16 @@ requestAnimationFrame(raf);
 document.addEventListener('DOMContentLoaded', () => {
   const introSection = document.querySelector('.intro_section');
   const introVideo = document.querySelector('.intro-video');
-  
-  // Select the specific hero video we just set up
   const slidingEgoVideo = document.querySelector('.slide');
 
-  if (localStorage.getItem('has-seen-intro') === 'false') {
+  if (localStorage.getItem('has-seen-intro') === 'false') { 
     // SCENARIO A: Returning User
     if (introSection) introSection.style.display = 'none';
     
     // Play the hero video immediately
     if (slidingEgoVideo) slidingEgoVideo.play();
+
+    playHeroAnimations();
     
   } else {
     // SCENARIO B: First-Time Visitor
@@ -59,8 +59,10 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Play the hero video the exact millisecond the intro vanishes
         if (slidingEgoVideo) slidingEgoVideo.play();
+
+        playHeroAnimations();
         
-        localStorage.setItem('has-seen-intro', 'false');
+        localStorage.setItem('has-seen-intro', 'true');
       });
 
       introVideo.addEventListener('click', () => {
@@ -172,47 +174,75 @@ function toggleTheme() {
 
 
 
-// 3. A helper function to swap all the images 
+
+function playHeroAnimations() {
+  // Grab all the animated webps
+  const heroImages = document.querySelectorAll('.glued, .sub-text, .navicon');
+  
+  // Give them their real src so they instantly start animating!
+  heroImages.forEach(img => {
+    if (img.hasAttribute('data-src')) {
+      img.src = img.getAttribute('data-src');
+    }
+  });
+}
+
+
+
+// 3. A helper function to swap all the images
 function updateThemeImages(isDark) {
   const gluedTypeImg = document.querySelector('.glued');
   const subHeadingImg = document.querySelector('.sub-text');
   const navicons = document.querySelectorAll('.navicon');
+  const introSection = document.querySelector('.intro_section');
+  
+  // If the intro section doesn't exist, or is set to 'none', we know it's finished!
+  const isIntroFinished = !introSection || introSection.style.display === 'none';
   
   // NEW: Check if the screen is mobile-sized (under 768 pixels)
-  const isMobile = window.innerWidth <= 768; 
-  
+  const isMobile = window.innerWidth <= 768;
+
   if (isDark) {
     
-    // Determine which dark image to use based on screen size
     if (gluedTypeImg) {
       const gluedSrc = isMobile ? 'assets/gluedtype_mobile_dark.webp' : 'assets/gluedtype_desktop_dark.webp';
-      gluedTypeImg.src = gluedSrc;
-      gluedTypeImg.setAttribute('data-src', gluedSrc);
+      gluedTypeImg.setAttribute('data-src', gluedSrc); 
+      // ONLY trigger the real src if the intro is gone
+      if (isIntroFinished) gluedTypeImg.src = gluedSrc; 
     }
-    
-    // (Assuming subheading is the same for both, but you can apply the same logic here if needed)
+
     if (subHeadingImg) {
-      subHeadingImg.src = 'assets/subheading_dark.webp';
       subHeadingImg.setAttribute('data-src', 'assets/subheading_dark.webp');
+      // ONLY trigger the real src if the intro is gone
+      if (isIntroFinished) subHeadingImg.src = 'assets/subheading_dark.webp';
     }
-    
-    navicons.forEach(icon => { icon.src = 'assets/navicon_dark_anim.webp'; });
+
+    navicons.forEach(icon => { 
+      icon.setAttribute('data-src', 'assets/navicon_dark_anim.webp');
+      // ONLY trigger the real src if the intro is gone
+      if (isIntroFinished) icon.src = 'assets/navicon_dark_anim.webp'; 
+    });
 
   } else {
     
-    // Determine which light image to use based on screen size
     if (gluedTypeImg) {
       const gluedSrc = isMobile ? 'assets/gluedtype_mobile_light.webp' : 'assets/gluedtype_desktop_light.webp';
-      gluedTypeImg.src = gluedSrc;
       gluedTypeImg.setAttribute('data-src', gluedSrc);
+      // ONLY trigger the real src if the intro is gone
+      if (isIntroFinished) gluedTypeImg.src = gluedSrc;
     }
-    
+
     if (subHeadingImg) {
-      subHeadingImg.src = 'assets/subheading_light.webp';
       subHeadingImg.setAttribute('data-src', 'assets/subheading_light.webp');
+      // ONLY trigger the real src if the intro is gone
+      if (isIntroFinished) subHeadingImg.src = 'assets/subheading_light.webp';
     }
-    
-    navicons.forEach(icon => { icon.src = 'assets/navicon_light_anim.webp'; });
+
+    navicons.forEach(icon => { 
+      icon.setAttribute('data-src', 'assets/navicon_light_anim.webp');
+      // ONLY trigger the real src if the intro is gone
+      if (isIntroFinished) icon.src = 'assets/navicon_light_anim.webp'; 
+    });
   }
 }
 
