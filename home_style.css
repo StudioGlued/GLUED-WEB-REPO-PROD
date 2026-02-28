@@ -50,12 +50,11 @@ section {
 .scroll-in {
     transform: translateY(5vh);
     opacity: 0%;
-    transition: 0.5s;
-    transition-timing-function: ease-out;
+    transition: all 0.5s ease-out 0.5s;
 }
 
 .scroll-in:nth-of-type(even) {
-    transition-delay: 0.2s;
+    transition-delay: 0.7s;
 }
 
 .scroll-in.show {
