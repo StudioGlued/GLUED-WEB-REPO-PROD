@@ -349,10 +349,10 @@ const workVideoObserver = new IntersectionObserver((entries, observer) => {
 }, {
   // PRO-TIP: This makes the video start loading 200px BEFORE it enters the screen,
   // making the playback feel completely instantaneous to the user!
-  rootMargin: "0px 0px 200px 0px" 
+  rootMargin: "0px 0px 500px 0px" 
 });
 
 // 2. Attach the observer ONLY to your featured work scroll containers
-document.querySelectorAll('.work.scroll-in').forEach(container => {
+document.querySelectorAll('.scroll-in').forEach(container => {
   workVideoObserver.observe(container);
 });
