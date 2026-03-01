@@ -61,7 +61,7 @@ if (slidingEgoVideo) {
         // THEN trigger the lighter text animations so they don't steal processing power!
         setTimeout(() => {
           playHeroAnimations();
-        }, 150);
+        }, 10);
     
   } else {
     // SCENARIO B: First-Time Visitor
@@ -76,7 +76,7 @@ if (slidingEgoVideo) {
         // THEN trigger the lighter text animations so they don't steal processing power!
         setTimeout(() => {
           playHeroAnimations();
-        }, 150);
+        }, 10);
         
         localStorage.setItem('has-seen-intro', 'true');
       });
