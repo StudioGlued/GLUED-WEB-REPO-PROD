@@ -353,6 +353,6 @@ const workVideoObserver = new IntersectionObserver((entries, observer) => {
 });
 
 // 2. Attach the observer ONLY to your featured work scroll containers
-document.querySelectorAll('.scroll-in').forEach(container => {
+document.querySelectorAll('.work-container .box-container').forEach(container => {
   workVideoObserver.observe(container);
 });
