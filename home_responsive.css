@@ -1,152 +1,132 @@
 @media screen and (max-width: 1000px) {
 
-.scroll-in:nth-of-type(even) {
-    transition-delay: 0.5s;
-}
-
-.logo-container {
-    opacity: 100;
-}
-
-.logo-container-2 {
-    top: 0;
-    opacity: 0;
-}
-
-.nav-list{
-    margin-inline: 0.5rem;
-}
-
-/* Hero */
-
-.hero {
-    z-index: 1;
-    height: calc(var(--vh, 1vh) * 100);
-    width: 100%;
-    background-color: var(--background);
-    display: flex;
-    flex-direction: column-reverse;
-}
-
-.Sliding-ego-container {
-  position: relative;
-  /* 1. Push it away from the bottom and left edges by 1rem */
-  bottom: 1rem;
-  left: 1rem;
-  
-  /* 2. Subtract 2rem total (1rem for the left, 1rem for the right) to keep it centered */
-  width: calc(100% - 2rem);
-  
-  /* 3. Do the exact same math for the height so it remains a perfect 1:1 square */
-  height: calc(100vw - 2rem);
-  
-  display: flex;
-  justify-items: flex-end;
-  align-items: flex-end;
-}
-
-.slide {
-  height: 100%; 
-}
-
-.hero-glued-container {
-    position: relative;
-    height: auto;
-    width: 100%;
-    justify-content: center;
-    justify-items: center;
-    align-items: center;
-    display: flex;
-    overflow: hidden;
-}
-
-.hero-texts-cont {
-    display: flex;
-    width: fit-content;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.glued {
-    width: 151vw;
-    height: auto;
-    align-self: center;
-}
-
-.sub-text {
-  position: relative;
-  bottom: 5vw;
-  left: unset;
-  width: 89vw;
-  height: auto;
-  align-self: center; /* 👈 Add this line! */
-}
-
-
-
-/* Hero END */
-
-   /*WORK*/
-
-   .featured-work-container {
-      padding: 0rem;
-   }
-
-   .featured-work-about-container {
-      flex-direction: column-reverse;
-      margin-block: 4rem;
-      margin-bottom: 4.5rem;
-      gap: 0.5rem;
-   }
-
-   .featured-work-keywords-container {
-    width: fit-content;
-    width: auto;
-   }
-
-   .featured-work-keywords {
-    display: none;
-    font-size: 10vw;
-    text-align: left;
-   }
-
-   .text-box-container {
-      margin-top: 0rem;
-    justify-content: center;
-   }
-
-   .text-box-text-1 {
-      font-size: 1.5rem;
-   }
-   
-   .text-box-text-2 {
-      font-size: 1.5rem;
-   }
-
-   .larger {
-    font-size: 10vw;
-   }
-
-   .reel-container {
-    width: 100%;
-   }
-
-   .work-container {
-      flex-direction: column;
-      gap: 0;
-      row-gap: 0.5rem;
-      margin-bottom: 0.5rem;
-   }
-
-   .work-title {
-    bottom: 0.7rem;
-    left: 0.5rem;
+    .scroll-in:nth-of-type(even) {
+        transition-delay: 0.5s;
     }
 
-   
+    .logo-container {
+        opacity: 1;
+    }
 
-   /* GALLERY MAKE RESPONSIVE*/
-    
+    .logo-container-2 {
+        top: 0;
+        opacity: 0;
+    }
+
+    .nav-list {
+        margin-inline: 0.5rem;
+    }
+
+    /* Hero */
+    .hero {
+        z-index: 1;
+        height: calc(var(--vh, 1vh) * 100);
+        width: 100%;
+        background-color: var(--background);
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .Sliding-ego-container {
+        position: relative;
+        bottom: 1rem;
+        left: 1rem;
+        width: calc(100% - 2rem);
+        height: calc(100vw - 2rem);
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+    }
+
+    .slide {
+        height: 100%; 
+    }
+
+    .hero-glued-container {
+        position: relative;
+        height: auto;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        overflow: hidden;
+    }
+
+    .hero-texts-cont {
+        display: flex;
+        width: fit-content;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .glued {
+        width: 151vw;
+        height: auto;
+        align-self: center;
+    }
+
+    .sub-text {
+        position: relative;
+        bottom: 5vw;
+        left: unset;
+        width: 89vw;
+        height: auto;
+        align-self: center; 
+    }
+
+    /* WORK */
+    .featured-work-container {
+        padding: 0;
+    }
+
+    .featured-work-about-container {
+        flex-direction: column-reverse;
+        margin-block: 4rem;
+        margin-bottom: 4.5rem;
+        gap: 0.5rem;
+    }
+
+    .featured-work-keywords-container {
+        width: auto;
+    }
+
+    .featured-work-keywords {
+        display: none;
+        font-size: 10vw;
+        text-align: left;
+    }
+
+    .text-box-container {
+        margin-top: 0;
+        justify-content: center;
+    }
+
+    .text-box-text-1,
+    .text-box-text-2 {
+        font-size: 1.5rem;
+    }
+
+    .larger {
+        font-size: 10vw;
+    }
+
+    .reel-container {
+        width: 100%;
+    }
+
+    .work-container {
+        flex-direction: column;
+        gap: 0;
+        row-gap: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .work-title {
+        bottom: 0.7rem;
+        left: 0.5rem;
+    }
+
+    /* GALLERY MAKE RESPONSIVE */
     .gallery {
         width: 100%;
         height: calc(var(--vh, 1vh) * 120);
@@ -164,8 +144,8 @@
     }
 
     .box-container video {
-    opacity: 0.8;
-}
+        opacity: 0.8;
+    }
 
     .box-container:hover {
         height: 73vw;
@@ -173,49 +153,31 @@
         border-radius: 2rem;
     }
 
+    /* Footer */
+    .footer-container {
+        height: calc(var(--vh, 1vh) * 70);
+        width: 100%;
+    }
 
+    .footer-title {
+        font-size: 20vw;
+        height: fit-content;
+        padding-left: 0;
+    }
 
-   /* GALLERY END*/
+    .footer-text-container {
+        margin-bottom: 1.7rem;
+    }
 
+    .footer-details-container {
+        margin: 0;
+    }
 
+    .footer-details-line-1 {
+        font-size: 1rem;
+    }
 
-
-
-
-   /* Footer */
-
-   .footer-container{
-      display: flex;
-      flex-wrap: wrap;
-      height: calc(var(--vh, 1vh) * 70);
-      width: 100%;
-      overflow: hidden;
-      padding:1rem;
-      align-content: flex-end;
-   }
-
-   .footer-title {
-      font-size: 20vw;
-      height: fit-content;
-      padding-left: 0;
-   }
-
-   .footer-text-container {
-    margin-bottom: 1.7rem;
-}
-
-   .footer-details-container {
-      margin: 0;
-  }
-
-  .footer-details-line-1 {
-    font-size: 1rem;
-}
-
-  .footer-tags-line-2 {
-    font-size: 0.5rem;
-}
-
-
-
+    .footer-tags-line-2 {
+        font-size: 0.5rem;
+    }
 }
