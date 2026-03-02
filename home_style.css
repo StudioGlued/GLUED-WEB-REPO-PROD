@@ -318,17 +318,13 @@ header {
 
 
 
-.featured-work {
-    position: relative;
-    width: 100%;
-    height: auto;
- }
-
  .featured-work-container {
     position: relative;
     display: flex;
     flex-wrap: wrap;
     padding: 1rem;
+    background-color: var(--background);
+    transition: 0.3s ease;
  }
 
  .featured-work-about-container {
