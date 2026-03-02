@@ -1,20 +1,9 @@
-
-
-
-//Hi
-
-
-
-
-//smooth scrolling with lenis
-
+// ==========================================
+// 1. SMOOTH SCROLLING (LENIS)
+// ==========================================
 const lenis = new Lenis({
-  // REMOVE duration and easing. Use lerp instead.
-  lerp: 0.05, // A value between 0 and 1. (0.1 is standard smooth, 0.05 is icy/heavy)
-  
-  // Make the wheel feel more powerful/responsive
-  wheelMultiplier: 2, 
-  
+  lerp: 0.05,
+  wheelMultiplier: 2,
   smoothWheel: true,
 });
 
@@ -22,365 +11,22 @@ function raf(time) {
   lenis.raf(time);
   requestAnimationFrame(raf);
 }
-
 requestAnimationFrame(raf);
 
-
-
-
-
-
-
-
-
-
-//VIDEO VERSION
-
-// // Handle Intro Video & Hero Images
-// document.addEventListener('DOMContentLoaded', () => {
-//   const introSection = document.querySelector('.intro_section');
-//   const introVideo = document.querySelector('.intro-video');
-//   const slidingEgoVideo = document.querySelector('.slide');
-
-// // Add this right after: const slidingEgoVideo = document.querySelector('.slide');
-
-// // 1. Prime the video decoder immediately on page load
-// if (slidingEgoVideo) {
-//     slidingEgoVideo.load(); 
-// }
-
-
-//   if (localStorage.getItem('has-seen-intro') === 'false') { 
-//     // SCENARIO A: Returning User
-//     if (introSection) introSection.style.display = 'none';
-        
-//         // 1. HIGHEST PRIORITY: Hit play on the heavy video instantly so the slide begins
-//         if (slidingEgoVideo) slidingEgoVideo.play();
-        
-//         // 2. LOWER PRIORITY: Give the CPU a 150ms breather to get the video sliding smoothly, 
-//         // THEN trigger the lighter text animations so they don't steal processing power!
-//         setTimeout(() => {
-//           playHeroAnimations();
-//         }, 10);
-    
-//   } else {
-//     // SCENARIO B: First-Time Visitor
-//     if (introVideo) {
-//       introVideo.addEventListener('ended', () => {
-//         if (introSection) introSection.style.display = 'none';
-        
-//         // 1. HIGHEST PRIORITY: Hit play on the heavy video instantly so the slide begins
-//         if (slidingEgoVideo) slidingEgoVideo.play();
-        
-//         // 2. LOWER PRIORITY: Give the CPU a 150ms breather to get the video sliding smoothly, 
-//         // THEN trigger the lighter text animations so they don't steal processing power!
-//         setTimeout(() => {
-//           playHeroAnimations();
-//         }, 10);
-        
-//         localStorage.setItem('has-seen-intro', 'true');
-//       });
-
-//       introVideo.addEventListener('click', () => {
-//         introVideo.currentTime = introVideo.duration; // Skip to the end on click
-//       });
-//     }
-//   }
-// });
-
-
-//WEBP VERSION + Updates for diff listeners and triggers
-
-// Handle Intro Video & Hero Images
-document.addEventListener('DOMContentLoaded', () => {
-  const introSection = document.querySelector('.intro_section');
-  const introVideo = document.querySelector('.intro-video');
-  const slidingEgoImg = document.querySelector('.slide'); 
-
-  // Check storage. NOTE: Flip this to 'true' when you're done testing!
-  const hasSeen = localStorage.getItem('has-seen-intro') === 'false';
-
-  // --- THE MASTER FINISH FUNCTION ---
-  // This handles everything that needs to happen when the intro dies
-  function finishIntro() {
-    // Safety check: If it already ran, don't run it again!
-    if (document.documentElement.classList.contains('intro-finished')) return;
-
-    if (introSection) introSection.style.display = 'none';
-    
-    // 1. HIGHEST PRIORITY: Instantly trigger the sliding WebP
-    if (slidingEgoImg && slidingEgoImg.hasAttribute('data-src')) {
-      slidingEgoImg.src = slidingEgoImg.getAttribute('data-src');
-    }
-    
-    // 2. LOWER PRIORITY: Trigger the text animations
-    setTimeout(playHeroAnimations, 150);
-    
-    localStorage.setItem('has-seen-intro', 'true');
-    
-    // 3. Unlock the background color CSS lock!
-    document.documentElement.classList.add('intro-finished');
-
-    // Clean up the scroll listener so it doesn't bog down the page later
-    window.removeEventListener('scroll', handleIntroScroll);
-  }
-
-  // Helper function for the scroll trigger
-  function handleIntroScroll() {
-    // If the user scrolls down more than 10 pixels, kill the intro
-    if (window.scrollY > 10) { 
-      finishIntro();
-    }
-  }
-
-// // --- LOW POWER DETECTOR  ---
-//   if (introVideo) {
-//     const playPromise = introVideo.play();
-    
-//     if (playPromise !== undefined) {
-//       playPromise.then(() => {
-//         // Success! They have full power.
-//         // If they are a returning user, we don't need to watch it, so pause to save data.
-//         if (hasSeen) introVideo.pause();
-//         console.log("Autoplaying.");
-//       }).catch(error => {
-//         // Rejected! (Low Power Mode or Autoplay Blocked)
-//         console.log("Autoplay blocked: Low Power Mode active.");
-//         document.documentElement.classList.add('low-power-mode');
-        
-//         // Instantly skip the intro so they don't stare at a frozen frame
-//         finishIntro(); 
-//       });
-//     }
-//   }
-
-  // --- NORMAL SCENARIO ROUTING ---
-  if (hasSeen) {
-    // SCENARIO A: Returning User
-    finishIntro(); 
-  } else {
-    // SCENARIO B: First-Time Visitor
-    if (introVideo && introSection) {
-      introVideo.addEventListener('ended', finishIntro);
-      introVideo.addEventListener('click', finishIntro); 
-      window.addEventListener('scroll', handleIntroScroll);
-      
-      const introObserver = new IntersectionObserver((entries) => {
-        if (!entries[0].isIntersecting) {
-          finishIntro();
-          introObserver.disconnect(); 
-        }
-      }, { threshold: 0 });
-      
-      introObserver.observe(introSection);
-    }
-  }
-});
-
-
-
-
-
-
-// Scroll-triggered animations for elements with the "scroll-in" class
-
-const elements = document.querySelectorAll(".scroll-in")
-
-window.addEventListener("scroll", () => {
-    const innerHeightOfWindow = window.innerHeight;
-
-    elements.forEach(box => {
-        const boxTop = box.getBoundingClientRect().top
-
-        if(boxTop < innerHeightOfWindow){
-            box.classList.add("show")
-        } 
-        
-        /*
-        else {
-            box.classList.remove("show")
-        }
-        */
-
-        })
-    })
-
-
-// Scroll to top function for the logo click
-
-// When the user clicks on the button, smoothly scroll to the top using Lenis
 function topFunction() {
-  // The '0' tells Lenis to scroll to the 0px mark (the very top)
-  lenis.scrollTo(0); 
+  lenis.scrollTo(0);
 }
 
 
-
-
-
-
-//unmute videos
-
-// Select all videos on the page (or change 'video' to a specific class like '.slide')
-const toggleMuteVideos = document.querySelectorAll('.unmutable');
-
-toggleMuteVideos.forEach(video => {
-  video.addEventListener('click', () => {
-    // This flips the mute state: if it's muted, it unmutes; if unmuted, it mutes.
-    video.muted = !video.muted;
-  });
-});
-
-
-
-
-
-
-
-
-//dark mode toggle
-
-// 1. Run this immediately to check if they have a saved preference
-function applySavedTheme() {
-  // 1. Check what is saved in the browser
-  const savedTheme = localStorage.getItem('site-theme');
-  
-  // 2. Convert that to a simple true/false
-  const isDark = (savedTheme === 'dark');
-  
-  // 3. Force the HTML tag to match the saved theme
-  if (isDark) {
-    document.documentElement.classList.add('dark-theme');
-  } else {
-    document.documentElement.classList.remove('dark-theme');
-  }
-  
-  // 4. Force the images to update based on the saved theme
-  // (This also ensures your new mobile/desktop logic runs immediately!)
-  updateThemeImages(isDark);
-}
-
-// Ensure this runs as soon as the HTML is ready
-document.addEventListener('DOMContentLoaded', applySavedTheme);
-
-
-
-// 2. Your updated toggle function triggered by the button click
-function toggleTheme() {
-  // UPDATED: Now toggles the HTML tag
-  document.documentElement.classList.toggle('dark-theme');
-  const isDark = document.documentElement.classList.contains('dark-theme');
-  
-  localStorage.setItem('site-theme', isDark ? 'dark' : 'light');
-  updateThemeImages(isDark);
-}
-
-
-
-
-function playHeroAnimations() {
-  // Grab all the animated webps
-  const heroImages = document.querySelectorAll('.glued, .sub-text, .navicon');
-  
-  // Give them their real src so they instantly start animating!
-  heroImages.forEach(img => {
-    if (img.hasAttribute('data-src')) {
-      img.src = img.getAttribute('data-src');
-    }
-  });
-}
-
-
-
-// 3. A helper function to swap all the images
-function updateThemeImages(isDark) {
-  const gluedTypeImg = document.querySelector('.glued');
-  const subHeadingImg = document.querySelector('.sub-text');
-  const navicons = document.querySelectorAll('.navicon');
-  const introSection = document.querySelector('.intro_section');
-  
-  // If the intro section doesn't exist, or is set to 'none', we know it's finished!
-  const isIntroFinished = !introSection || introSection.style.display === 'none';
-  
-  // NEW: Check if the screen is mobile-sized (under 768 pixels)
-  const isMobile = window.innerWidth <= 768;
-
-  if (isDark) {
-    
-    if (gluedTypeImg) {
-      const gluedSrc = isMobile ? 'assets/gluedtype_mobile_dark.webp' : 'assets/gluedtype_desktop_dark.webp';
-      gluedTypeImg.setAttribute('data-src', gluedSrc); 
-      // ONLY trigger the real src if the intro is gone
-      if (isIntroFinished) gluedTypeImg.src = gluedSrc; 
-    }
-
-    if (subHeadingImg) {
-      subHeadingImg.setAttribute('data-src', 'assets/subheading_dark.webp');
-      // ONLY trigger the real src if the intro is gone
-      if (isIntroFinished) subHeadingImg.src = 'assets/subheading_dark.webp';
-    }
-
-    navicons.forEach(icon => { 
-      icon.setAttribute('data-src', 'assets/navicon_dark_anim.webp');
-      // ONLY trigger the real src if the intro is gone
-      if (isIntroFinished) icon.src = 'assets/navicon_dark_anim.webp'; 
-    });
-
-  } else {
-    
-    if (gluedTypeImg) {
-      const gluedSrc = isMobile ? 'assets/gluedtype_mobile_light.webp' : 'assets/gluedtype_desktop_light.webp';
-      gluedTypeImg.setAttribute('data-src', gluedSrc);
-      // ONLY trigger the real src if the intro is gone
-      if (isIntroFinished) gluedTypeImg.src = gluedSrc;
-    }
-
-    if (subHeadingImg) {
-      subHeadingImg.setAttribute('data-src', 'assets/subheading_light.webp');
-      // ONLY trigger the real src if the intro is gone
-      if (isIntroFinished) subHeadingImg.src = 'assets/subheading_light.webp';
-    }
-
-    navicons.forEach(icon => { 
-      icon.setAttribute('data-src', 'assets/navicon_light_anim.webp');
-      // ONLY trigger the real src if the intro is gone
-      if (isIntroFinished) icon.src = 'assets/navicon_light_anim.webp'; 
-    });
-  }
-}
-
-
-// 4. Trigger the check as soon as the HTML is ready
-document.addEventListener('DOMContentLoaded', applySavedTheme);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//make sure VH DOESNT CHANGE ON FUCKING SHIT ASS MOBILE FUCKING BROWSERS
-
-// 1. Function to calculate and set the exact pixel height
+// ==========================================
+// 2. VIEWPORT HEIGHT FIX (MOBILE)
+// ==========================================
 function setStaticViewportHeight() {
   const vh = window.innerHeight * 0.01;
   document.documentElement.style.setProperty('--vh', `${vh}px`);
 }
 
-// 2. Run it immediately when the script loads
 setStaticViewportHeight();
-
-// 3. Listen for resizes, but ONLY update if the width changes (ignoring URL bar scrolls)
 let currentWidth = window.innerWidth;
 window.addEventListener('resize', () => {
   if (window.innerWidth !== currentWidth) {
@@ -390,60 +36,165 @@ window.addEventListener('resize', () => {
 });
 
 
+// ==========================================
+// 3. THEME MANAGEMENT (DARK/LIGHT)
+// ==========================================
+function updateThemeImages(isDark) {
+  const introSection = document.querySelector('.intro_section');
+  const isIntroFinished = !introSection || introSection.style.display === 'none';
+  const isMobile = window.innerWidth <= 768;
+  const theme = isDark ? 'dark' : 'light';
+
+  // Helper to update images cleanly
+  const updateImage = (selector, src) => {
+    const elements = document.querySelectorAll(selector);
+    elements.forEach(el => {
+      el.setAttribute('data-src', src);
+      if (isIntroFinished) el.src = src;
+    });
+  };
+
+  const gluedSrc = `assets/gluedtype_${isMobile ? 'mobile' : 'desktop'}_${theme}.webp`;
+  
+  updateImage('.glued', gluedSrc);
+  updateImage('.sub-text', `assets/subheading_${theme}.webp`);
+  updateImage('.navicon', `assets/navicon_${theme}_anim.webp`);
+}
+
+function applySavedTheme() {
+  const isDark = localStorage.getItem('site-theme') === 'dark';
+  document.documentElement.classList.toggle('dark-theme', isDark);
+  updateThemeImages(isDark);
+}
+
+function toggleTheme() {
+  const isDark = document.documentElement.classList.toggle('dark-theme');
+  localStorage.setItem('site-theme', isDark ? 'dark' : 'light');
+  updateThemeImages(isDark);
+}
 
 
+// ==========================================
+// 4. INTRO SEQUENCE & HERO ANIMATIONS
+// ==========================================
+function playHeroAnimations() {
+  const heroImages = document.querySelectorAll('.glued, .sub-text, .navicon');
+  heroImages.forEach(img => {
+    if (img.hasAttribute('data-src')) {
+      img.src = img.getAttribute('data-src');
+    }
+  });
+}
+
+function initIntroSequence() {
+  const introSection = document.querySelector('.intro_section');
+  const introVideo = document.querySelector('.intro-video');
+  const slidingEgoImg = document.querySelector('.slide'); 
+  const hasSeen = localStorage.getItem('has-seen-intro') === 'true'; // Changed to check for 'true' to avoid double negatives
+
+  function finishIntro() {
+    if (document.documentElement.classList.contains('intro-finished')) return;
+
+    if (introSection) introSection.style.display = 'none';
+    
+    if (slidingEgoImg && slidingEgoImg.hasAttribute('data-src')) {
+      slidingEgoImg.src = slidingEgoImg.getAttribute('data-src');
+    }
+    
+    setTimeout(playHeroAnimations, 150);
+    localStorage.setItem('has-seen-intro', 'true');
+    document.documentElement.classList.add('intro-finished');
+    window.removeEventListener('scroll', handleIntroScroll);
+  }
+
+  function handleIntroScroll() {
+    if (window.scrollY > 10) finishIntro();
+  }
+
+  if (hasSeen) {
+    finishIntro(); 
+  } else if (introVideo && introSection) {
+    introVideo.addEventListener('ended', finishIntro);
+    introVideo.addEventListener('click', finishIntro); 
+    // Added passive: true for scroll performance
+    window.addEventListener('scroll', handleIntroScroll, { passive: true }); 
+    
+    const introObserver = new IntersectionObserver((entries) => {
+      if (!entries[0].isIntersecting) {
+        finishIntro();
+        introObserver.disconnect(); 
+      }
+    }, { threshold: 0 });
+    
+    introObserver.observe(introSection);
+  }
+}
 
 
+// ==========================================
+// 5. INTERSECTION OBSERVERS (ANIMATIONS & LAZY LOAD)
+// ==========================================
+
+// Replaced the expensive scroll listener with an IntersectionObserver
+const scrollInObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("show");
+      // Optional: unobserve if you only want it to animate once
+      // scrollInObserver.unobserve(entry.target); 
+    } else {
+      // Remove this else block if you want the animation to happen only once
+      entry.target.classList.remove("show"); 
+    }
+  });
+}, { threshold: 0.1 }); // Triggers when 10% of the element is visible
 
 
-
-
-
-
-
-//Video Lazy Loader!!!
-
-// 1. Create the Intersection Observer
+// Video Lazy Loader
 const workVideoObserver = new IntersectionObserver((entries, observer) => {
   entries.forEach(entry => {
-    
-    // When the container scrolls into view
     if (entry.isIntersecting) {
-      
-      // Add your CSS class to trigger the visual fade-in
       entry.target.classList.add('show');
-
-      // Find the specific video inside this container
       const video = entry.target.querySelector('video.image, video.unmutable, .reel-container.scroll-in');
       
-      // If the video exists and has our hidden data-src
       if (video && video.hasAttribute('data-src')) {
-        // 1. Swap the source
         video.src = video.getAttribute('data-src');
         video.removeAttribute('data-src'); 
-        
-        // 2. Force the mute BEFORE loading
         video.muted = true; 
-        
-        // 3. Tell the browser to process the new file
         video.load();
       }
-
-      // Stop watching this specific container so it doesn't run again
       observer.unobserve(entry.target);
     }
   });
-}, {
-  // PRO-TIP: This makes the video start loading 200px BEFORE it enters the screen,
-  // making the playback feel completely instantaneous to the user!
-  rootMargin: "0px 0px 200px 0px" 
+}, { rootMargin: "0px 0px 200px 0px" });
+
+
+// ==========================================
+// 6. DOM CONTENT LOADED INITIALIZATION
+// ==========================================
+document.addEventListener('DOMContentLoaded', () => {
+  // 1. Theme Check
+  applySavedTheme();
+  
+  // 2. Intro Check
+  initIntroSequence();
+
+  // 3. Attach Observers
+  document.querySelectorAll(".scroll-in").forEach(box => scrollInObserver.observe(box));
+  document.querySelectorAll('.work.scroll-in, .box-container, .reel-container').forEach(container => {
+    workVideoObserver.observe(container);
+  });
+
+  // 4. Unmute video click listeners
+  document.querySelectorAll('.unmutable').forEach(video => {
+    video.addEventListener('click', () => {
+      video.muted = !video.muted;
+    });
+  });
+
+  // 5. Reel Volume Setup (Wrapped in safety check)
+  const reelVideo = document.querySelector('.reel');
+  if (reelVideo) {
+    reelVideo.volume = 0.2;
+  }
 });
-
-// 2. Attach the observer ONLY to your featured work scroll containers
-document.querySelectorAll('.work.scroll-in, .box-container, .reel-container').forEach(container => {
-  workVideoObserver.observe(container);
-});
-
-
-
-document.querySelector('.reel').volume = 0.2;
