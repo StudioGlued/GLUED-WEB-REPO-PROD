@@ -353,6 +353,7 @@ header {
     letter-spacing: -3%;
     text-align: right;
     color: var(--switch);
+    transition: 0.3s ease;
  }
 
  .text-box-container {

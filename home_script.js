@@ -89,21 +89,24 @@ requestAnimationFrame(raf);
 // });
 
 
-//WEBP VERSION
+//WEBP VERSION + Updates for diff listeners and triggers
 
 // Handle Intro Video & Hero Images
 document.addEventListener('DOMContentLoaded', () => {
   const introSection = document.querySelector('.intro_section');
   const introVideo = document.querySelector('.intro-video');
-  const slidingEgoImg = document.querySelector('.slide'); // This is an image now!
+  const slidingEgoImg = document.querySelector('.slide'); 
 
   // Check storage. NOTE: Flip this to 'true' when you're done testing!
   const hasSeen = localStorage.getItem('has-seen-intro') === 'false';
 
-  if (hasSeen) {
-    // SCENARIO A: Returning User
+  // --- THE MASTER FINISH FUNCTION ---
+  // This handles everything that needs to happen when the intro dies
+  function finishIntro() {
+    // Safety check: If it already ran, don't run it again!
+    if (document.documentElement.classList.contains('intro-finished')) return;
+
     if (introSection) introSection.style.display = 'none';
-    
     
     // 1. HIGHEST PRIORITY: Instantly trigger the sliding WebP
     if (slidingEgoImg && slidingEgoImg.hasAttribute('data-src')) {
@@ -112,35 +115,57 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // 2. LOWER PRIORITY: Trigger the text animations
     setTimeout(playHeroAnimations, 150);
+    
+    localStorage.setItem('has-seen-intro', 'true');
+    
+    // 3. Unlock the background color CSS lock!
     document.documentElement.classList.add('intro-finished');
+
+    // Clean up the scroll listener so it doesn't bog down the page later
+    window.removeEventListener('scroll', handleIntroScroll);
+  }
+
+  // Helper function for the scroll trigger
+  function handleIntroScroll() {
+    // If the user scrolls down more than 10 pixels, kill the intro
+    if (window.scrollY > 10) { 
+      finishIntro();
+    }
+  }
+
+  if (hasSeen) {
+    // SCENARIO A: Returning User
+    // Just call the master function instantly!
+    finishIntro(); 
 
   } else {
     // SCENARIO B: First-Time Visitor
-    if (introVideo) {
-      introVideo.addEventListener('ended', () => {
-        
-        if (introSection) introSection.style.display = 'none';
-        
-        // 1. HIGHEST PRIORITY: Instantly trigger the sliding WebP
-        if (slidingEgoImg && slidingEgoImg.hasAttribute('data-src')) {
-          slidingEgoImg.src = slidingEgoImg.getAttribute('data-src');
-        }
-        
-        // 2. LOWER PRIORITY: Trigger the text animations
-        setTimeout(playHeroAnimations, 150);
-        
-        localStorage.setItem('has-seen-intro', 'true');
-        document.documentElement.classList.add('intro-finished');
-      });
+    if (introVideo && introSection) {
+      
+      // TRIGGER 1: Video naturally ends
+      introVideo.addEventListener('ended', finishIntro);
 
-      // Tap to skip
-      introVideo.addEventListener('click', () => {
-        introVideo.currentTime = introVideo.duration; 
+      // TRIGGER 2: User clicks the video
+      introVideo.addEventListener('click', finishIntro); 
+
+      // TRIGGER 3: User scrolls down the page
+      window.addEventListener('scroll', handleIntroScroll);
+
+      // TRIGGER 4: Intro goes out of view (Intersection Observer)
+      const introObserver = new IntersectionObserver((entries) => {
+        // If isIntersecting is false, it means it has left the screen
+        if (!entries[0].isIntersecting) {
+          finishIntro();
+          introObserver.disconnect(); // Stop watching to save memory
+        }
+      }, { 
+        threshold: 0 // Fires the exact millisecond the element is 0% visible
       });
+      
+      introObserver.observe(introSection);
     }
   }
 });
-
 
 
 
