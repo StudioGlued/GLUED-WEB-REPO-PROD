@@ -404,7 +404,7 @@ const workVideoObserver = new IntersectionObserver((entries, observer) => {
       entry.target.classList.add('show');
 
       // Find the specific video inside this container
-      const video = entry.target.querySelector('video.image');
+      const video = entry.target.querySelector('video.image, video.unmutable');
       
       // If the video exists and has our hidden data-src
       if (video && video.hasAttribute('data-src')) {
@@ -430,6 +430,6 @@ const workVideoObserver = new IntersectionObserver((entries, observer) => {
 });
 
 // 2. Attach the observer ONLY to your featured work scroll containers
-document.querySelectorAll('.work.scroll-in').forEach(container => {
+document.querySelectorAll('.work.scroll-in, .box-container').forEach(container => {
   workVideoObserver.observe(container);
 });
