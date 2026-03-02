@@ -34,60 +34,109 @@ requestAnimationFrame(raf);
 
 
 
+//VIDEO VERSION
 
+// // Handle Intro Video & Hero Images
+// document.addEventListener('DOMContentLoaded', () => {
+//   const introSection = document.querySelector('.intro_section');
+//   const introVideo = document.querySelector('.intro-video');
+//   const slidingEgoVideo = document.querySelector('.slide');
+
+// // Add this right after: const slidingEgoVideo = document.querySelector('.slide');
+
+// // 1. Prime the video decoder immediately on page load
+// if (slidingEgoVideo) {
+//     slidingEgoVideo.load(); 
+// }
+
+
+//   if (localStorage.getItem('has-seen-intro') === 'false') { 
+//     // SCENARIO A: Returning User
+//     if (introSection) introSection.style.display = 'none';
+        
+//         // 1. HIGHEST PRIORITY: Hit play on the heavy video instantly so the slide begins
+//         if (slidingEgoVideo) slidingEgoVideo.play();
+        
+//         // 2. LOWER PRIORITY: Give the CPU a 150ms breather to get the video sliding smoothly, 
+//         // THEN trigger the lighter text animations so they don't steal processing power!
+//         setTimeout(() => {
+//           playHeroAnimations();
+//         }, 10);
+    
+//   } else {
+//     // SCENARIO B: First-Time Visitor
+//     if (introVideo) {
+//       introVideo.addEventListener('ended', () => {
+//         if (introSection) introSection.style.display = 'none';
+        
+//         // 1. HIGHEST PRIORITY: Hit play on the heavy video instantly so the slide begins
+//         if (slidingEgoVideo) slidingEgoVideo.play();
+        
+//         // 2. LOWER PRIORITY: Give the CPU a 150ms breather to get the video sliding smoothly, 
+//         // THEN trigger the lighter text animations so they don't steal processing power!
+//         setTimeout(() => {
+//           playHeroAnimations();
+//         }, 10);
+        
+//         localStorage.setItem('has-seen-intro', 'true');
+//       });
+
+//       introVideo.addEventListener('click', () => {
+//         introVideo.currentTime = introVideo.duration; // Skip to the end on click
+//       });
+//     }
+//   }
+// });
+
+
+//WEBP VERSION
 
 // Handle Intro Video & Hero Images
 document.addEventListener('DOMContentLoaded', () => {
   const introSection = document.querySelector('.intro_section');
   const introVideo = document.querySelector('.intro-video');
-  const slidingEgoVideo = document.querySelector('.slide');
+  const slidingEgoImg = document.querySelector('.slide'); // This is an image now!
 
-// Add this right after: const slidingEgoVideo = document.querySelector('.slide');
+  // Check storage. NOTE: Flip this to 'true' when you're done testing!
+  const hasSeen = localStorage.getItem('has-seen-intro') === 'false';
 
-// 1. Prime the video decoder immediately on page load
-if (slidingEgoVideo) {
-    slidingEgoVideo.load(); 
-}
-
-
-  if (localStorage.getItem('has-seen-intro') === 'false') { 
+  if (hasSeen) {
     // SCENARIO A: Returning User
     if (introSection) introSection.style.display = 'none';
-        
-        // 1. HIGHEST PRIORITY: Hit play on the heavy video instantly so the slide begins
-        if (slidingEgoVideo) slidingEgoVideo.play();
-        
-        // 2. LOWER PRIORITY: Give the CPU a 150ms breather to get the video sliding smoothly, 
-        // THEN trigger the lighter text animations so they don't steal processing power!
-        setTimeout(() => {
-          playHeroAnimations();
-        }, 10);
     
+    // 1. HIGHEST PRIORITY: Instantly trigger the sliding WebP
+    if (slidingEgoImg && slidingEgoImg.hasAttribute('data-src')) {
+      slidingEgoImg.src = slidingEgoImg.getAttribute('data-src');
+    }
+    
+    // 2. LOWER PRIORITY: Trigger the text animations
+    setTimeout(playHeroAnimations, 150);
+
   } else {
     // SCENARIO B: First-Time Visitor
     if (introVideo) {
       introVideo.addEventListener('ended', () => {
+        
         if (introSection) introSection.style.display = 'none';
         
-        // 1. HIGHEST PRIORITY: Hit play on the heavy video instantly so the slide begins
-        if (slidingEgoVideo) slidingEgoVideo.play();
+        // 1. HIGHEST PRIORITY: Instantly trigger the sliding WebP
+        if (slidingEgoImg && slidingEgoImg.hasAttribute('data-src')) {
+          slidingEgoImg.src = slidingEgoImg.getAttribute('data-src');
+        }
         
-        // 2. LOWER PRIORITY: Give the CPU a 150ms breather to get the video sliding smoothly, 
-        // THEN trigger the lighter text animations so they don't steal processing power!
-        setTimeout(() => {
-          playHeroAnimations();
-        }, 10);
+        // 2. LOWER PRIORITY: Trigger the text animations
+        setTimeout(playHeroAnimations, 150);
         
         localStorage.setItem('has-seen-intro', 'true');
       });
 
+      // Tap to skip
       introVideo.addEventListener('click', () => {
-        introVideo.currentTime = introVideo.duration; // Skip to the end on click
+        introVideo.currentTime = introVideo.duration; 
       });
     }
   }
 });
-
 
 
 
