@@ -18,8 +18,23 @@ html {
     --sikh: #FF6C00;
     --glue: #fff0e6;
     --black: #000000;
-    --background: #fff0e6;
+    --background: #FF6C00;
     --switch: #000000;
+
+/* 2. Store your actual real theme colors here so they are ready */
+  --actual-light-bg: #fff0e6; /* <-- Replace with your real light theme hex */
+  --actual-dark-bg: #000000;  /* <-- Replace with your real dark theme hex */
+}
+
+
+/* 3. When the intro ends, we add this class to switch to the Light background */
+:root.intro-finished {
+  --background: var(--actual-light-bg);
+}
+
+/* 4. If Dark Mode is active AND the intro is finished, switch to the Dark background */
+:root.intro-finished.dark-theme {
+  --background: var(--actual-dark-bg);
 }
 
 /* (dark) state */
