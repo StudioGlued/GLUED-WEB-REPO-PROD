@@ -1,36 +1,3 @@
-// // 1. Create a global flag we can check later
-// let isLowPowerMode = false;
-
-// // 2. The Autoplay Test Function
-// async function detectLowPowerMode() {
-//   try {
-//     const testVideo = document.querySelector('video');
-    
-//     // Attempt to play it
-//     await testVideo.play();
-    
-//     // If we get here, autoplay works! Full power!
-//     isLowPowerMode = false;
-//     console.log("Full power mode: Videos will load normally.");
-    
-//   } catch (error) {
-//     // If the browser blocks it, they are in Low Power Mode!
-//     isLowPowerMode = true;
-//     console.log("Low Power Mode detected: Keeping videos as data-src.");
-//     // Add a class to the body so you can style things differently if needed (like showing a play button)
-//     document.documentElement.classList.add('low-power-mode');
-//     document.documentElement.classList.add('intro-finished');
-//     finishIntro();
-//   }
-// }
-
-// // 3. Run the test the moment the script loads
-// detectLowPowerMode();
-
-
-
-
-
 
 
 
@@ -199,54 +166,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 });
-
-
-
-
-
-
-
-
-// --- BACKGROUND LOW POWER MODE TEST ---
-// Global flag for the lazy loader to check later
-let isLowPowerMode = false;
-
-function runBatteryTestInBackground() {
-  const testVideo = document.querySelector('video');
-
-  // The 400ms timeout now runs harmlessly in the background!
-  const fallbackTimer = setTimeout(() => {
-    isLowPowerMode = true;
-    document.documentElement.classList.add('low-power-mode');
-    console.log("Background Test: Low Power Mode assumed (Timeout).");
-  }, 400);
-
-  // Wait for the file to buffer enough to test
-  testVideo.addEventListener('canplay', () => {
-    testVideo.play().then(() => {
-      // Success! They have full power.
-      clearTimeout(fallbackTimer);
-      isLowPowerMode = false; 
-      console.log("Background Test: Full power mode. Autoplay allowed.");
-    }).catch((error) => {
-      // The browser explicitly blocked the play command
-      clearTimeout(fallbackTimer);
-      isLowPowerMode = true;
-      document.documentElement.classList.add('low-power-mode');
-      console.log("Background Test: Low Power Mode detected.");
-    });
-  }, { once: true });
-
-  // Start the background fetch
-  testVideo.load();
-}
-
-// Fire it immediately, but let it run invisibly behind the scenes
-runBatteryTestInBackground();
-
-
-
-
 
 
 
@@ -487,24 +406,20 @@ const workVideoObserver = new IntersectionObserver((entries, observer) => {
       // Find the specific video inside this container
       const video = entry.target.querySelector('video.image, video.unmutable');
       
+      // If the video exists and has our hidden data-src
       if (video && video.hasAttribute('data-src')) {
+        // 1. Swap the source
+        video.src = video.getAttribute('data-src');
+        video.removeAttribute('data-src'); 
         
-        // 🔥 THE NEW CHECK: Are we in Low Power Mode?
-        if (isLowPowerMode) {
-          // Do nothing! Leave it as data-src to save their battery.
-          // Optional: You could write code here to show a "Tap to Load Video" button instead.
-          console.log("Video skipped due to Low Power Mode.");
-          
-        } else {
-          // NORMAL MODE: Swap the source and load it!
-          video.src = video.getAttribute('data-src');
-          video.removeAttribute('data-src'); 
-          video.muted = true; 
-          video.load();
-        }
+        // 2. Force the mute BEFORE loading
+        video.muted = true; 
+        
+        // 3. Tell the browser to process the new file
+        video.load();
       }
 
-      // Stop watching this specific container
+      // Stop watching this specific container so it doesn't run again
       observer.unobserve(entry.target);
     }
   });
