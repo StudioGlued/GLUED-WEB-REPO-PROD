@@ -20,6 +20,7 @@ async function detectLowPowerMode() {
     // Add a class to the body so you can style things differently if needed (like showing a play button)
     document.documentElement.classList.add('low-power-mode');
     document.documentElement.classList.add('intro-finished');
+    finishIntro();
   }
 }
 

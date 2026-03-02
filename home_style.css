@@ -94,6 +94,17 @@ section {
     opacity: 100%;
 }
 
+/* 1. Target the giant play button overlay in the center of the video */
+.low-power-mode::-webkit-media-controls-start-playback-button {
+  display: none !important;
+  -webkit-appearance: none !important;
+}
+
+/* 2. Target the standard play button in the control bar (just in case) */
+.low-power-mode::-webkit-media-controls-play-button {
+  display: none !important;
+  -webkit-appearance: none !important;
+}
 
 
 
