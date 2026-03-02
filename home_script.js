@@ -1,31 +1,33 @@
-// 1. Create a global flag we can check later
-let isLowPowerMode = false;
+// // 1. Create a global flag we can check later
+// let isLowPowerMode = false;
 
-// 2. The Autoplay Test Function
-async function detectLowPowerMode() {
-  try {
-    const testVideo = document.querySelector('video');
+// // 2. The Autoplay Test Function
+// async function detectLowPowerMode() {
+//   try {
+//     const testVideo = document.querySelector('video');
     
-    // Attempt to play it
-    await testVideo.play();
+//     // Attempt to play it
+//     await testVideo.play();
     
-    // If we get here, autoplay works! Full power!
-    isLowPowerMode = false;
-    console.log("Full power mode: Videos will load normally.");
+//     // If we get here, autoplay works! Full power!
+//     isLowPowerMode = false;
+//     console.log("Full power mode: Videos will load normally.");
     
-  } catch (error) {
-    // If the browser blocks it, they are in Low Power Mode!
-    isLowPowerMode = true;
-    console.log("Low Power Mode detected: Keeping videos as data-src.");
-    // Add a class to the body so you can style things differently if needed (like showing a play button)
-    document.documentElement.classList.add('low-power-mode');
-    document.documentElement.classList.add('intro-finished');
-    finishIntro();
-  }
-}
+//   } catch (error) {
+//     // If the browser blocks it, they are in Low Power Mode!
+//     isLowPowerMode = true;
+//     console.log("Low Power Mode detected: Keeping videos as data-src.");
+//     // Add a class to the body so you can style things differently if needed (like showing a play button)
+//     document.documentElement.classList.add('low-power-mode');
+//     document.documentElement.classList.add('intro-finished');
+//     finishIntro();
+//   }
+// }
 
-// 3. Run the test the moment the script loads
-detectLowPowerMode();
+// // 3. Run the test the moment the script loads
+// detectLowPowerMode();
+
+
 
 
 
@@ -197,6 +199,54 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 });
+
+
+
+
+
+
+
+
+// --- BACKGROUND LOW POWER MODE TEST ---
+// Global flag for the lazy loader to check later
+let isLowPowerMode = false;
+
+function runBatteryTestInBackground() {
+  const testVideo = document.querySelector('video');
+
+  // The 400ms timeout now runs harmlessly in the background!
+  const fallbackTimer = setTimeout(() => {
+    isLowPowerMode = true;
+    document.documentElement.classList.add('low-power-mode');
+    console.log("Background Test: Low Power Mode assumed (Timeout).");
+  }, 400);
+
+  // Wait for the file to buffer enough to test
+  testVideo.addEventListener('canplay', () => {
+    testVideo.play().then(() => {
+      // Success! They have full power.
+      clearTimeout(fallbackTimer);
+      isLowPowerMode = false; 
+      console.log("Background Test: Full power mode. Autoplay allowed.");
+    }).catch((error) => {
+      // The browser explicitly blocked the play command
+      clearTimeout(fallbackTimer);
+      isLowPowerMode = true;
+      document.documentElement.classList.add('low-power-mode');
+      console.log("Background Test: Low Power Mode detected.");
+    });
+  }, { once: true });
+
+  // Start the background fetch
+  testVideo.load();
+}
+
+// Fire it immediately, but let it run invisibly behind the scenes
+runBatteryTestInBackground();
+
+
+
+
 
 
 
