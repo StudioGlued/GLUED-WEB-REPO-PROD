@@ -94,7 +94,22 @@ section {
     opacity: 100%;
 }
 
+/* 1. Hide Apple's giant center play button ONLY in .work-image containers */
+.work-image video.image::-webkit-media-controls-start-playback-button {
+  display: none !important;
+  -webkit-appearance: none !important;
+}
 
+/* 2. Hide Apple's standard control bar play button ONLY in .work-image containers */
+.work-image video.image::-webkit-media-controls-play-button {
+  display: none !important;
+  -webkit-appearance: none !important;
+}
+
+/* 3. Hide the rest of Apple's video controls completely ONLY in .work-image containers */
+.work-image video.image::-webkit-media-controls {
+  display: none !important;
+}
 
 
 
