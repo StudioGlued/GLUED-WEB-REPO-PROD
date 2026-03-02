@@ -103,6 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (hasSeen) {
     // SCENARIO A: Returning User
     if (introSection) introSection.style.display = 'none';
+    refreshThemeColor();
     
     // 1. HIGHEST PRIORITY: Instantly trigger the sliding WebP
     if (slidingEgoImg && slidingEgoImg.hasAttribute('data-src')) {
@@ -118,6 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
       introVideo.addEventListener('ended', () => {
         
         if (introSection) introSection.style.display = 'none';
+        refreshThemeColor();
         
         // 1. HIGHEST PRIORITY: Instantly trigger the sliding WebP
         if (slidingEgoImg && slidingEgoImg.hasAttribute('data-src')) {
@@ -137,6 +139,32 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 });
+
+
+
+
+
+
+
+// Function to dynamically update Safari's top bar color
+function refreshThemeColor() {
+  let metaTag = document.getElementById('theme-color-meta');
+  if (!metaTag) return; // Failsafe if the tag is missing
+
+  const introSection = document.querySelector('.intro_section');
+  // Check if the intro is currently visible
+  const isIntroVisible = introSection && introSection.style.display !== 'none';
+
+  // Grab the exact live values of your CSS variables!
+  const styles = getComputedStyle(document.documentElement);
+  const sikhColor = styles.getPropertyValue('--sikh').trim();
+  const bgColor = styles.getPropertyValue('--background').trim();
+
+  // Apply the correct color to Safari's status bar
+  metaTag.setAttribute('content', isIntroVisible ? sikhColor : bgColor);
+}
+
+
 
 
 
@@ -220,6 +248,8 @@ function applySavedTheme() {
   // 4. Force the images to update based on the saved theme
   // (This also ensures your new mobile/desktop logic runs immediately!)
   updateThemeImages(isDark);
+
+  refreshThemeColor();
 }
 
 // Ensure this runs as soon as the HTML is ready
@@ -235,6 +265,8 @@ function toggleTheme() {
   
   localStorage.setItem('site-theme', isDark ? 'dark' : 'light');
   updateThemeImages(isDark);
+
+  refreshThemeColor();
 }
 
 
