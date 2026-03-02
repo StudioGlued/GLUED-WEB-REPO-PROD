@@ -18,12 +18,16 @@ html {
     --sikh: #FF6C00;
     --glue: #fff0e6;
     --black: #000000;
-    --background: #FF6C00;
+    --background: #fff0e6;
     --switch: #000000;
 
 /* 2. Store your actual real theme colors here so they are ready */
   --actual-light-bg: #fff0e6; /* <-- Replace with your real light theme hex */
   --actual-dark-bg: #000000;  /* <-- Replace with your real dark theme hex */
+}
+
+:root:not(.intro-finished) {
+  --background: #FF6C00 !important;
 }
 
 
