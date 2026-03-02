@@ -90,7 +90,6 @@ function initIntroSequence() {
   const introSection = document.querySelector('.intro_section');
   const introVideo = document.querySelector('.intro-video');
   const slidingEgoImg = document.querySelector('.slide'); 
-  const hasSeen = localStorage.getItem('has-seen-intro') === 'true'; // Changed to check for 'true' to avoid double negatives
 
   function finishIntro() {
     if (document.documentElement.classList.contains('intro-finished')) return;
@@ -102,7 +101,6 @@ function initIntroSequence() {
     }
     
     setTimeout(playHeroAnimations, 150);
-    localStorage.setItem('has-seen-intro', 'true');
     document.documentElement.classList.add('intro-finished');
     window.removeEventListener('scroll', handleIntroScroll);
   }
@@ -111,9 +109,8 @@ function initIntroSequence() {
     if (window.scrollY > 10) finishIntro();
   }
 
-  if (hasSeen) {
-    finishIntro(); 
-  } else if (introVideo && introSection) {
+  // ALWAYS play the intro if the elements exist
+  if (introVideo && introSection) {
     introVideo.addEventListener('ended', finishIntro);
     introVideo.addEventListener('click', finishIntro); 
     // Added passive: true for scroll performance
@@ -127,6 +124,9 @@ function initIntroSequence() {
     }, { threshold: 0 });
     
     introObserver.observe(introSection);
+  } else {
+    // Fallback: If elements are missing (e.g., on a subpage), just skip to the end
+    finishIntro();
   }
 }
 
