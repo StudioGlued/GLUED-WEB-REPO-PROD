@@ -30,6 +30,13 @@ html {
   --background: #FF6C00 !important;
 }
 
+:root:not(.intro-finished) .logo-container-2,
+:root:not(.intro-finished) .hero-texts-cont,
+:root:not(.intro-finished) .navicon {
+  opacity: 0 !important;
+  pointer-events: none;
+}
+
 
 /* 3. When the intro ends, we add this class to switch to the Light background */
 :root.intro-finished {
