@@ -133,34 +133,44 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+// --- 🔥 THE SIMPLE LOW POWER DETECTOR 🔥 ---
+  if (introVideo) {
+    const playPromise = introVideo.play();
+    
+    if (playPromise !== undefined) {
+      playPromise.then(() => {
+        // Success! They have full power.
+        // If they are a returning user, we don't need to watch it, so pause to save data.
+        if (hasSeen) introVideo.pause();
+        console.log("Autoplaying.");
+      }).catch(error => {
+        // Rejected! (Low Power Mode or Autoplay Blocked)
+        console.log("Autoplay blocked: Low Power Mode active.");
+        document.documentElement.classList.add('low-power-mode');
+        
+        // Instantly skip the intro so they don't stare at a frozen frame
+        finishIntro(); 
+      });
+    }
+  }
+
+  // --- NORMAL SCENARIO ROUTING ---
   if (hasSeen) {
     // SCENARIO A: Returning User
-    // Just call the master function instantly!
     finishIntro(); 
-
   } else {
     // SCENARIO B: First-Time Visitor
     if (introVideo && introSection) {
-      
-      // TRIGGER 1: Video naturally ends
       introVideo.addEventListener('ended', finishIntro);
-
-      // TRIGGER 2: User clicks the video
       introVideo.addEventListener('click', finishIntro); 
-
-      // TRIGGER 3: User scrolls down the page
       window.addEventListener('scroll', handleIntroScroll);
-
-      // TRIGGER 4: Intro goes out of view (Intersection Observer)
+      
       const introObserver = new IntersectionObserver((entries) => {
-        // If isIntersecting is false, it means it has left the screen
         if (!entries[0].isIntersecting) {
           finishIntro();
-          introObserver.disconnect(); // Stop watching to save memory
+          introObserver.disconnect(); 
         }
-      }, { 
-        threshold: 0 // Fires the exact millisecond the element is 0% visible
-      });
+      }, { threshold: 0 });
       
       introObserver.observe(introSection);
     }
