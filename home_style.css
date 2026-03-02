@@ -95,17 +95,6 @@ section {
 }
 
 
-/* 
-video::-webkit-media-controls {
-  display: none;
-} */
-
-/* Could Use thise as well for Individual Controls */
-video::-webkit-media-controls-play-button {
-    display: none;
-}
-
-
 
 
 
