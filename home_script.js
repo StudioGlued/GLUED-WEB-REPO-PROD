@@ -74,6 +74,63 @@ function toggleTheme() {
 }
 
 
+// // ==========================================
+// // 4. INTRO SEQUENCE & HERO ANIMATIONS
+// // ==========================================
+// function playHeroAnimations() {
+//   const heroImages = document.querySelectorAll('.glued, .sub-text, .navicon');
+//   heroImages.forEach(img => {
+//     if (img.hasAttribute('data-src')) {
+//       img.src = img.getAttribute('data-src');
+//     }
+//   });
+// }
+
+// function initIntroSequence() {
+//   const introSection = document.querySelector('.intro_section');
+//   const introVideo = document.querySelector('.intro-video');
+//   const slidingEgoImg = document.querySelector('.slide'); 
+
+//   function finishIntro() {
+//     if (document.documentElement.classList.contains('intro-finished')) return;
+
+//     if (introSection) introSection.style.display = 'none';
+    
+//     if (slidingEgoImg && slidingEgoImg.hasAttribute('data-src')) {
+//       slidingEgoImg.src = slidingEgoImg.getAttribute('data-src');
+//     }
+    
+//     setTimeout(playHeroAnimations, 150);
+//     document.documentElement.classList.add('intro-finished');
+//     window.removeEventListener('scroll', handleIntroScroll);
+//   }
+
+//   function handleIntroScroll() {
+//     if (window.scrollY > 10) finishIntro();
+//   }
+
+//   // ALWAYS play the intro if the elements exist
+//   if (introVideo && introSection) {
+//     introVideo.addEventListener('ended', finishIntro);
+//     introVideo.addEventListener('click', finishIntro); 
+//     // Added passive: true for scroll performance
+//     window.addEventListener('scroll', handleIntroScroll, { passive: true }); 
+    
+//     const introObserver = new IntersectionObserver((entries) => {
+//       if (!entries[0].isIntersecting) {
+//         finishIntro();
+//         introObserver.disconnect(); 
+//       }
+//     }, { threshold: 0 });
+    
+//     introObserver.observe(introSection);
+//   } else {
+//     // Fallback: If elements are missing (e.g., on a subpage), just skip to the end
+//     finishIntro();
+//   }
+// }
+
+
 // ==========================================
 // 4. INTRO SEQUENCE & HERO ANIMATIONS
 // ==========================================
@@ -111,6 +168,41 @@ function initIntroSequence() {
 
   // ALWAYS play the intro if the elements exist
   if (introVideo && introSection) {
+    
+    // --- LOW POWER MODE DETECTOR & VIDEO REPLACEMENT ---
+    const playPromise = introVideo.play();
+    
+    if (playPromise !== undefined) {
+      playPromise.then(() => {
+        // FULL POWER: Autoplay works! Do nothing extra. 
+        // The event listeners below will handle the rest of the intro naturally.
+      }).catch(error => {
+        // LOW POWER MODE DETECTED: Autoplay was blocked by the device.
+        console.log("Low Power Mode active: Skipping intro and swapping video tags for images.");
+        
+        // 1. Add the low power class to the root for CSS 
+        document.documentElement.classList.add('low-power-mode');
+        
+        // 2. Find all work videos and replace them completely with image tags
+        const workVideos = document.querySelectorAll('.work-image video.image');
+        workVideos.forEach(video => {
+          const img = document.createElement('img');
+          img.className = video.className; // Retains the '.image' class
+          
+          // Use the video's existing poster attribute, or fallback to a default
+          const posterSrc = video.getAttribute('poster');
+          img.src = posterSrc;
+          
+          // Completely replace the video tag with the new image tag
+          video.parentNode.replaceChild(img, video);
+        });
+
+        // 3. Instantly skip the broken intro
+        finishIntro();
+      });
+    }
+
+    // --- STANDARD INTRO LISTENERS ---
     introVideo.addEventListener('ended', finishIntro);
     introVideo.addEventListener('click', finishIntro); 
     // Added passive: true for scroll performance
@@ -124,6 +216,7 @@ function initIntroSequence() {
     }, { threshold: 0 });
     
     introObserver.observe(introSection);
+
   } else {
     // Fallback: If elements are missing (e.g., on a subpage), just skip to the end
     finishIntro();
