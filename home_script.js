@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-// --- 🔥 THE SIMPLE LOW POWER DETECTOR 🔥 ---
+// --- LOW POWER DETECTOR  ---
   if (introVideo) {
     const playPromise = introVideo.play();
     
