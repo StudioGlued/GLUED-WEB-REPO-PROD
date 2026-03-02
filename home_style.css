@@ -30,11 +30,17 @@ html {
   --background: #FF6C00 !important;
 }
 
-:root:not(.intro-finished) .logo-container-2,
-:root:not(.intro-finished) .hero-texts-cont,
+:root:not(.intro-finished) .featured-work-container,
+:root:not(.intro-finished) header,
+:root:not(.intro-finished) .nav-list,
 :root:not(.intro-finished) .navicon {
   opacity: 0 !important;
   pointer-events: none;
+}
+
+.nav-list,
+.navicon {
+  transition: opacity 0.9s ease;
 }
 
 
