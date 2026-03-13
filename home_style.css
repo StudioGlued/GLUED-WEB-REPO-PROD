@@ -69,11 +69,11 @@ section {
 .scroll-in {
     transform: translateY(5vh);
     opacity: 0;
-    transition: all 0.5s ease-out 0.5s;
+    transition: all 0.1s ease-out 0.1s;
 }
 
 .scroll-in:nth-of-type(even) {
-    transition-delay: 0.7s;
+    transition-delay: 0.2s;
 }
 
 .scroll-in.show {
