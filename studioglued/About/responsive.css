@@ -1,0 +1,147 @@
+/* Responsive Styles for About Page */
+
+@media screen and (max-width: 1000px) {
+
+   body {
+       padding-top: 2.5rem; /* Ensure body padding remains */
+   }
+
+   /* Header Responsive Adjustments - Adapted from original responsive.css */
+  .header {
+      /* Header is always black on mobile, assuming .scrolled class might not be added */
+      background-color: black; 
+  }
+
+  .header-leftside-text-container {
+     color: white !important; /* Ensure header text is visible on black */
+  }
+  .header-leftside-text-container:hover {
+      color: var(--orange) !important; /* Hover remains orange */
+  }
+
+  .header-rightside-text-container {
+     color: white !important; /* Ensure right side text is visible */
+     gap: 3vw; /* Adjust gap */
+  }
+
+  .text-header-right {
+      opacity: 70%; /* Reset opacity for white text */
+  }
+
+  .text-header-right:hover {
+      color: var(--orange) !important; /* Hover remains orange */
+      opacity: 100%;
+  }
+
+  .text-header-right.active { /* Active link styling */
+       color: var(--orange) !important; /* Make active link orange on mobile */
+       opacity: 100%;
+       font-weight: 900;
+   }
+
+  .header-button { /* Mobile button style */
+      background-color: var(--orange); 
+      border-color: var(--orange);
+      color: black; 
+      padding: 0.15rem 0.6rem; /* Adjust padding */
+      font-size: 0.7rem; /* Adjust size */
+  }
+
+  .header-button:hover {
+      background-color: #ff8c00; 
+      border-color: #ff8c00;
+      color: black;
+  }
+  /* End Header Responsive Adjustments */
+
+
+  /* About Page Content Responsive Adjustments */
+   .about-content {
+       padding: 2rem 1.5rem; /* Adjust padding */
+   }
+
+   .about-main-container h1 {
+       font-size: 2.5rem; /* Smaller title */
+       margin-bottom: 1.5rem;
+   }
+
+   .about-text-container {
+       font-size: 1rem; 
+       line-height: 1.6;
+   }
+
+    .about-image-container img {
+       max-width: 90%; /* Adjust image size */
+       border-width: 3px; 
+   }
+   /* End About Page Content Responsive Adjustments */
+
+
+   /* Footer Responsive Adjustments - Copied/Adapted from original responsive.css */
+   .footer-container{
+       padding: 1rem; 
+       padding-bottom: 2rem; /* Adjust bottom padding */
+       height: auto; 
+       min-height: 40vh; /* Adjust min height */
+   }
+
+   .footer-title {
+       font-size: 18vw; /* Adjust footer title size */
+       padding-left: 0;
+       height: auto; 
+   }
+
+   .footer-main-container {
+       flex-direction: column; 
+       align-items: center; 
+       text-align: center;
+   }
+
+   .footer-title-container {
+       width: 100%;
+       justify-content: center; 
+       align-items: center;
+       margin-bottom: 1.5rem; /* Adjust margin */
+   }
+
+   .footer-details-container {
+       width: 80%;
+       margin: 0 auto; 
+       text-align: center;
+       justify-content: center; 
+       align-items: center;
+   }
+
+   .footer-text-container {
+       width: 100%;
+       align-items: center; 
+   }
+
+   .footer-details-line-1 {
+       text-align: center;
+       margin-bottom: 0.5rem; /* Add space between links */
+   }
+
+   .footer-second-container {
+       margin-top: 2rem; 
+   }
+
+   .footer-second-text-container-1 {
+        flex-direction: column; 
+        align-items: center;
+        gap: 1rem;
+   }
+
+   .footer-second-text-container-2 {
+        width: 100%;
+        flex-direction: column; 
+        align-items: center;
+        gap: 0.5rem;
+   }
+
+   .footer-tags-line-2 {
+       text-align: center;
+   }
+   /* End Footer Responsive Adjustments */
+
+}
