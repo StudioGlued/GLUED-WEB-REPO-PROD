@@ -214,7 +214,6 @@ header {
     justify-content: center;
     align-items: center;
     display: flex;
-    cursor: pointer;
 }
 
 .hero-texts-cont {
@@ -228,6 +227,7 @@ header {
     width: 80vw;
     height: auto;
     align-self: center;
+    cursor: pointer;
 }
 
 .sub-text {
