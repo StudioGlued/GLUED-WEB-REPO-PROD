@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Glued — Thermal</title>
+    <link rel="stylesheet" href="thermal_style.css">
+    <link rel="stylesheet" href="thermal_responsive.css">
+    <link rel="icon" type="image/png" href="../assets/tabicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
+    <script>
+        // Runs instantly before the page even renders the body
+        try {
+            if (localStorage.getItem('site-theme') !== 'light') {
+                document.documentElement.classList.add('dark-theme');
+            }
+        } catch (e) { document.documentElement.classList.add('dark-theme'); /* sandboxed iframe — theme just starts dark */ }
+    </script>
+</head>
+<body>
+<header>
+  <nav class="nav">
+    <div class="nav-bg"></div>
+    <div class="nav-container">
+      <div class="logo-container" id="logoBtn" title="Day / night" role="button" tabindex="0"
+           aria-label="Toggle day / night">
+        <img class="navicon" id="navicon" alt="Glued" draggable="false">
+      </div>
+      <a class="nav-list" href="../index.html"><span class="studio-bold">Studio</span><span class="studio-thin">beta</span></a>
+    </div>
+  </nav>
+</header>
+
+<section class="tool">
+  <div class="stage">
+    <canvas id="gl"></canvas>
+    <div id="halftoneMount" class="stage-mount" style="display:none"></div>
+    <canvas id="bgMirror" class="stage-mount" style="display:none"></canvas>
+    <div class="hud" id="hud">
+      <button class="hud-toggle" id="hudToggle" aria-label="Shortcuts">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+             stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+      </button>
+      <div class="hud-items">
+        <button class="hud-item" id="hudPlay" title="Play / pause">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round"><path id="hudPlayIcon" d="M7 5v14M17 5v14"/></svg><kbd>Space</kbd></button>
+        <button class="hud-item" id="hudReplay" title="Replay">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg><kbd>R</kbd></button>
+        <button class="hud-item" id="hudPanel" title="Hide controls">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M15 4v16"/></svg><kbd>H</kbd></button>
+        <button class="hud-item" id="hudFile" title="Open a file">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4"/><path d="M7.5 8.5L12 4l4.5 4.5"/><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg><kbd>Drop</kbd></button>
+      </div>
+    </div>
+  </div>
+
+  <aside class="panel" id="panel">
+    <button class="effect-trigger" id="effectTrigger" type="button" aria-label="Choose effect">
+      <img class="effect-trigger-bg" id="effectTriggerBg" alt="">
+      <span class="effect-trigger-frost"><span>Switch</span></span>
+    </button>
+    <div id="thermalPanel">
+    <div class="panel-head">
+      <h3 class="sec">Preset</h3>
+      <div class="chips" id="presets"></div>
+    </div>
+    <nav class="tabs" id="tabs"></nav>
+    <div class="panes" id="panes">
+
+      <section class="pane on" data-pane="basic">
+        <div class="block">
+          <h3 class="sec">Artwork</h3>
+          <input class="text" id="txt" value="Thermal" spellcheck="false" autocomplete="off">
+          <div id="srcChip"><span id="srcKind">IMG</span><span id="srcName"></span><span id="srcX" title="back to text">✕</span></div>
+          <div class="rowline" style="margin-top:6px">
+            <button class="btn" id="bOpen">＋ File</button>
+            <button class="btn" id="bInvert">Invert</button>
+          </div>
+          <p class="note">Drop an SVG, PNG, JPEG, MP4 or MOV anywhere on the page. Artwork with real transparency is keyed off its alpha channel.</p>
+        </div>
+        <div class="block" id="gBasic"></div>
+        <div class="block">
+          <h3 class="sec">Stage</h3>
+          <div class="rowline">
+            <label class="swatch" title="Stage colour"><input type="color" id="bgColor" value="#000000"><span></span></label>
+            <button class="btn" id="bTransparent">Transparent</button>
+          </div>
+          <p class="note">Transparent lets the page show through the effect — the glow is composited with a real alpha channel, not painted on black.</p>
+        </div>
+      </section>
+
+      <section class="pane" data-pane="glow">
+        <div class="block">
+          <h3 class="sec">Ramp</h3>
+          <select id="pal">
+            <option value="thermal">Thermal</option>
+            <option value="ember">Ember</option>
+            <option value="plasma">Plasma</option>
+            <option value="mono">Mono</option>
+          </select>
+        </div>
+        <div class="block" id="gGlow"></div>
+      </section>
+
+      <section class="pane" data-pane="heat">
+        <div class="block" id="gHeat"></div>
+        <p class="note">Heat displaces the fringe along the field gradient; Flow is how fast the convection rises. Life breathes the whole frame.</p>
+      </section>
+
+      <section class="pane" data-pane="form">
+        <div class="block" id="gForm"></div>
+        <p class="note">Depth sets how cool the extruded wall sits in the ramp — low reads as a solid body behind the face.</p>
+        <div class="block">
+          <h3 class="sec">Floor</h3>
+          <div class="rowline" style="margin-bottom:11px">
+            <button class="btn" id="bFloor">Mirrored floor</button>
+          </div>
+          <div id="gFloor"></div>
+          <p class="note">Spans the frame. Floor Y raises or lowers the horizon, and the reflection compresses with distance, so the mark reads as standing on a surface.</p>
+        </div>
+      </section>
+
+      <section class="pane" data-pane="motion">
+        <div class="block">
+          <h3 class="sec">Transport</h3>
+          <div class="rowline">
+            <button class="btn on" id="bAnim">Anim</button>
+            <button class="btn" id="bFade">Fade out</button>
+            <button class="btn on" id="bLoop">Loop</button>
+            <button class="btn" id="bReplay">⟲ Replay</button>
+          </div>
+        </div>
+        <p class="note">Fade out off holds the mark lit instead of burning down to black. Speed lives under Basic.</p>
+      </section>
+
+      <section class="pane" data-pane="export">
+        <div class="block">
+          <h3 class="sec">Frame</h3>
+          <select id="size">
+            <option value="1080x1350">1080 × 1350 · 4:5</option>
+            <option value="1080x1080">1080 × 1080 · 1:1</option>
+            <option value="1920x1080">1920 × 1080 · HD</option>
+            <option value="1080x1920">1080 × 1920 · 9:16</option>
+            <option value="2160x2700">2160 × 2700 · 4:5 4K</option>
+            <option value="2160x2160">2160 × 2160 · 1:1 4K</option>
+            <option value="3840x2160">3840 × 2160 · UHD 4K</option>
+            <option value="2160x3840">2160 × 3840 · 9:16 4K</option>
+            <option value="window">Viewport</option>
+          </select>
+          <div class="split" style="margin-top:6px">
+            <button class="btn" id="bMp4">↓ MP4</button>
+            <button class="btn" id="bMov">↓ MOV α</button>
+            <button class="btn" id="bSeq">↓ PNG α</button>
+          </div>
+          <p class="note">Five second loop at 30fps. MP4 is H.264, no alpha. MOV α is QuickTime Animation, 32-bit with straight alpha — lossless, and macOS plays it natively. It is a chunky codec: roughly 120MB for a 1080×1350 loop and around 700MB at 4K. PNG α writes a numbered sequence in a zip, which is smaller and imports everywhere, but is not a movie file.</p>
+        </div>
+      </section>
+
+    </div>
+    </div>
+    <div id="halftonePanel" style="display:none">
+      <div class="panel-head">
+        <h3 class="sec">Preset</h3>
+        <div class="chips" id="htPresets">
+          <button class="chip on" data-htpreset="random">Random</button>
+          <button class="chip" data-htpreset="newsprint">Newsprint</button>
+          <button class="chip" data-htpreset="dither">Dither</button>
+          <button class="chip" data-htpreset="ascii">ASCII</button>
+        </div>
+      </div>
+      <nav class="tabs" id="htTabs">
+        <button class="tab on" data-httab="basic">Basic</button>
+        <button class="tab" data-httab="grid">Grid</button>
+        <button class="tab" data-httab="colors">Colors</button>
+        <button class="tab" data-httab="motion">Motion</button>
+        <button class="tab" data-httab="export">Export</button>
+      </nav>
+      <div id="htPanes">
+
+        <section class="pane on" data-htpane="basic">
+          <div class="block">
+            <h3 class="sec">Source Media</h3>
+            <div class="rowline" style="margin-bottom:9px">
+              <button class="btn" id="htOpen">＋ File</button>
+            </div>
+            <select id="htMediaType" style="width:100%">
+              <option value="Video">Video</option>
+              <option value="Image">Image</option>
+            </select>
+            <p class="note" id="htSrcName">No file loaded — using the generated sample pattern.</p>
+            <p class="note">Drop an image or video onto the stage, or use the file button. Defaults to a generated animated sample.</p>
+          </div>
+          <div class="block">
+            <h3 class="sec">Effect</h3>
+            <select id="htEffectMode" style="width:100%;margin-bottom:9px">
+              <option value="Random Cycle">Random Cycle</option>
+              <option value="Clean">Clean</option>
+              <option value="Halftone">Halftone</option>
+              <option value="Dither">Dither</option>
+              <option value="Pixelate">Pixelate</option>
+              <option value="ASCII">ASCII</option>
+            </select>
+            <div class="p">
+              <div class="p-top"><span class="p-label">Effect Mix Bias</span><span class="p-val" id="htEffectMixVal" style="opacity:1">2.7</span></div>
+              <input type="range" class="p-range" id="htEffectMix" min="0" max="5" step="0.1" value="2.7">
+            </div>
+            <p class="note">On Random Cycle, each grid block picks its own process; Mix Bias shifts the whole frame toward more of a given process at once.</p>
+          </div>
+        </section>
+
+        <section class="pane" data-htpane="grid">
+          <div class="block">
+            <h3 class="sec">Block Grid</h3>
+            <div class="p">
+              <div class="p-top"><span class="p-label">Columns</span><span class="p-val" id="htGridXVal" style="opacity:1">5</span></div>
+              <input type="range" class="p-range" id="htGridX" min="2" max="80" step="1" value="5">
+            </div>
+            <div class="p">
+              <div class="p-top"><span class="p-label">Rows</span><span class="p-val" id="htGridYVal" style="opacity:1">7</span></div>
+              <input type="range" class="p-range" id="htGridY" min="2" max="80" step="1" value="7">
+            </div>
+          </div>
+          <div class="block">
+            <h3 class="sec">Cell Scale</h3>
+            <div class="p">
+              <div class="p-top"><span class="p-label">Min Scale</span><span class="p-val" id="htScaleMinVal" style="opacity:1">50</span></div>
+              <input type="range" class="p-range" id="htScaleMin" min="1" max="100" step="1" value="50">
+            </div>
+            <div class="p">
+              <div class="p-top"><span class="p-label">Max Scale</span><span class="p-val" id="htScaleMaxVal" style="opacity:1">497</span></div>
+              <input type="range" class="p-range" id="htScaleMax" min="1" max="500" step="1" value="497">
+            </div>
+            <select id="htScaleDirection" style="width:100%">
+              <option value="Horizontal">Horizontal</option>
+              <option value="Vertical">Vertical</option>
+              <option value="Radial" selected>Radial</option>
+              <option value="Diagonal">Diagonal</option>
+            </select>
+            <p class="note">Scale is interpolated between Min and Max across the frame along this direction, so each process reads at a different density from one side to the other.</p>
+          </div>
+        </section>
+
+        <section class="pane" data-htpane="colors">
+          <div class="block">
+            <h3 class="sec">Duotone</h3>
+            <div class="rowline" style="margin-bottom:11px">
+              <label class="swatch" title="Ink colour"><input type="color" id="htInkColor" value="#003300"><span></span></label>
+              <label class="swatch" title="Paper colour"><input type="color" id="htPaperColor" value="#ccffcc"><span></span></label>
+            </div>
+            <div class="p">
+              <div class="p-top"><span class="p-label">Contrast</span><span class="p-val" id="htContrastVal" style="opacity:1">0.9</span></div>
+              <input type="range" class="p-range" id="htContrast" min="0.5" max="3" step="0.1" value="0.9">
+            </div>
+            <div class="p">
+              <div class="p-top"><span class="p-label">Gamma</span><span class="p-val" id="htGammaVal" style="opacity:1">1.4</span></div>
+              <input type="range" class="p-range" id="htGamma" min="0.5" max="2" step="0.1" value="1.4">
+            </div>
+          </div>
+          <p class="note">Every process reduces the source to luminance first, then remaps it between Ink and Paper — nothing here is ever full colour by design.</p>
+        </section>
+
+        <section class="pane" data-htpane="motion">
+          <div class="block">
+            <h3 class="sec">Transport</h3>
+            <div class="rowline">
+              <button class="btn on" id="htAnimate">Anim</button>
+            </div>
+            <div class="p">
+              <div class="p-top"><span class="p-label">Animation Speed</span><span class="p-val" id="htSpeedVal" style="opacity:1">0.4</span></div>
+              <input type="range" class="p-range" id="htSpeed" min="0" max="2" step="0.1" value="0.4">
+            </div>
+          </div>
+          <p class="note">Animation drifts the cell scale per-block and, on Random Cycle, slowly reassigns which process each block uses.</p>
+        </section>
+
+        <section class="pane" data-htpane="export">
+          <div class="block">
+            <h3 class="sec">Frame</h3>
+            <select id="htExportSize">
+              <option value="1080x1350">1080 × 1350 · 4:5</option>
+              <option value="1080x1080">1080 × 1080 · 1:1</option>
+              <option value="1920x1080">1920 × 1080 · HD</option>
+              <option value="1080x1920">1080 × 1920 · 9:16</option>
+              <option value="2160x2700">2160 × 2700 · 4:5 4K</option>
+              <option value="2160x2160">2160 × 2160 · 1:1 4K</option>
+              <option value="3840x2160">3840 × 2160 · UHD 4K</option>
+              <option value="2160x3840">2160 × 3840 · 9:16 4K</option>
+              <option value="window">Viewport</option>
+            </select>
+            <div class="rowline" style="margin-top:6px">
+              <button class="btn" id="htExport">↓ PNG</button>
+            </div>
+            <p class="note">Exports the current frame at the chosen resolution. Halftone is a still-image process per frame, so export is a single PNG rather than a video loop.</p>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </aside>
+</section>
+
+<footer class="footer" aria-labelledby="footer-title">
+  <div class="footer-container">
+    <div class="footer-main-container scroll-in">
+      <div class="footer-title-container">
+        <h2 id="footer-title" class="footer-title">Glued</h2>
+      </div>
+      <div class="footer-details-container">
+        <nav class="footer-text-container" aria-label="Footer navigation">
+          <a href="https://glued.studio/About/" class="footer-details-line-1">About</a>
+          <a href="mailto:reiss@glued.studio?subject=Got%20an%20idea%20–%20let's%20chat&body=Hey%20Reiss," class="footer-details-line-1">Contact</a>
+          <a href="https://www.instagram.com/gluedstudio/" class="footer-details-line-1">Instagram</a>
+          <a href="https://www.linkedin.com/in/reiss-badhasha/" class="footer-details-line-1">LinkedIn</a>
+        </nav>
+      </div>
+    </div>
+    <div class="footer-second-container">
+      <div class="footer-second-text-container-1">
+        <div class="footer-second-text-container-2">
+          <p class="footer-tags-line-2">Designed and Developed by Glued</p>
+        </div>
+        <div class="footer-second-text-container-2">
+          <p class="footer-tags-line-2">:D</p>
+          <p class="footer-tags-line-2">© 2026 Glued.Studio</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div id="drop"><span>Drop to apply the effect<small>SVG · PNG · JPEG · MP4 · MOV</small></span></div>
+
+<div class="effect-modal" id="effectModal" aria-hidden="true">
+  <div class="effect-modal-scrim" id="effectModalScrim"></div>
+  <div class="effect-carousel-3d" id="effectCarousel3D">
+    <div class="effect-carousel-ring" id="effectCarouselRing"></div>
+  </div>
+</div>
+<input id="file" type="file" accept=".svg,.png,.jpg,.jpeg,.mp4,.mov,.webm,image/svg+xml,image/png,image/jpeg,video/mp4,video/quicktime" style="display:none">
+<script src="thermal_script.js"></script>
+</body>
+</html>

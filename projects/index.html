@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <script>
         // Runs instantly before the page even renders the body
-        if (localStorage.getItem('site-theme') === 'dark') {
+        if (localStorage.getItem('site-theme') !== 'light') {
         document.documentElement.classList.add('dark-theme');
         }
     </script>
@@ -45,7 +45,7 @@
             <div class="work scroll-in" onclick="window.open('https://www.shearer.design/')">
                 <div class="work-image">
                     <div class="work-image">
-                        <video class="image" data-src="../assets/shearer-thumb.mp4" poster="./assets/shearer_thumb.jpg" autoplay loop muted playsinline webkit-playsinline></video>
+                        <video class="image" src="../assets/shearer-thumb.mp4" poster="../assets/shearer_thumb.jpg" autoplay loop muted playsinline webkit-playsinline></video>
                     </div>
                 </div>
                 <div class="work-title">
@@ -61,7 +61,7 @@
             <div class="work scroll-in" onclick="location.href='./pepsi/'">
                 <div class="work-image">
                     <div class="work-image">
-                        <video class="image" data-src="../assets/pepsi-thumb.mp4" poster="../assets/pepsi_thumb.jpg" autoplay loop muted playsinline webkit-playsinline></video>
+                        <video class="image" src="../assets/pepsi-thumb.mp4" poster="../assets/pepsi_thumb.jpg" autoplay loop muted playsinline webkit-playsinline></video>
                     </div>
                 </div>
                 <div class="work-title">
@@ -80,7 +80,7 @@
         <div class="work-container">
                 <div class="work scroll-in" onclick="location.href='./d&ad-xbox/'">
                         <div class="work-image">
-                            <video class="image" data-src="../assets/d&ad-thumb.mp4" poster="../assets/d&ad_thumb.jpg" autoplay loop muted playsinline webkit-playsinline></video>
+                            <video class="image" src="../assets/d&ad-thumb.mp4" poster="../assets/d&ad_thumb.jpg" autoplay loop muted playsinline webkit-playsinline></video>
                         </div>
                     <div class="work-title">
                         <div class="title-container">
@@ -94,7 +94,7 @@
                
                 <div class="work scroll-in" onClick="window.open('https://www.dandad.org/awards/new-blood/2025/giffgaff/4634/once-upon-a-giffgaff/')">
                         <div class="work-image">
-                            <video class="image" data-src="../assets/d&ad-thumb.mp4" poster="../assets/d&ad_thumb.jpg" autoplay loop muted playsinline webkit-playsinline></video>
+                            <video class="image" src="../assets/d&ad-thumb.mp4" poster="../assets/d&ad_thumb.jpg" autoplay loop muted playsinline webkit-playsinline></video>
                         </div>
                     <div class="work-title">
                         <div class="title-container">

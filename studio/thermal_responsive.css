@@ -1,0 +1,24 @@
+/* ==========================================================================
+   GLUED — THERMAL  ·  responsive
+   Below 1000px the stage sits above the control panel.
+   ========================================================================== */
+
+@media screen and (max-width:1000px){
+  /* Desktop pins .tool to exactly one viewport tall (height:100svh) because
+     the stage and panel fit side by side within it. Stacked on mobile they
+     don't — the panel's real content (every slider/tab) runs far taller
+     than that, and since nothing scrolled it just overflowed silently past
+     the fixed-height box while the footer, positioned right after the box
+     in the flow, started drawing inside that same overflowing space. Let
+     .tool grow to fit its actual content instead of staying locked to one
+     screen height, so the footer lands after everything else like a normal
+     page instead of overlapping it. */
+  .tool{flex-direction:column;padding-top:3.6rem;height:auto;min-height:100svh}
+  .stage{flex:0 0 46svh}
+  .panel{flex:1 1 auto;min-height:340px;overflow-y:visible}
+  .nav-list{font-size:1.5rem;margin-inline:.5rem}
+  .footer-title{font-size:20vw;height:fit-content;padding-left:0}
+  .footer-text-container{margin-bottom:1.7rem}
+  .footer-details-container{margin:0}
+  .footer-tags-line-2{font-size:.5rem}
+}

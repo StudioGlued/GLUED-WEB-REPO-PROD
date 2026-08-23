@@ -1,0 +1,287 @@
+/* ==========================================================================
+   GLUED — THERMAL  ·  stylesheet
+   Layout, header and footer follow the glued.studio home page.
+   Breakpoints live in thermal_responsive.css
+   ========================================================================== */
+
+/* ==========================================
+   1. VARIABLES & THEME
+   ========================================== */
+:root{
+  --sikh:#FF6C00;
+  --glue:#fff0e6;
+  --black:#000000;
+  --background:#fff0e6;
+  --switch:#000000;
+  --actual-light-bg:#fff0e6;
+  --actual-dark-bg:#000000;
+  --hair:rgba(0,0,0,.14);
+  --hair-2:rgba(0,0,0,.07);
+  --sink:rgba(0,0,0,.035);
+  --ghost:rgba(0,0,0,.5);
+}
+html.dark-theme{
+  --switch:#fff0e6;
+  --background:#000000;
+  --hair:rgba(255,240,230,.16);
+  --hair-2:rgba(255,240,230,.08);
+  --sink:rgba(255,240,230,.045);
+  --ghost:rgba(255,240,230,.52);
+}
+
+/* ==========================================
+   2. BASE
+   ========================================== */
+*{box-sizing:border-box}
+html{scrollbar-width:none}
+html::-webkit-scrollbar{display:none}
+body{
+  margin:0; font-family:'Poppins',system-ui,-apple-system,'Segoe UI',sans-serif;
+  background-color:var(--background); color:var(--switch);
+  transition:background-color .3s ease,color .3s ease;
+}
+
+/* ==========================================
+   3. HEADER / NAV
+   ========================================== */
+/* ---------- header (mirrors the glued.studio nav) ---------- */
+header{position:fixed;height:auto;width:100%;z-index:100}
+.nav{width:100%;height:auto}
+.nav-bg{position:absolute;top:0;background-color:var(--background);transition:.3s ease;
+  opacity:.8;width:100%;height:100%;z-index:-1;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.nav-container{display:flex;flex-direction:row;width:100%;height:auto;align-items:center;justify-content:space-between}
+.logo-container{margin:1rem;height:2rem;line-height:0;cursor:pointer;
+  -webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none}
+.navicon{height:2rem;width:auto;display:block;-webkit-user-drag:none;
+  transition:transform .4s cubic-bezier(.5,0,.15,1)}
+.logo-container:active .navicon{transform:scale(.94)}
+.nav-list{margin-inline:1rem;color:var(--switch);font-weight:900;font-size:2rem;letter-spacing:-.085em;
+  cursor:pointer;text-decoration:none;line-height:1;transition:color .25s ease}
+.nav-list .studio-bold{font-weight:900}
+.nav-list .studio-thin{font-weight:200}
+
+/* ==========================================
+   4. TOOL LAYOUT & STAGE
+   ========================================== */
+/* ---------- tool ---------- */
+.tool{display:flex;gap:2.5rem;padding:0 1rem 1rem;height:100svh;padding-top:4rem}
+.stage{position:relative;flex:1 1 auto;min-width:0;overflow:hidden;
+  background:#000;border:1px solid var(--hair)}
+#gl{width:100%;height:100%;display:block}
+.stage-mount{position:absolute;inset:0;width:100%;height:100%}
+
+/* ==========================================
+   5. STAGE SHORTCUT BUBBLE
+   ========================================== */
+/* floating shortcut bubble */
+.hud{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);z-index:5;
+  display:flex;align-items:center;gap:0;border-radius:999px;
+  background:rgba(20,18,17,.62);border:1px solid rgba(255,240,230,.14);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  padding:5px;transition:gap .3s cubic-bezier(.5,0,.15,1)}
+.hud.open{gap:4px}
+.hud-toggle{flex:0 0 auto;width:28px;height:28px;border-radius:50%;border:0;padding:0;cursor:pointer;
+  background:transparent;color:rgba(255,240,230,.62);display:grid;place-items:center;
+  transition:color .2s ease,background .2s ease,transform .35s cubic-bezier(.5,0,.15,1)}
+.hud-toggle:hover{color:var(--sikh);background:rgba(255,240,230,.08)}
+.hud.open .hud-toggle{transform:rotate(180deg)}
+.hud-items{display:flex;align-items:center;gap:2px;max-width:0;overflow:hidden;opacity:0;
+  visibility:hidden;pointer-events:none;
+  transition:max-width .38s cubic-bezier(.5,0,.15,1),opacity .28s ease,visibility 0s linear .38s}
+.hud.open .hud-items{max-width:420px;opacity:1;visibility:visible;pointer-events:auto;
+  transition:max-width .38s cubic-bezier(.5,0,.15,1),opacity .28s ease,visibility 0s}
+.hud-item{display:flex;align-items:center;gap:6px;padding:5px 9px;border-radius:999px;border:0;
+  background:transparent;color:rgba(255,240,230,.72);cursor:pointer;font-family:inherit;
+  font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;
+  transition:background .18s ease,color .18s ease}
+.hud-item:hover{background:rgba(255,240,230,.10);color:#fff0e6}
+.hud-item kbd{font-family:inherit;font-size:8px;font-weight:700;letter-spacing:.06em;
+  padding:2px 5px;border-radius:4px;background:rgba(255,240,230,.13);color:rgba(255,240,230,.8)}
+.hud svg{display:block}
+
+/* ==========================================
+   6. CONTROL PANEL & TABS
+   ========================================== */
+/* ---------- panel ---------- */
+.panel{flex:0 0 322px;display:flex;flex-direction:column;min-height:0}
+.panel-head{padding-bottom:12px;border-bottom:1px solid var(--hair)}
+.panel-head h3{margin:0 0 9px}
+h3.sec{font-size:9px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--ghost);margin:0 0 10px}
+
+.chips{display:flex;flex-wrap:wrap;gap:4px}
+.chip{font-family:inherit;font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  padding:5px 8px;border-radius:999px;border:1px solid var(--hair);background:transparent;
+  color:var(--switch);cursor:pointer;transition:.15s ease}
+.chip:hover{border-color:var(--sikh);color:var(--sikh)}
+.chip.on{background:var(--sikh);border-color:var(--sikh);color:#fff}
+
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;padding:10px 0;
+  border-bottom:1px solid var(--hair)}
+.tab{font-family:inherit;font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  padding:8px 4px;border-radius:7px;border:0;background:transparent;color:var(--ghost);cursor:pointer;
+  transition:.15s ease;text-align:center}
+.tab:hover{color:var(--switch);background:var(--sink)}
+.tab.on{color:var(--switch);background:var(--sink);box-shadow:inset 0 0 0 1px var(--hair)}
+.tab.on::after{content:'';display:block;height:2px;width:18px;margin:5px auto -3px;border-radius:2px;background:var(--sikh)}
+
+.panes{flex:1 1 auto;overflow-y:auto;overflow-x:hidden;padding:16px 12px 20px 16px;
+  margin-top:10px;border:1px solid var(--hair);border-radius:10px;
+  scrollbar-width:thin;scrollbar-color:var(--hair) transparent}
+.panes::-webkit-scrollbar{width:5px}
+.panes::-webkit-scrollbar-thumb{background:var(--hair);border-radius:4px}
+.pane{display:none}
+.pane.on{display:block;animation:fade .22s ease}
+@keyframes fade{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
+.block{margin-bottom:18px}
+.block:last-child{margin-bottom:0}
+.note{font-size:9px;font-weight:400;letter-spacing:.05em;color:var(--ghost);line-height:1.7;margin:8px 0 0}
+
+.rowline{display:flex;gap:5px;align-items:center;flex-wrap:wrap}
+button.btn{font-family:inherit;font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  padding:8px 11px;border-radius:8px;border:1px solid var(--hair);background:transparent;color:var(--switch);
+  cursor:pointer;transition:.15s ease;white-space:nowrap}
+button.btn:hover{border-color:var(--sikh);color:var(--sikh)}
+button.btn.on{background:var(--sikh);border-color:var(--sikh);color:#fff}
+
+input.text,select{font-family:inherit;font-size:12px;font-weight:600;letter-spacing:.06em;
+  padding:9px 10px;border-radius:8px;border:1px solid var(--hair);background:var(--sink);
+  color:var(--switch);outline:none;width:100%;transition:.15s ease}
+input.text:focus,select:focus{border-color:var(--sikh)}
+select{cursor:pointer;text-transform:uppercase;font-size:9px;letter-spacing:.14em;font-weight:600}
+select option{background:var(--background);color:var(--switch)}
+.swatch{position:relative;display:inline-grid;place-items:center;width:34px;height:32px;
+  border-radius:8px;border:1px solid var(--hair);overflow:hidden;cursor:pointer;transition:.15s ease}
+.swatch:hover{border-color:var(--sikh)}
+.swatch input[type=color]{position:absolute;inset:-6px;width:calc(100% + 12px);height:calc(100% + 12px);
+  padding:0;border:0;background:none;cursor:pointer}
+.split{display:flex;gap:5px}
+.split>*{flex:1 1 0;min-width:0}
+
+#srcChip{display:none;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;
+  border:1px solid var(--hair);background:var(--sink);width:100%}
+#srcChip.on{display:flex}
+#srcKind{font-size:8px;font-weight:700;letter-spacing:.14em;color:var(--sikh)}
+#srcName{font-size:11px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
+#srcChip.err{border-color:var(--sikh);align-items:flex-start}
+#srcChip.err #srcName{white-space:normal;overflow:visible;line-height:1.5;color:var(--sikh)}
+#srcX{cursor:pointer;color:var(--ghost);font-size:13px;line-height:1}
+#srcX:hover{color:var(--sikh)}
+
+/* ==========================================
+   7. PARAMETER ROWS
+   ========================================== */
+/* ---------- parameter rows ---------- */
+.p{padding:2px 0 15px}
+.p:last-child{padding-bottom:2px}
+.p-top{display:flex;align-items:center;gap:7px;margin-bottom:7px;min-height:16px}
+.p-label{font-size:9px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--ghost);flex:1}
+/* the number is a working readout, not decoration — only while you are on the control */
+.p-val{font-size:9px;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:.04em;
+  opacity:0;transition:opacity .16s ease;pointer-events:none}
+.p:hover .p-val,.p.live .p-val{opacity:1}
+.p-mod{width:15px;height:15px;border-radius:4px;border:1px solid var(--hair);background:transparent;
+  color:var(--ghost);cursor:pointer;padding:0;font-size:8px;line-height:1;display:grid;place-items:center;
+  transition:.15s ease;flex:0 0 auto}
+.p-mod:hover{border-color:var(--sikh);color:var(--sikh)}
+.p.modded .p-mod{background:var(--sikh);border-color:var(--sikh);color:#fff}
+.p.modded .p-val{color:var(--sikh)}
+.p-noise{display:none;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:9px;padding:9px;
+  border-radius:8px;background:var(--sink);border:1px solid var(--hair-2)}
+.p.modded .p-noise{display:grid}
+.p-noise label{display:flex;flex-direction:column;gap:5px;font-size:7px;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--ghost)}
+
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:2px;border-radius:2px;
+  background:var(--hair);outline:none;cursor:pointer;margin:0}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:10px;height:10px;border-radius:50%;
+  background:var(--switch);border:none;cursor:pointer;transition:background .15s ease,transform .15s ease}
+input[type=range]:hover::-webkit-slider-thumb{transform:scale(1.25)}
+input[type=range]::-moz-range-thumb{width:10px;height:10px;border-radius:50%;background:var(--switch);
+  border:none;cursor:pointer}
+/* A modulated slider carries the Glued mark instead of a plain dot, and the
+   mark boils: three near-identical frames cycled on an irregular beat, the way
+   a hand-inked stop-motion line twitches. Frame A is the real logomark; B and C
+   are the same silhouette under a small wobble warp. */
+.p.modded>input[type=range]::-webkit-slider-thumb{background:transparent;border-radius:0;
+  width:15px;height:15px;background-image:url('../assets/mark_a.png');
+  background-size:contain;background-repeat:no-repeat;background-position:center}
+.p.modded>input[type=range]::-moz-range-thumb{background:transparent;border-radius:0;
+  width:15px;height:15px;background-image:url('../assets/mark_a.png');
+  background-size:contain;background-repeat:no-repeat;background-position:center}
+body.boil-b .p.modded>input[type=range]::-webkit-slider-thumb{background-image:url('../assets/mark_b.png')}
+body.boil-b .p.modded>input[type=range]::-moz-range-thumb{background-image:url('../assets/mark_b.png')}
+body.boil-c .p.modded>input[type=range]::-webkit-slider-thumb{background-image:url('../assets/mark_c.png')}
+body.boil-c .p.modded>input[type=range]::-moz-range-thumb{background-image:url('../assets/mark_c.png')}
+
+/* ==========================================
+   7B. EFFECT PICKER
+   ========================================== */
+.effect-trigger{position:relative;display:block;width:100%;height:96px;margin-bottom:16px;
+  padding:0;border-radius:10px;border:1px solid var(--hair);background:#111;overflow:hidden;
+  cursor:pointer;font-family:inherit}
+.effect-trigger-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.effect-trigger-frost{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  background:rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  opacity:0;transition:opacity .25s ease}
+.effect-trigger:hover .effect-trigger-frost{opacity:1}
+.effect-trigger-frost span{font-weight:900;font-size:2rem;letter-spacing:-.085em;color:#fff0e6;
+  text-shadow:0 0 22px rgba(255,240,230,.55)}
+
+.effect-modal{position:fixed;inset:0;z-index:300;display:flex;align-items:center;justify-content:center;
+  opacity:0;visibility:hidden;pointer-events:none;transition:opacity .2s ease,visibility 0s linear .2s}
+.effect-modal.on{opacity:1;visibility:visible;pointer-events:auto;transition:opacity .2s ease,visibility 0s}
+.effect-modal-scrim{position:absolute;inset:0;background:rgba(0,0,0,.45);will-change:backdrop-filter;
+  backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);transform:translateZ(0)}
+
+/* ---------- 3D ring carousel ---------- */
+.effect-carousel-3d{position:relative;z-index:1;width:100%;height:100%;
+  display:flex;align-items:center;justify-content:center}
+.effect-carousel-ring{position:relative;width:0;height:0;transform-style:preserve-3d;
+  transition:transform .6s cubic-bezier(.5,0,.15,1)}
+.effect-card{position:absolute;top:0;left:0;border-radius:16px;overflow:hidden;
+  cursor:pointer;border:1px solid rgba(255,255,255,.14);background:#111;
+  transition:opacity .5s ease,filter .5s ease,border-color .2s ease}
+.effect-card.active{border-color:var(--sikh)}
+.effect-card.live{opacity:1 !important;filter:none !important}
+.effect-card.live .effect-card-label{opacity:0}
+.effect-card-inner{position:absolute;inset:0;border-radius:inherit;overflow:hidden}
+.effect-card img,.effect-card canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  display:block;-webkit-user-drag:none;transition:opacity .2s ease}
+.effect-card-label{position:absolute;left:0;right:0;bottom:0;padding:16px 14px;
+  background:linear-gradient(to top,rgba(0,0,0,.8),transparent);
+  color:#fff0e6;font-size:14px;font-weight:800;letter-spacing:-.02em;z-index:1;
+  transition:opacity .2s ease}
+
+/* ==========================================
+   8. DROP OVERLAY
+   ========================================== */
+#drop{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;
+  background:rgba(255,108,0,.12);border:2px dashed var(--sikh);backdrop-filter:blur(3px)}
+#drop.on{display:flex}
+#drop span{font-size:13px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;text-align:center;
+  color:var(--switch)}
+#drop small{display:block;margin-top:9px;font-weight:400;letter-spacing:.12em;opacity:.6}
+
+/* ==========================================
+   9. FOOTER
+   ========================================== */
+/* ---------- footer (from the glued.studio home page) ---------- */
+.footer{position:relative;display:flex;overflow:hidden;width:100%}
+.footer-container{display:flex;flex-wrap:wrap;height:70svh;width:100%;overflow:hidden;padding:1rem;
+  align-content:flex-end}
+.footer-main-container{display:flex;position:relative;width:100%;justify-content:space-between}
+.footer-title-container{display:flex;width:50%;height:100%;align-items:last baseline}
+.footer-title{font-size:16vw;font-weight:900;padding-left:2rem;width:fit-content;height:20vw;
+  color:var(--sikh);letter-spacing:-.085em;margin:0}
+.footer-details-container{display:flex;width:50%;margin:2rem 2rem 2rem 0;text-align:right;
+  justify-content:flex-end;align-items:last baseline}
+.footer-text-container{display:flex;flex-direction:column;width:fit-content;justify-content:right;
+  margin-bottom:1rem}
+.footer-details-line-1{font-size:1rem;font-weight:300;color:var(--sikh);text-align:right;
+  transition:.3s ease;text-decoration:none}
+.footer-details-line-1:hover{font-weight:900;cursor:pointer}
+.footer-second-container{width:100%;display:flex}
+.footer-second-text-container-1{width:100%;display:flex;height:100%;justify-content:space-between;
+  align-items:last baseline;align-content:last baseline}
+.footer-second-text-container-2{width:50%;display:flex;justify-content:space-between;height:fit-content}
+.footer-tags-line-2{font-size:1rem;font-weight:300;color:var(--switch);width:fit-content;height:fit-content;margin:0}

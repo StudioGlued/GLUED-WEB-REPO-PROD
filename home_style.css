@@ -112,13 +112,39 @@ header {
 }
 
 .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     margin: 1rem;
     height: 2rem;
-    width: auto;
+    width: fit-content;
     opacity: 0;
 }
 
+.studio-btn {
+    display: flex;
+    align-items: baseline;
+    cursor: pointer;
+}
+
+.studio-bold {
+    color: var(--switch);
+    font-weight: 900;
+    font-size: 1.44rem;
+    letter-spacing: -0.05em;
+}
+
+.studio-thin {
+    color: var(--switch);
+    font-weight: 200;
+    font-size: 1.44rem;
+    letter-spacing: -0.05em;
+}
+
 .logo-container-2 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     position: fixed;
     margin: 1rem;
     height: 2rem;
@@ -130,6 +156,7 @@ header {
     z-index: 102;
     height: 2rem;
     width: auto;
+    aspect-ratio: 517 / 205;
     cursor: pointer;
 }
 

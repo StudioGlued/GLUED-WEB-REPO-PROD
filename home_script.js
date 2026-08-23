@@ -88,7 +88,7 @@ function updateThemeImages(isDark) {
 }
 
 function applySavedTheme() {
-  const isDark = localStorage.getItem('site-theme') === 'dark';
+  const isDark = localStorage.getItem('site-theme') !== 'light';
   document.documentElement.classList.toggle('dark-theme', isDark);
   updateThemeImages(isDark);
 }

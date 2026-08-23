@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <script>
         // Runs instantly before the page even renders the body
-        if (localStorage.getItem('site-theme') === 'dark') {
+        if (localStorage.getItem('site-theme') !== 'light') {
         document.documentElement.classList.add('dark-theme');
         }
     </script>
@@ -29,6 +29,9 @@
             <div class="nav-container">
                 <div onclick="toggleTheme()" class="logo-container">
                     <img class="navicon" data-src="../assets/navicon_light_anim.webp">
+                    <a class="studio-btn" href="studio/index.html" onclick="event.stopPropagation()">
+                        <span class="studio-bold">Studio</span><span class="studio-thin">beta</span>
+                    </a>
                 </div>
                 <ul class="nav-list">
                     <a class="nav-list" onclick="topFunction()">Glued</a>
@@ -48,6 +51,9 @@
     <section id="hero" class="hero">
         <div onclick="toggleTheme()" class="logo-container-2">
                 <img preload="auto" class="navicon" src="assets/navicon_light_anim.webp">
+                <a class="studio-btn" href="studio/index.html" onclick="event.stopPropagation()">
+                    <span class="studio-bold">Studio</span><span class="studio-thin">beta</span>
+                </a>
         </div>
         <div class="Sliding-ego-container">
                 <!-- <video muted playsinline webkit-playsinline preload="auto" class="slide">
@@ -167,7 +173,7 @@
                     </div>
                 </div>
                 <div class="reel-container scroll-in">
-                    <video class="image reel" data-src="assets/showreelop1080 v2.mp4" preload="none" poster="assets/showreel-thumb.png" controls playsinline></video>
+                    <video class="image reel" data-src="assets/Glued Showreel 2 V02.mp4" preload="none" poster="assets/showreel-thumb.png" controls playsinline></video>
                 </div>
         </div>
 
