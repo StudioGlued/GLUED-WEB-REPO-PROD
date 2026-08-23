@@ -130,15 +130,17 @@ header {
 .studio-bold {
     color: var(--switch);
     font-weight: 900;
-    font-size: 1.44rem;
-    letter-spacing: -0.05em;
+    font-size: 2rem;
+    letter-spacing: -0.085em;
+    line-height: 1;
 }
 
 .studio-thin {
     color: var(--switch);
     font-weight: 200;
-    font-size: 1.44rem;
-    letter-spacing: -0.05em;
+    font-size: 2rem;
+    letter-spacing: -0.085em;
+    line-height: 1;
 }
 
 .logo-container-2 {
