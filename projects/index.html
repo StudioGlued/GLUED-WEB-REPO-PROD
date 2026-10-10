@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Glued | Projects</title>
-    <link rel="stylesheet" href="projects_style.css">
-    <link rel="stylesheet" href="projects_responsive.css">
+    <link rel="stylesheet" href="../case_style.css">
+    <link rel="stylesheet" href="../case_responsive.css">
     <link rel="icon" type="image/png" href="../assets/tabicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <script>
         // Runs instantly before the page even renders the body
         if (localStorage.getItem('site-theme') !== 'light') {
@@ -25,19 +25,57 @@
 
     <header>
         <nav class="nav">
-            <div class="nav-bg"><h1 class="hidden">Glued || Reiss</h1></div>  
+            <div class="nav-bg"></div>
             <div class="nav-container">
                 <div onclick="toggleTheme()" class="logo-container">
-                    <img class="navicon" data-src="assets/navicon_light_anim.webp">
+                    <img class="navicon" src="../assets/navicon_dark_anim.webp">
+                    <a class="studio-btn" href="../studio/index.html" onclick="event.stopPropagation()">
+                        <span class="studio-bold">Studio</span><span class="studio-thin">beta</span>
+                    </a>
                 </div>
                 <ul class="nav-list">
-                    <a class="nav-list" onclick="location.href='../'">Glued</a>
+                    <a class="nav-list" href="../">Glued</a>
                 </ul>
             </div>
         </nav>
     </header>
 
-    <section class="featured-work-container">
+    <section class="project-container">
+
+        <div class="project-about">
+            <h1 class="project-headline scroll-in">ALL<br>PROJECTS<span class="project-headline-accent">.</span></h1>
+        </div>
+
+        <!-- Cards copied from the home page (same order); paths point one folder up -->
+        <div class="work-container">
+            <div class="work scroll-in">
+                <div class="work-image">
+                    <video class="image" data-src="../assets/nestle-thumb.mp4" poster="../assets/nestle_thumb.jpg" autoplay loop muted playsinline webkit-playsinline></video>
+                </div>
+                <div class="work-title">
+                    <div class="title-container">
+                        <p class="text-box-text-1">NESTLE NBA</p>
+                    </div>
+                    <div class="title-container">
+                        <p class="text-box-text-2">SPORTFIVE</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="work scroll-in" onclick="location.href='../aramco/'">
+                <div class="work-image">
+                    <video class="image" data-src="../assets/aramco-thumb.mp4" poster="../assets/aramco_thumb.jpg" autoplay loop muted playsinline webkit-playsinline></video>
+                </div>
+                <div class="work-title">
+                    <div class="title-container">
+                        <p class="text-box-text-1">ARAMCO FIFA WORLD CUP</p>
+                    </div>
+                    <div class="title-container">
+                        <p class="text-box-text-2">SPORTFIVE</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
 
@@ -45,7 +83,7 @@
             <div class="work scroll-in" onclick="window.open('https://www.shearer.design/')">
                 <div class="work-image">
                     <div class="work-image">
-                        <video class="image" src="../assets/shearer-thumb.mp4" poster="../assets/shearer_thumb.jpg" autoplay loop muted playsinline webkit-playsinline></video>
+                        <video class="image" data-src="../assets/shearer-thumb.mp4" poster="../assets/shearer_thumb.jpg" autoplay loop muted playsinline webkit-playsinline></video>
                     </div>
                 </div>
                 <div class="work-title">
@@ -58,10 +96,10 @@
                 </div>
             </div>
         
-            <div class="work scroll-in" onclick="location.href='./pepsi/'">
+            <div class="work scroll-in" onclick="location.href='../pepsi/'">
                 <div class="work-image">
                     <div class="work-image">
-                        <video class="image" src="../assets/pepsi-thumb.mp4" poster="../assets/pepsi_thumb.jpg" autoplay loop muted playsinline webkit-playsinline></video>
+                        <video class="image" data-src="../assets/pepsi-thumb.mp4" poster="../assets/pepsi_thumb.jpg" autoplay loop muted playsinline webkit-playsinline></video>
                     </div>
                 </div>
                 <div class="work-title">
@@ -78,9 +116,9 @@
 
 
         <div class="work-container">
-                <div class="work scroll-in" onclick="location.href='./d&ad-xbox/'">
+                <div class="work scroll-in" onclick="location.href='../xbox/'">
                         <div class="work-image">
-                            <video class="image" src="../assets/d&ad-thumb.mp4" poster="../assets/d&ad_thumb.jpg" autoplay loop muted playsinline webkit-playsinline></video>
+                            <video class="image" data-src="../assets/d&ad-thumb.mp4" poster="../assets/d&ad_thumb.jpg" autoplay loop muted playsinline webkit-playsinline></video>
                         </div>
                     <div class="work-title">
                         <div class="title-container">
@@ -94,7 +132,7 @@
                
                 <div class="work scroll-in" onClick="window.open('https://www.dandad.org/awards/new-blood/2025/giffgaff/4634/once-upon-a-giffgaff/')">
                         <div class="work-image">
-                            <video class="image" src="../assets/d&ad-thumb.mp4" poster="../assets/d&ad_thumb.jpg" autoplay loop muted playsinline webkit-playsinline></video>
+                            <video class="image" data-src="../assets/d&ad-thumb.mp4" poster="../assets/d&ad_thumb.jpg" autoplay loop muted playsinline webkit-playsinline></video>
                         </div>
                     <div class="work-title">
                         <div class="title-container">
@@ -122,7 +160,7 @@
                 </div>
             </div>
             
-            <div class="work scroll-in" onclick="location.href='./fedrigoni/'">
+            <div class="work scroll-in" onclick="location.href='../fedrigoni/'">
                     <div class="work-image">
                         <video class="image" data-src="../assets/fed365-thumb.mp4" poster="../assets/fed365_thumb.jpg" autoplay loop muted playsinline webkit-playsinline></video>
                     </div>
@@ -152,7 +190,7 @@
                 </div>
             </div>
 
-            <div class="work scroll-in" onclick="location.href='./public-london/'">
+            <div class="work scroll-in" onclick="location.href='../public-london/'">
                     <div class="work-image">
                         <video class="image" data-src="../assets/absorb-thumb.mp4" poster="../assets/absorb_thumb.jpg" autoplay loop muted playsinline webkit-playsinline></video>
                     </div>
@@ -168,7 +206,7 @@
         </div>
 
         <div class="work-container">
-            <div class="work scroll-in"  onclick="location.href='./plucked/'">
+            <div class="work scroll-in"  onclick="location.href='../plucked/'">
                 <div class="work-image">
                     <video class="image" data-src="../assets/plucked-thumb.mp4" poster="../assets/plucked_thumb.jpg" autoplay loop muted playsinline webkit-playsinline></video>
                 </div>
@@ -182,7 +220,7 @@
                 </div>
             </div>
 
-            <div class="work scroll-in" onclick="location.href='./v60s/'">
+            <div class="work scroll-in" onclick="location.href='../v60s/'">
                 <div class="work-image">
                     <video class="image" data-src="../assets/v60s-thumb.mp4" poster="../assets/v60s_thumb.jpg" autoplay loop muted playsinline webkit-playsinline></video>
                 </div>
@@ -198,7 +236,7 @@
         </div>
 
         <div class="work-container">
-            <div class="work scroll-in" onclick="location.href='./kelloggs/'">
+            <div class="work scroll-in" onclick="location.href='../kellogg%27s/'">
                     <div class="work-image">
                         <video class="image" data-src="../assets/kelloggs-thumb.mp4" poster="../assets/kellogg's_thumb.jpg" autoplay loop muted playsinline webkit-playsinline></video>
                     </div>
@@ -227,20 +265,6 @@
             </div>
         </div>
 
-
-
-        <div class="featured-work-about-container">
-                <div class="featured-work-keywords-container scroll-in">
-                    <p class="featured-work-keywords">BRANDING <br> ADVERTISING <br> STRATEGY <br> ANIMATION </p>
-                    <div class="text-box-container">
-                        <p class="text-box-text-1 larger">AWARD WINNING.</p>
-                    </div>
-                </div>
-                <div class="reel-container scroll-in">
-                    <video class="image reel" data-src="../assets/showreelop1080 v2.mp4" preload="none" poster="../assets/showreel-thumb.png" controls playsinline></video>
-                </div>
-        </div>
-
     </section>
 
     <footer class="footer" aria-labelledby="footer-title">
@@ -251,7 +275,7 @@
           </div>
           <div class="footer-details-container">
             <nav class="footer-text-container" aria-label="Footer navigation">
-              <a href="./About/" class="footer-details-line-1">About</a>
+              <a href="../About/" class="footer-details-line-1">About</a>
               <a href="mailto:reiss@glued.studio?subject=Got%20an%20idea%20–%20let’s%20chat&body=Hey%20Reiss," class="footer-details-line-1">Contact</a>
               <a href="https://www.instagram.com/gluedstudio/" class="footer-details-line-1">Instagram</a>
               <a href="https://www.linkedin.com/in/reiss-badhasha/" class="footer-details-line-1">LinkedIn</a>
@@ -273,9 +297,9 @@
     </footer>
 
 
-    
+
     <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
-    <script src="projects_script.js"></script>
+    <script src="../case_script.js"></script>
 
 </body>
 

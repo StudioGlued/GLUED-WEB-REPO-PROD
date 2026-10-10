@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Glued | V60s TitleCard</title>
+    <link rel="stylesheet" href="../case_style.css">
+    <link rel="stylesheet" href="../case_responsive.css">
+    <link rel="icon" type="image/png" href="../assets/tabicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <script>
+        // Runs instantly before the page even renders the body
+        if (localStorage.getItem('site-theme') !== 'light') {
+        document.documentElement.classList.add('dark-theme');
+        }
+    </script>
+  </head>
+
+
+
+  <body>
+
+    <header>
+        <nav class="nav">
+            <div class="nav-bg"></div>
+            <div class="nav-container">
+                <div onclick="toggleTheme()" class="logo-container">
+                    <img class="navicon" src="../assets/navicon_dark_anim.webp">
+                    <a class="studio-btn" href="../studio/index.html" onclick="event.stopPropagation()">
+                        <span class="studio-bold">Studio</span><span class="studio-thin">beta</span>
+                    </a>
+                </div>
+                <ul class="nav-list">
+                    <a class="nav-list" href="../">Glued</a>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <section class="project-hero">
+        <div class="work project-hero-work">
+            <div class="work-image">
+                <img class="image" src="assets/herothumb.webp" alt="V60s title sequence">
+            </div>
+        </div>
+    </section>
+
+    <section class="project-container">
+
+        <div class="project-about">
+            <h1 class="project-headline scroll-in">V60s<br>CARS FROM THE PAST<span class="project-headline-accent">.</span></h1>
+
+            <div class="project-tags scroll-in">
+                <p class="text-box-text-1">MOTION</p>
+                <p class="text-box-text-1">CGI</p>
+            </div>
+
+            <div class="project-overview scroll-in">
+                <p class="project-label">Overview</p>
+                <p class="project-description">This project involved creating a concept intro video for a documentary focused on old-school cars. The goal was to design a visually engaging and stylistic title sequence that captures the essence of classic automobiles while setting the tone for the documentary.</p>
+                <p class="project-description">I used Blender for 3D modeling and animation, along with Adobe After Effects for compositing and post-production. Blender did most of the heavy lifting, as I captured the majority footage inside of it.The concept was to highlight the unique qualities that make vintage cars so iconic by showcasing close-up shots of key exterior details. These included the rims, dashboard, seats, hood, and rear, emphasizing the craftsmanship and timeless appeal of these vehicles.</p>
+            </div>
+
+            <dl class="project-specs scroll-in">
+                <div class="project-spec">
+                    <dt class="project-label">Creative team</dt>
+                    <dd class="project-spec-value">Reiss Badhasha<br>Solo Project</dd>
+                </div>
+            </dl>
+        </div>
+
+
+
+        <div class="project-chapter scroll-in">
+            <h2 class="project-chapter-title">CLASSIC BEAUTY</h2>
+            <div class="project-chapter-text">
+                <p class="project-description">For this project, I selected the Mercedes 300SL, an automotive legend recognized for its striking gullwing doors and elegant design. This car has long been sought after by collectors and enthusiasts, making it a perfect subject for a documentary introduction. The close-up shots were carefully framed and lit to enhance the textures, reflections, and intricate details that define the character of classic cars.</p>
+            </div>
+        </div>
+
+
+
+        <div class="swap-group stack-3">
+            <div class="supporting-item supporting-large scroll-in">
+                <img class="image" src="assets/suppimg1.webp" loading="lazy" alt="Mercedes 300SL close-up">
+            </div>
+            <div class="supporting-item scroll-in">
+                <img class="image" src="assets/suppimg2.webp" loading="lazy" alt="Mercedes 300SL close-up">
+            </div>
+            <div class="supporting-item scroll-in">
+                <img class="image" src="assets/suppimg3.webp" loading="lazy" alt="Mercedes 300SL close-up">
+            </div>
+            <div class="supporting-item scroll-in">
+                <img class="image" src="assets/suppimg4.webp" loading="lazy" alt="Mercedes 300SL close-up">
+            </div>
+        </div>
+
+
+
+        <div class="project-chapter scroll-in">
+            <h2 class="project-chapter-title">V60s</h2>
+            <div class="project-chapter-text">
+                <p class="project-description">The final sequence captures the nostalgia and artistry of vintage automobiles while maintaining a cinematic and modern aesthetic. Through a combination of smooth camera movements, lighting effects, and motion design, the title sequence successfully immerses the viewer in the experience of a premium vehicle, setting the stage for the documentary.</p>
+            </div>
+        </div>
+
+
+
+        <div class="project-media scroll-in">
+            <video class="image reel" data-src="assets/videooc.mp4" preload="none" poster="assets/videothumb.webp" controls playsinline></video>
+        </div>
+
+
+
+        <div class="project-nav-container scroll-in">
+            <a class="text-box-text-1 larger" href="../">ALL WORK</a>
+        </div>
+
+    </section>
+
+    <footer class="footer" aria-labelledby="footer-title">
+      <div class="footer-container">
+        <div class="footer-main-container scroll-in">
+          <div class="footer-title-container">
+            <h2 id="footer-title" class="footer-title">Glued</h2>
+          </div>
+          <div class="footer-details-container">
+            <nav class="footer-text-container" aria-label="Footer navigation">
+              <a href="../About/" class="footer-details-line-1">About</a>
+              <a href="mailto:reiss@glued.studio?subject=Got%20an%20idea%20–%20let’s%20chat&body=Hey%20Reiss," class="footer-details-line-1">Contact</a>
+              <a href="https://www.instagram.com/gluedstudio/" class="footer-details-line-1">Instagram</a>
+              <a href="https://www.linkedin.com/in/reiss-badhasha/" class="footer-details-line-1">LinkedIn</a>
+            </nav>
+          </div>
+        </div>
+        <div class="footer-second-container">
+          <div class="footer-second-text-container-1">
+            <div class="footer-second-text-container-2">
+              <p class="footer-tags-line-2">Designed and Developed by Glued</p>
+            </div>
+            <div class="footer-second-text-container-2">
+              <p class="footer-tags-line-2">:D</p>
+              <p class="footer-tags-line-2">© 2026 Glued.Studio</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+    <script src="../case_script.js"></script>
+
+</body>
+
+
+
+</html>

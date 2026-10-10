@@ -1,0 +1,181 @@
+@media screen and (max-width: 1000px) {
+
+    .scroll-in:nth-of-type(even) {
+        transition-delay: 0.3s;
+    }
+
+    .nav-list {
+        margin-inline: 0.5rem;
+    }
+
+    /* Hero */
+    .project-hero {
+        padding: 4rem 0 0.5rem 0;
+    }
+
+    .project-hero .image {
+        height: calc(var(--vh, 1vh) * 100 - 4rem); /* full window minus the nav, edge to edge like the cards */
+    }
+
+    /* Project */
+    .project-container {
+        padding: 0;
+    }
+
+    /* About: everything stacks, credits sheet goes full width */
+    .project-about {
+        grid-template-columns: 1fr;
+        row-gap: 1.5rem;
+        margin-block: 3rem;
+        padding-inline: 1rem;
+        box-sizing: border-box;
+    }
+
+    .project-headline,
+    .project-headline.long {
+        font-size: 12vw;
+    }
+
+    .project-overview,
+    .project-portrait,
+    .project-specs {
+        grid-column: 1 / -1;
+    }
+
+    .project-overview.tall {
+        grid-row: auto;
+    }
+
+    .project-tags .text-box-text-1 {
+        text-align: left;
+    }
+
+    .project-description {
+        font-size: 1.2rem;
+    }
+
+    .project-spec-value {
+        font-size: 1rem;
+    }
+
+    .text-box-text-1,
+    .text-box-text-2 {
+        font-size: 1.5rem;
+    }
+
+    /* Project cards */
+    .work-container {
+        flex-direction: column;
+        gap: 0;
+        row-gap: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .work-title {
+        bottom: 0.7rem;
+        left: 0.5rem;
+    }
+
+    .larger {
+        font-size: 10vw;
+    }
+
+    .panorama-container {
+        margin-bottom: 0.5rem;
+    }
+
+    /* Chapters stack: title, then copy */
+    .project-chapter {
+        grid-template-columns: 1fr;
+        margin-block: 3rem;
+        padding-inline: 1rem;
+        box-sizing: border-box;
+    }
+
+    .project-chapter-title,
+    .project-chapter-text {
+        grid-column: 1 / -1;
+    }
+
+    .project-chapter-title {
+        font-size: 10vw;
+    }
+
+    .project-chapter-text .project-description {
+        font-size: 1rem;
+    }
+
+    .project-media {
+        margin-bottom: 0.5rem;
+    }
+
+    /* Media rows and swap groups: one column, edge to edge */
+    .media-row {
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .media-tile,
+    .media-tile.square {
+        flex: none;
+        width: 100%;
+    }
+
+    .media-caption {
+        bottom: 0.7rem;
+        left: 0.5rem;
+    }
+
+    .swap-group.stack-2,
+    .swap-group.stack-3 {
+        grid-template-columns: 1fr;
+        grid-template-rows: none;
+        gap: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .swap-group .supporting-item,
+    .swap-group.flip .supporting-item,
+    .swap-group.flip .supporting-large {
+        grid-column: 1;
+    }
+
+    .supporting-large {
+        grid-row: auto;
+        order: -1; /* large tile first */
+        aspect-ratio: 16/9;
+    }
+
+    .project-nav-container {
+        margin-block: 2.5rem 3rem; /* media above already leaves 0.5rem */
+    }
+
+    /* Footer */
+    .footer-container {
+        height: calc(var(--vh, 1vh) * 70);
+        width: 100%;
+    }
+
+    .footer-title {
+        font-size: 20vw;
+        height: fit-content;
+        padding-left: 0;
+    }
+
+    .footer-text-container {
+        margin-bottom: 1.7rem;
+    }
+
+    .footer-details-container {
+        margin: 0;
+    }
+
+    .footer-details-line-1 {
+        font-size: 1rem;
+    }
+
+    .footer-tags-line-2 {
+        font-size: 0.5rem;
+    }
+}

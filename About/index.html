@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Glued | About</title>
+    <link rel="stylesheet" href="../case_style.css">
+    <link rel="stylesheet" href="../case_responsive.css">
+    <link rel="icon" type="image/png" href="../assets/tabicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <script>
+        // Runs instantly before the page even renders the body
+        if (localStorage.getItem('site-theme') !== 'light') {
+        document.documentElement.classList.add('dark-theme');
+        }
+    </script>
+  </head>
+
+
+
+  <body>
+
+    <header>
+        <nav class="nav">
+            <div class="nav-bg"></div>
+            <div class="nav-container">
+                <div onclick="toggleTheme()" class="logo-container">
+                    <img class="navicon" src="../assets/navicon_dark_anim.webp">
+                    <a class="studio-btn" href="../studio/index.html" onclick="event.stopPropagation()">
+                        <span class="studio-bold">Studio</span><span class="studio-thin">beta</span>
+                    </a>
+                </div>
+                <ul class="nav-list">
+                    <a class="nav-list" href="../">Glued</a>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <section class="project-container">
+
+        <div class="project-about">
+            <h1 class="project-headline scroll-in">HI! MY NAME IS<br>REISS<span class="project-headline-accent">.</span></h1>
+
+            <div class="project-tags scroll-in">
+                <p class="text-box-text-1">D&AD NEW BLOOD 25</p>
+                <p class="text-box-text-1">NUA GRADUATE</p>
+            </div>
+
+            <div class="project-overview tall scroll-in">
+                <p class="project-label">About</p>
+                <p class="project-description">I'm a graduated student of Norwich University, formerly NUA, and an awarded designer of D&AD Newblood 25.</p>
+                <p class="project-description">Crafted and coded by hand, GLUED is my never ending passion project. It's my best excuse to create, and to express myself as I am. As you scroll or swipe through my website, note that everything you see has been designed over many hours, and from margins to scroll speed, it's coded to reflect my design precisely.</p>
+                <p class="project-description">more than that... I just like orange (:</p>
+            </div>
+
+            <div class="project-portrait scroll-in">
+                <img class="image" src="assets/headshot.webp" alt="Reiss Badhasha">
+                <p class="project-portrait-caption">Thanks Matt for the photo (:</p>
+            </div>
+
+            <dl class="project-specs scroll-in">
+                <div class="project-spec">
+                    <dt class="project-label">Studio</dt>
+                    <dd class="project-spec-value">Glued</dd>
+                </div>
+                <div class="project-spec">
+                    <dt class="project-label">Award</dt>
+                    <dd class="project-spec-value">D&AD New Blood 2025</dd>
+                </div>
+                <div class="project-spec">
+                    <dt class="project-label">Contact</dt>
+                    <dd class="project-spec-value"><a href="mailto:reiss@glued.studio?subject=Got%20an%20idea%20–%20let’s%20chat&body=Hey%20Reiss,">reiss@glued.studio</a></dd>
+                </div>
+                <div class="project-spec">
+                    <dt class="project-label">Instagram</dt>
+                    <dd class="project-spec-value"><a href="https://www.instagram.com/gluedstudio/" target="_blank">@gluedstudio</a></dd>
+                </div>
+                <div class="project-spec">
+                    <dt class="project-label">LinkedIn</dt>
+                    <dd class="project-spec-value"><a href="https://www.linkedin.com/in/reiss-badhasha/" target="_blank">Reiss Badhasha</a></dd>
+                </div>
+            </dl>
+        </div>
+
+
+
+        <div class="project-nav-container scroll-in">
+            <a class="text-box-text-1 larger" href="../">ALL WORK</a>
+        </div>
+
+    </section>
+
+    <footer class="footer" aria-labelledby="footer-title">
+      <div class="footer-container">
+        <div class="footer-main-container scroll-in">
+          <div class="footer-title-container">
+            <h2 id="footer-title" class="footer-title">Glued</h2>
+          </div>
+          <div class="footer-details-container">
+            <nav class="footer-text-container" aria-label="Footer navigation">
+              <a href="../About/" class="footer-details-line-1">About</a>
+              <a href="mailto:reiss@glued.studio?subject=Got%20an%20idea%20–%20let’s%20chat&body=Hey%20Reiss," class="footer-details-line-1">Contact</a>
+              <a href="https://www.instagram.com/gluedstudio/" class="footer-details-line-1">Instagram</a>
+              <a href="https://www.linkedin.com/in/reiss-badhasha/" class="footer-details-line-1">LinkedIn</a>
+            </nav>
+          </div>
+        </div>
+        <div class="footer-second-container">
+          <div class="footer-second-text-container-1">
+            <div class="footer-second-text-container-2">
+              <p class="footer-tags-line-2">Designed and Developed by Glued</p>
+            </div>
+            <div class="footer-second-text-container-2">
+              <p class="footer-tags-line-2">:D</p>
+              <p class="footer-tags-line-2">© 2026 Glued.Studio</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+    <script src="../case_script.js"></script>
+
+</body>
+
+
+
+</html>

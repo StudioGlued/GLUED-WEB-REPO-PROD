@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Glued | Public London</title>
+    <link rel="stylesheet" href="../case_style.css">
+    <link rel="stylesheet" href="../case_responsive.css">
+    <link rel="icon" type="image/png" href="../assets/tabicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <script>
+        // Runs instantly before the page even renders the body
+        if (localStorage.getItem('site-theme') !== 'light') {
+        document.documentElement.classList.add('dark-theme');
+        }
+    </script>
+  </head>
+
+
+
+  <body>
+
+    <header>
+        <nav class="nav">
+            <div class="nav-bg"></div>
+            <div class="nav-container">
+                <div onclick="toggleTheme()" class="logo-container">
+                    <img class="navicon" src="../assets/navicon_dark_anim.webp">
+                    <a class="studio-btn" href="../studio/index.html" onclick="event.stopPropagation()">
+                        <span class="studio-bold">Studio</span><span class="studio-thin">beta</span>
+                    </a>
+                </div>
+                <ul class="nav-list">
+                    <a class="nav-list" href="../">Glued</a>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <section class="project-hero">
+        <div class="work project-hero-work">
+            <div class="work-image">
+                <img class="image" src="assets/public-thumb.webp" alt="Public London">
+            </div>
+        </div>
+    </section>
+
+    <section class="project-container">
+
+        <div class="project-about">
+            <h1 class="project-headline scroll-in">PUBLIC LONDON<br>INTERN-TIVITIES<span class="project-headline-accent">!</span></h1>
+
+            <div class="project-tags scroll-in">
+                <p class="text-box-text-1">MOTION</p>
+                <p class="text-box-text-1">BRANDING</p>
+                <p class="text-box-text-1">ILLUSTRATION</p>
+            </div>
+
+            <div class="project-overview scroll-in">
+                <p class="project-label">Overview</p>
+                <p class="project-description">I had the privilege of interning at Public London over the summer of 2024. I got the chance to work on some live brands and even had my work featured in the Fedrigoni 365 2025 Edition calendar. The internship was offered by Simon Parkes, the creative director of Public London, and it was a great experience to learn about the industry and what it’s like to work in a real studio environment.</p>
+            </div>
+
+            <dl class="project-specs scroll-in">
+                <div class="project-spec">
+                    <dt class="project-label">Studio</dt>
+                    <dd class="project-spec-value">Public London</dd>
+                </div>
+                <div class="project-spec">
+                    <dt class="project-label">Creative director</dt>
+                    <dd class="project-spec-value">Simon Parkes</dd>
+                </div>
+                <div class="project-spec">
+                    <dt class="project-label">Year</dt>
+                    <dd class="project-spec-value">2024</dd>
+                </div>
+            </dl>
+        </div>
+
+
+
+        <div class="project-media scroll-in">
+            <video class="image" data-src="assets/finalvid.mp4" poster="assets/finalvid_thumb.jpg" autoplay loop muted playsinline webkit-playsinline></video>
+        </div>
+
+
+
+        <div class="project-chapter scroll-in">
+            <h2 class="project-chapter-title">STAGNANT MOTION</h2>
+            <div class="project-chapter-text">
+                <p class="project-description">As designers who are heavily interested in motion graphics, this dynamic solution immediately resonated with us. We considered how we could represent movement through form, experimenting with stretched typography, blurred shapes, and echoes of motion trails frozen in place. The final design captured this concept in a way that felt both striking and thought-provoking.</p>
+            </div>
+        </div>
+
+
+
+        <div class="project-media scroll-in">
+            <img class="image" src="assets/fedbookimg3.webp" loading="lazy" alt="Stagnation, Fedrigoni 365 2025">
+        </div>
+
+
+
+        <div class="project-chapter scroll-in">
+            <h2 class="project-chapter-title">FEDRIGONI 365</h2>
+            <div class="project-chapter-text">
+                <p class="project-description">The approach not only stood out to us but also caught the attention of the Creative Director of Public London. They appreciated the depth of thought behind the execution and how it transformed a simple theme into a layered visual experience. This project reinforced our belief in the power of design to communicate ideas beyond words and challenged us to think about how movement, or the lack thereof, can tell a story in an unexpected way.</p>
+            </div>
+        </div>
+
+
+
+        <div class="project-chapter scroll-in">
+            <h2 class="project-chapter-title">3V MOTION</h2>
+            <div class="project-chapter-text">
+                <!-- Copy still to write (the old page had "Work overview." here) -->
+            </div>
+        </div>
+
+
+
+        <div class="media-row">
+            <div class="media-tile scroll-in">
+                <video class="image" data-src="assets/3v-logo-motion.mp4" poster="assets/3v-logo-motion_thumb.jpg" autoplay loop muted playsinline webkit-playsinline></video>
+            </div>
+            <div class="media-tile square scroll-in">
+                <video class="image" data-src="assets/logo-motion-website.mp4" poster="assets/logo-motion-website_thumb.jpg" autoplay loop muted playsinline webkit-playsinline></video>
+            </div>
+        </div>
+
+
+
+        <!-- Drip Dry, Pas Normal and Absorb Island had "Work overview." placeholders on the old page, so they are captioned tiles for now -->
+        <div class="media-row">
+            <div class="media-tile scroll-in">
+                <video class="image" data-src="assets/dripdry.mp4" poster="assets/dripdry_thumb.jpg" autoplay loop muted playsinline webkit-playsinline></video>
+                <div class="media-caption">
+                    <p class="text-box-text-1">DRIP DRY</p>
+                </div>
+            </div>
+            <div class="media-tile scroll-in">
+                <video class="image" data-src="assets/pns-w-logo.mp4" poster="assets/pns-w-logo_thumb.jpg" autoplay loop muted playsinline webkit-playsinline></video>
+                <div class="media-caption">
+                    <p class="text-box-text-1">PAS NORMAL</p>
+                </div>
+            </div>
+            <div class="media-tile scroll-in">
+                <video class="image" data-src="assets/absorb-island.mp4" poster="assets/absorb-island_thumb.jpg" autoplay loop muted playsinline webkit-playsinline></video>
+                <div class="media-caption">
+                    <p class="text-box-text-1">ABSORB ISLAND</p>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="project-nav-container scroll-in">
+            <a class="text-box-text-1 larger" href="../">ALL WORK</a>
+        </div>
+
+    </section>
+
+    <footer class="footer" aria-labelledby="footer-title">
+      <div class="footer-container">
+        <div class="footer-main-container scroll-in">
+          <div class="footer-title-container">
+            <h2 id="footer-title" class="footer-title">Glued</h2>
+          </div>
+          <div class="footer-details-container">
+            <nav class="footer-text-container" aria-label="Footer navigation">
+              <a href="../About/" class="footer-details-line-1">About</a>
+              <a href="mailto:reiss@glued.studio?subject=Got%20an%20idea%20–%20let’s%20chat&body=Hey%20Reiss," class="footer-details-line-1">Contact</a>
+              <a href="https://www.instagram.com/gluedstudio/" class="footer-details-line-1">Instagram</a>
+              <a href="https://www.linkedin.com/in/reiss-badhasha/" class="footer-details-line-1">LinkedIn</a>
+            </nav>
+          </div>
+        </div>
+        <div class="footer-second-container">
+          <div class="footer-second-text-container-1">
+            <div class="footer-second-text-container-2">
+              <p class="footer-tags-line-2">Designed and Developed by Glued</p>
+            </div>
+            <div class="footer-second-text-container-2">
+              <p class="footer-tags-line-2">:D</p>
+              <p class="footer-tags-line-2">© 2026 Glued.Studio</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+    <script src="../case_script.js"></script>
+
+</body>
+
+
+
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Glued | Plucked</title>
+    <link rel="stylesheet" href="../case_style.css">
+    <link rel="stylesheet" href="../case_responsive.css">
+    <link rel="icon" type="image/png" href="../assets/tabicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <script>
+        // Runs instantly before the page even renders the body
+        if (localStorage.getItem('site-theme') !== 'light') {
+        document.documentElement.classList.add('dark-theme');
+        }
+    </script>
+  </head>
+
+
+
+  <body>
+
+    <header>
+        <nav class="nav">
+            <div class="nav-bg"></div>
+            <div class="nav-container">
+                <div onclick="toggleTheme()" class="logo-container">
+                    <img class="navicon" src="../assets/navicon_dark_anim.webp">
+                    <a class="studio-btn" href="../studio/index.html" onclick="event.stopPropagation()">
+                        <span class="studio-bold">Studio</span><span class="studio-thin">beta</span>
+                    </a>
+                </div>
+                <ul class="nav-list">
+                    <a class="nav-list" href="../">Glued</a>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <section class="project-hero">
+        <div class="work project-hero-work">
+            <div class="work-image">
+                <video class="image" src="assets/plucked-bb.mp4" poster="assets/plucked-bb_thumb.jpg" autoplay loop muted playsinline webkit-playsinline></video>
+            </div>
+        </div>
+    </section>
+
+    <section class="project-container">
+
+        <div class="project-about">
+            <h1 class="project-headline scroll-in">PLUCKED<br>RENT A FRIEND<span class="project-headline-accent">?</span></h1>
+
+            <div class="project-tags scroll-in">
+                <p class="text-box-text-1">BRANDING</p>
+                <p class="text-box-text-1">MOTION</p>
+                <p class="text-box-text-1">ADVERTISING</p>
+            </div>
+
+            <div class="project-overview scroll-in">
+                <p class="project-label">Overview</p>
+                <p class="project-description">The name reflects how our brand 'plucks' chickens and from their life sentence in poultry farms to go to happier homes. This concept is reflected in our motion, illustrative style, and tone of voice. Plucked is unapologetically bold, which is achieved through the brand's tone of voice to raise awareness and stand against the mistreatment of chickens in the poultry industry.</p>
+                <p class="project-description">Simultaneously, the brand needed to be friendly, appealing to families, and promoting a positive outlook on what is otherwise a bleak situation. We accomplished this through the illustrated and 3D modelled character Pluck, our quirky chicken, with bouncy animations and fun expressions.</p>
+            </div>
+
+            <dl class="project-specs scroll-in">
+                <div class="project-spec">
+                    <dt class="project-label">Directing team</dt>
+                    <dd class="project-spec-value">Reiss Badhasha<br><a href="https://jacobbryant.design/" target="_blank">Jacob Bryant</a><br>Cassie Musket<br>Elliot Huckett</dd>
+                </div>
+                <div class="project-spec">
+                    <dt class="project-label">Extra credits</dt>
+                    <dd class="project-spec-value">Simon Parkes<br>Andy Judd</dd>
+                </div>
+            </dl>
+        </div>
+
+
+
+        <div class="project-nav-container scroll-in">
+            <a class="text-box-text-1 larger" href="assets/plucked-doc.pdf" target="_blank">VIEW THE PROJECT</a>
+        </div>
+
+
+
+        <div class="project-nav-container scroll-in">
+            <a class="text-box-text-1 larger" href="../">ALL WORK</a>
+        </div>
+
+    </section>
+
+    <footer class="footer" aria-labelledby="footer-title">
+      <div class="footer-container">
+        <div class="footer-main-container scroll-in">
+          <div class="footer-title-container">
+            <h2 id="footer-title" class="footer-title">Glued</h2>
+          </div>
+          <div class="footer-details-container">
+            <nav class="footer-text-container" aria-label="Footer navigation">
+              <a href="../About/" class="footer-details-line-1">About</a>
+              <a href="mailto:reiss@glued.studio?subject=Got%20an%20idea%20–%20let’s%20chat&body=Hey%20Reiss," class="footer-details-line-1">Contact</a>
+              <a href="https://www.instagram.com/gluedstudio/" class="footer-details-line-1">Instagram</a>
+              <a href="https://www.linkedin.com/in/reiss-badhasha/" class="footer-details-line-1">LinkedIn</a>
+            </nav>
+          </div>
+        </div>
+        <div class="footer-second-container">
+          <div class="footer-second-text-container-1">
+            <div class="footer-second-text-container-2">
+              <p class="footer-tags-line-2">Designed and Developed by Glued</p>
+            </div>
+            <div class="footer-second-text-container-2">
+              <p class="footer-tags-line-2">:D</p>
+              <p class="footer-tags-line-2">© 2026 Glued.Studio</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+    <script src="../case_script.js"></script>
+
+</body>
+
+
+
+</html>
