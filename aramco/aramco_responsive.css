@@ -1,0 +1,119 @@
+@media screen and (max-width: 1000px) {
+
+    .scroll-in:nth-of-type(even) {
+        transition-delay: 0.3s;
+    }
+
+    .nav-list {
+        margin-inline: 0.5rem;
+    }
+
+    /* Hero */
+    .project-hero {
+        padding: 4rem 0 0.5rem 0;
+    }
+
+    .project-hero .image {
+        height: calc(var(--vh, 1vh) * 100 - 4rem); /* full window minus the nav, edge to edge like the cards */
+    }
+
+    /* Project */
+    .project-container {
+        padding: 0;
+    }
+
+    /* About: everything stacks, credits sheet goes full width */
+    .project-about {
+        grid-template-columns: 1fr;
+        row-gap: 1.5rem;
+        margin-block: 3rem;
+        padding-inline: 1rem;
+        box-sizing: border-box;
+    }
+
+    .project-headline {
+        font-size: 12vw;
+    }
+
+    .project-overview,
+    .project-specs {
+        grid-column: 1 / -1;
+    }
+
+    .project-tags .text-box-text-1 {
+        text-align: left;
+    }
+
+    .project-description {
+        font-size: 1.2rem;
+    }
+
+    .project-spec-value {
+        font-size: 1rem;
+    }
+
+    .text-box-text-1 {
+        font-size: 1.5rem;
+    }
+
+    .larger {
+        font-size: 10vw;
+    }
+
+    .panorama-container {
+        margin-bottom: 0.5rem;
+    }
+
+    /* Supporting work grid: one column, every tile back to 16:9 */
+    .supporting-container {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "i"
+            "f"
+            "g"
+            "h"
+            "d"
+            "a"
+            "b"
+            "c"
+            "e";
+        gap: 0.5rem;
+    }
+
+    .item-a,
+    .item-i {
+        aspect-ratio: 16/9;
+    }
+
+    .project-nav-container {
+        margin-block: 3rem;
+    }
+
+    /* Footer */
+    .footer-container {
+        height: calc(var(--vh, 1vh) * 70);
+        width: 100%;
+    }
+
+    .footer-title {
+        font-size: 20vw;
+        height: fit-content;
+        padding-left: 0;
+    }
+
+    .footer-text-container {
+        margin-bottom: 1.7rem;
+    }
+
+    .footer-details-container {
+        margin: 0;
+    }
+
+    .footer-details-line-1 {
+        font-size: 1rem;
+    }
+
+    .footer-tags-line-2 {
+        font-size: 0.5rem;
+    }
+}

@@ -1,0 +1,471 @@
+html {
+    scrollbar-width: none;
+    scroll-behavior: auto;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --sikh: #FF6C00;
+    --glue: #fff0e6;
+    --black: #000000;
+    --background: #fff0e6;
+    --switch: #000000;
+}
+
+html.dark-theme {
+    --switch: #fff0e6;
+    --background: #000000;
+}
+
+a {
+    all: unset;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background);
+    transition: 0.3s ease;
+}
+
+section {
+    position: relative;
+}
+
+.scroll-in {
+    transform: translateY(5vh);
+    opacity: 0;
+    transition: all 0.3s ease-out 0.3s;
+}
+
+.scroll-in:nth-of-type(even) {
+    transition-delay: 0.2s;
+}
+
+.scroll-in.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Video Controls Override */
+.work-image video.image::-webkit-media-controls-start-playback-button,
+.work-image video.image::-webkit-media-controls-play-button,
+.work-image video.image::-webkit-media-controls {
+    display: none !important;
+    -webkit-appearance: none !important;
+}
+
+/* NAVIGATION */
+header {
+    position: fixed;
+    height: auto;
+    width: 100%;
+    z-index: 100;
+}
+
+.nav {
+    width: 100%;
+    height: auto;
+}
+
+.nav-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: auto;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 1rem;
+    height: 2rem;
+    width: fit-content;
+}
+
+.studio-btn {
+    display: flex;
+    align-items: baseline;
+    cursor: pointer;
+}
+
+.studio-bold {
+    color: var(--switch);
+    font-weight: 900;
+    font-size: 2rem;
+    letter-spacing: -0.085em;
+    line-height: 1;
+}
+
+.studio-thin {
+    color: var(--switch);
+    font-weight: 200;
+    font-size: 2rem;
+    letter-spacing: -0.085em;
+    line-height: 1;
+}
+
+.navicon {
+    z-index: 102;
+    height: 2rem;
+    width: auto;
+    aspect-ratio: 517 / 205;
+    cursor: pointer;
+}
+
+.nav-list {
+    margin-inline: 1rem;
+    color: var(--switch);
+    font-weight: 1000;
+    font-size: 2rem;
+    letter-spacing: -0.085em;
+    cursor: pointer;
+}
+
+.nav-bg {
+    position: absolute;
+    top: 0;
+    background-color: var(--background);
+    transition: 0.3s ease;
+    opacity: 0.8;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+/* Hero */
+.project-hero {
+    padding: 4rem 1rem 1rem 1rem;
+    background-color: var(--background);
+    transition: 0.3s ease;
+}
+
+/* Shared Text Box Styles */
+.text-box-text-1 {
+    font-size: 2rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 900;
+    line-height: 0.99;
+    color: var(--glue);
+    padding: 0.2rem 0.4rem;
+    height: fit-content;
+    text-align: right;
+    background-color: var(--sikh);
+    transition: all 150ms ease-in-out;
+    text-wrap: wrap;
+}
+
+/* Project */
+.project-container {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1rem;
+    background-color: var(--background);
+    transition: 0.3s ease;
+}
+
+/* About: full-width headline, then overview and a credits sheet
+   ARAMCO ×
+   FIFA WORLD CUP 2026
+   [MAJOR WORLDWIDE PARTNER]
+   Overview ............. (cols 1-7)    Client ─── Aramco   (cols 9-12)
+                                        Agency ─── SPORTFIVE ... */
+.project-about {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 1rem;
+    row-gap: 2rem;
+    width: 100%;
+    margin-block: 6rem;
+}
+
+.project-headline {
+    grid-column: 1 / -1;
+    font-size: 9vw; /* sized so "FIFA WORLD CUP 2026" runs almost edge to edge (~95%) */
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    color: var(--switch);
+    transition: 0.3s ease;
+}
+
+.project-headline-accent {
+    color: var(--sikh);
+}
+
+.project-tags {
+    grid-column: 1 / -1;
+    display: flex;
+    margin-top: -1rem;
+}
+
+.project-overview {
+    grid-column: 1 / 8;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.project-label {
+    font-size: 1rem;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--sikh);
+}
+
+.project-description {
+    font-size: 1.8rem;
+    font-weight: 300;
+    line-height: 1.3;
+    color: var(--switch);
+    transition: 0.3s ease;
+}
+
+.project-specs {
+    grid-column: 9 / -1;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-spec {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    padding-block: 0.8rem;
+    border-top: 1px solid var(--switch);
+    transition: 0.3s ease;
+}
+
+.project-spec:last-child {
+    border-bottom: 1px solid var(--switch);
+}
+
+.project-spec-value {
+    font-size: 1.2rem;
+    font-weight: 300;
+    text-align: right;
+    color: var(--switch);
+    transition: 0.3s ease;
+}
+
+/* Wide still above the grid, cropped to a cinematic strip */
+.panorama-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    aspect-ratio: 21/9;
+    margin-bottom: 1rem;
+}
+
+.panorama-container .image {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Hero card */
+.work {
+    position: relative;
+    flex: 1;
+    height: fit-content;
+}
+
+.work-image {
+    display: flex;
+    object-fit: contain;
+    width: 100%;
+}
+
+.image {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+.project-hero .image {
+    height: calc(var(--vh, 1vh) * 100 - 5rem); /* full window minus the nav (4rem) and bottom margin (1rem) */
+    object-fit: cover;
+}
+
+/* Supporting work grid
+   ┌─────┬─────────────────┐
+   │  f  │                 │
+   ├─────┤                 │
+   │  g  │        i        │
+   ├─────┤                 │
+   │  h  │                 │
+   ├─────┴─────────────────┤
+   │           d           │   35s film, 16:9 with controls
+   ├─────────────────┬─────┤
+   │                 │  b  │
+   │        a        ├─────┤
+   │                 │  c  │
+   │                 ├─────┤
+   │                 │  e  │
+   └─────────────────┴─────┘ */
+.supporting-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas:
+        "f i i i"
+        "g i i i"
+        "h i i i"
+        "d d d d"
+        "a a a b"
+        "a a a c"
+        "a a a e";
+    gap: 1rem;
+    width: 100%;
+}
+
+.supporting-item {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 16/9;
+}
+
+/* Media fills its cell and crops, so the grid sets the shape, not the file */
+.supporting-item .image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Small tiles swap into the large one on click (see aramco_script.js) */
+.supporting-item[data-group] {
+    cursor: pointer;
+}
+
+.item-a { grid-area: a; aspect-ratio: auto; }
+.item-b { grid-area: b; }
+.item-c { grid-area: c; }
+.item-d { grid-area: d; }
+.item-e { grid-area: e; }
+.item-f { grid-area: f; }
+.item-g { grid-area: g; }
+.item-h { grid-area: h; }
+.item-i { grid-area: i; aspect-ratio: auto; }
+
+.project-nav-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-block: 4rem;
+}
+
+.project-nav-container .text-box-text-1 {
+    cursor: pointer;
+}
+
+/* Footer */
+.footer {
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    height: 59.5svh; /* 15% shorter than the home page footer (70svh) */
+    width: 100%;
+    overflow: hidden;
+    padding: 1rem;
+    align-content: flex-end;
+}
+
+.footer-main-container {
+    display: flex;
+    position: relative;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.footer-title-container {
+    display: flex;
+    width: 50%;
+    height: 100%;
+    align-items: last baseline;
+}
+
+.footer-title {
+    font-size: 13.6vw; /* 15% smaller than the home page (16vw) */
+    font-weight: 1000;
+    padding-left: 2rem;
+    width: fit-content;
+    height: 17vw;
+    color: var(--sikh);
+    letter-spacing: -0.085em;
+}
+
+.footer-details-container {
+    display: flex;
+    width: 50%;
+    margin: 2rem 2rem 2rem 0;
+    text-align: right;
+    justify-content: flex-end;
+    align-items: last baseline;
+}
+
+.footer-text-container {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    justify-content: right;
+    margin-bottom: 1rem;
+}
+
+.footer-details-line-1 {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--sikh);
+    text-align: right;
+    transition: 0.3s ease;
+}
+
+.footer-details-line-1:hover {
+    font-weight: 1000;
+    cursor: pointer;
+}
+
+.footer-second-container {
+    width: 100%;
+    display: flex;
+}
+
+.footer-second-text-container-1 {
+    width: 100%;
+    display: flex;
+    height: 100%;
+    justify-content: space-between;
+    align-items: last baseline;
+    align-content: last baseline;
+}
+
+.footer-second-text-container-2 {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    height: fit-content;
+}
+
+.footer-tags-line-2 {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--switch);
+    width: fit-content;
+    height: fit-content;
+}

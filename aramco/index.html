@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Glued | Aramco FIFA World Cup</title>
+    <link rel="stylesheet" href="aramco_style.css">
+    <link rel="stylesheet" href="aramco_responsive.css">
+    <link rel="icon" type="image/png" href="../assets/tabicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <script>
+        // Runs instantly before the page even renders the body
+        if (localStorage.getItem('site-theme') !== 'light') {
+        document.documentElement.classList.add('dark-theme');
+        }
+    </script>
+  </head>
+
+
+
+  <body>
+
+    <header>
+        <nav class="nav">
+            <div class="nav-bg"></div>
+            <div class="nav-container">
+                <div onclick="toggleTheme()" class="logo-container">
+                    <img class="navicon" src="../assets/navicon_dark_anim.webp">
+                    <a class="studio-btn" href="../studio/index.html" onclick="event.stopPropagation()">
+                        <span class="studio-bold">Studio</span><span class="studio-thin">beta</span>
+                    </a>
+                </div>
+                <ul class="nav-list">
+                    <a class="nav-list" href="../">Glued</a>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <section class="project-hero">
+        <div class="work project-hero-work">
+            <div class="work-image">
+                <!-- Different video on mobile: add data-mobile-src="assets/..." (and data-mobile-poster="assets/...") to this video -->
+                <video class="image" src="assets/fan-festival-transition.mp4" poster="assets/fan-festival-transition_thumb.jpg" autoplay loop muted playsinline webkit-playsinline></video>
+            </div>
+        </div>
+    </section>
+
+    <section class="project-container">
+
+        <div class="project-about">
+            <h1 class="project-headline scroll-in">ARAMCO <span class="project-headline-accent">×</span><br>FIFA WORLD CUP 2026</h1>
+
+            <div class="project-tags scroll-in">
+                <p class="text-box-text-1">MAJOR WORLDWIDE PARTNER</p>
+            </div>
+
+            <div class="project-overview scroll-in">
+                <p class="project-label">Overview</p>
+                <!-- PLACEHOLDER overview, written from the assets on this page. Replace with the real copy. -->
+                <p class="project-description">As Major Worldwide Partner of the FIFA World Cup 2026, Aramco needed a content system that could keep pace with the tournament. Working with SPORTFIVE, we built a suite of motion pieces — Dream XI, Power Rankings, Match Highlights and World Cup Fantasy — designed to drop into a live, matchday rhythm. Alongside it, schedule and fixture graphics for the Aramco Arena fan festival, and an Energy Moments film revisiting France vs Senegal from 2002, tied the brand back to the history of the game.</p>
+            </div>
+
+            <dl class="project-specs scroll-in">
+                <div class="project-spec">
+                    <dt class="project-label">Client</dt>
+                    <dd class="project-spec-value">Aramco</dd>
+                </div>
+                <div class="project-spec">
+                    <dt class="project-label">Agency</dt>
+                    <dd class="project-spec-value">SPORTFIVE</dd>
+                </div>
+                <div class="project-spec">
+                    <dt class="project-label">Event</dt>
+                    <dd class="project-spec-value">FIFA World Cup 2026</dd>
+                </div>
+            </dl>
+        </div>
+
+
+
+        <div class="panorama-container scroll-in">
+            <img class="image" src="assets/net-final.webp" loading="lazy" alt="Aramco net graphic">
+        </div>
+
+
+
+        <div class="supporting-container">
+            <div class="supporting-item item-f scroll-in" data-group="arena">
+                <video class="image" data-src="assets/matches-05.mp4" poster="assets/matches-05_thumb.jpg" autoplay loop muted playsinline webkit-playsinline></video>
+            </div>
+            <div class="supporting-item item-g scroll-in" data-group="arena">
+                <video class="image" data-src="assets/todays-schedule.mp4" poster="assets/todays-schedule_thumb.jpg" autoplay loop muted playsinline webkit-playsinline></video>
+            </div>
+            <div class="supporting-item item-h scroll-in" data-group="arena">
+                <img class="image" src="assets/time-for-open-play.webp" loading="lazy" alt="Time for open play">
+            </div>
+            <div class="supporting-item item-i supporting-large scroll-in" data-group="arena">
+                <img class="image" src="assets/full-final.webp" loading="lazy" alt="Aramco Arena">
+            </div>
+
+            <div class="supporting-item item-d scroll-in">
+                <video class="image reel" data-src="assets/2002-30s.mp4" preload="none" poster="assets/2002-30s_thumb.jpg" controls playsinline></video>
+            </div>
+
+            <div class="supporting-item item-a supporting-large scroll-in" data-group="features">
+                <video class="image" data-src="assets/dream-xi.mp4" poster="assets/dream-xi_thumb.jpg" autoplay loop muted playsinline webkit-playsinline></video>
+            </div>
+            <div class="supporting-item item-b scroll-in" data-group="features">
+                <video class="image" data-src="assets/match-highlights.mp4" poster="assets/match-highlights_thumb.jpg" autoplay loop muted playsinline webkit-playsinline></video>
+            </div>
+            <div class="supporting-item item-c scroll-in" data-group="features">
+                <video class="image" data-src="assets/power-rankings.mp4" poster="assets/power-rankings_thumb.jpg" autoplay loop muted playsinline webkit-playsinline></video>
+            </div>
+            <div class="supporting-item item-e scroll-in" data-group="features">
+                <video class="image" data-src="assets/world-cup-fantasy.mp4" poster="assets/world-cup-fantasy_thumb.jpg" autoplay loop muted playsinline webkit-playsinline></video>
+            </div>
+        </div>
+
+
+
+        <div class="project-nav-container scroll-in">
+            <a class="text-box-text-1 larger" href="../">ALL WORK</a>
+        </div>
+
+    </section>
+
+    <footer class="footer" aria-labelledby="footer-title">
+      <div class="footer-container">
+        <div class="footer-main-container scroll-in">
+          <div class="footer-title-container">
+            <h2 id="footer-title" class="footer-title">Glued</h2>
+          </div>
+          <div class="footer-details-container">
+            <nav class="footer-text-container" aria-label="Footer navigation">
+              <a href="../About/" class="footer-details-line-1">About</a>
+              <a href="mailto:reiss@glued.studio?subject=Got%20an%20idea%20–%20let’s%20chat&body=Hey%20Reiss," class="footer-details-line-1">Contact</a>
+              <a href="https://www.instagram.com/gluedstudio/" class="footer-details-line-1">Instagram</a>
+              <a href="https://www.linkedin.com/in/reiss-badhasha/" class="footer-details-line-1">LinkedIn</a>
+            </nav>
+          </div>
+        </div>
+        <div class="footer-second-container">
+          <div class="footer-second-text-container-1">
+            <div class="footer-second-text-container-2">
+              <p class="footer-tags-line-2">Designed and Developed by Glued</p>
+            </div>
+            <div class="footer-second-text-container-2">
+              <p class="footer-tags-line-2">:D</p>
+              <p class="footer-tags-line-2">© 2026 Glued.Studio</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+    <script src="aramco_script.js"></script>
+
+</body>
+
+
+
+</html>
